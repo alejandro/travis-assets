@@ -1,14 +1,14 @@
-Travis.Repository = Travis.Record.extend(Travis.Helpers.Common, {
-  slug:                   Ember.Record.attr(String),
-  name:                   Ember.Record.attr(String),
-  owner:                  Ember.Record.attr(String),
-  description:            Ember.Record.attr(String),
-  last_build_id:          Ember.Record.attr(Number),
-  last_build_number:      Ember.Record.attr(String),
-  last_build_result:      Ember.Record.attr(Number),
-  last_build_duration:    Ember.Record.attr(Number),
-  last_build_started_at:  Ember.Record.attr(String),  // DateTime doesn't seem to work?
-  last_build_finished_at: Ember.Record.attr(String),
+Travis.Repository = Travis.Model.extend(Travis.Helpers, {
+  slug:                   DS.attr('string'),
+  name:                   DS.attr('string'),
+  owner:                  DS.attr('string'),
+  description:            DS.attr('string'),
+  last_build_id:          DS.attr('number'),
+  last_build_number:      DS.attr('string'),
+  last_build_result:      DS.attr('number'),
+  last_build_duration:    DS.attr('number'),
+  last_build_started_at:  DS.attr('string'),  // DateTime doesn't seem to work?
+  last_build_finished_at: DS.attr('string'),
 
   select: function() {
     this.whenReady(function(self) {
@@ -21,17 +21,17 @@ Travis.Repository = Travis.Record.extend(Travis.Helpers.Common, {
     this.notifyPropertyChange('last_build_finished_at');
   },
 
-  branchSummary: function() {
-    return Travis.Branch.summary(this);
+  branches: function() {
+    return Travis.Branch.byRepositoryId(this.get('id'));
   }.property(),
 
   builds: function() {
-    return Travis.Build.pushesByRepositoryId(this.get('id'));
-  }.property().cacheable(),
+    return Travis.Build.byRepositoryId(this.get('id'), { event_type: 'push' });
+  }.property(),
 
-  pull_requests: function() {
-    return Travis.Build.pullRequestsByRepositoryId(this.get('id'));
-  }.property().cacheable(),
+  pullRequests: function() {
+    return Travis.Build.byRepositoryId(this.get('id'), { event_type: 'pull_request' });
+  }.property(),
 
   lastBuild: function() {
     return Travis.Build.find(this.get('last_build_id'));
@@ -41,7 +41,7 @@ Travis.Repository = Travis.Record.extend(Travis.Helpers.Common, {
 
   color: function() {
     return this.colorForResult(this.get('last_build_result'));
-  }.property('last_build_result').cacheable(),
+  }.property('last_build_result'),
 
   formattedLastBuildDuration: function() {
     var duration = this.get('last_build_duration');
@@ -55,59 +55,61 @@ Travis.Repository = Travis.Record.extend(Travis.Helpers.Common, {
 
   cssClasses: function() { // ugh
     return $.compact(['repository', this.get('color'), this.get('selected') ? 'selected' : null]).join(' ');
-  }.property('color', 'selected').cacheable(),
+  }.property('color', 'selected'),
 
   urlCurrent: function() {
     return '#!/' + this.getPath('slug');
-  }.property('slug').cacheable(),
+  }.property('slug'),
 
   urlBuilds: function() {
     return '#!/' + this.get('slug') + '/builds';
-  }.property('slug').cacheable(),
-
-  urlLastBuild: function() {
-    return '#!/' + this.get('slug') + '/builds/' + this.get('last_build_id');
-  }.property('last_build_id').cacheable(),
-
-  urlGithub: function() {
-    return 'http://github.com/' + this.get('slug');
-  }.property('slug').cacheable(),
-
-  urlGithubWatchers: function() {
-    return 'http://github.com/' + this.get('slug') + '/watchers';
-  }.property('slug').cacheable(),
-
-  urlGithubNetwork: function() {
-    return 'http://github.com/' + this.get('slug') + '/network';
-  }.property('slug').cacheable(),
-
-  urlGithubAdmin: function() {
-    return this.get('url') + '/admin/hooks#travis_minibucket';
-  }.property('slug').cacheable(),
+  }.property('slug'),
 
   urlBranches: function() {
-    return '#!/' + this.get('slug') + '/branch_summary';
-  }.property('slug').cacheable(),
+    return '#!/' + this.get('slug') + '/branches';
+  }.property('slug'),
 
   urlPullRequests: function() {
     return '#!/' + this.get('slug') + '/pull_requests';
-  }.property('slug').cacheable(),
+  }.property('slug'),
+
+  urlLastBuild: function() {
+    return '#!/' + this.get('slug') + '/builds/' + this.get('last_build_id');
+  }.property('last_build_id'),
+
+  urlGithub: function() {
+    return 'http://github.com/' + this.get('slug');
+  }.property('slug'),
+
+  urlGithubWatchers: function() {
+    return 'http://github.com/' + this.get('slug') + '/watchers';
+  }.property('slug'),
+
+  urlGithubNetwork: function() {
+    return 'http://github.com/' + this.get('slug') + '/network';
+  }.property('slug'),
+
+  urlGithubAdmin: function() {
+    return this.get('url') + '/admin/hooks#travis_minibucket';
+  }.property('slug'),
 
   urlStatusImage: function() {
     return this.get('slug') + '.png'
-  }.property('slug').cacheable()
+  }.property('slug')
 
 });
 
+/* DS.RESTAdapter.plurals['repository'] = 'repositories' */
+
 Travis.Repository.reopenClass({
-  resource: 'repositories',
+  url: 'repositories',
 
   recent: function() {
     return this.all({ orderBy: 'last_build_started_at DESC' });
   },
 
-  owned_by: function(githubId) {
-    return Travis.store.find(Ember.Query.remote(Travis.Repository, { url: 'repositories.json?owner_name=' + githubId, orderBy: 'name' }));
+  owned_by: function(owner_name) {
+    return Travis.store.find(Ember.Query.remote(Travis.Repository, { url: 'repositories.json?owner_name=' + owner_name, orderBy: 'name' }));
   },
 
   search: function(search) {

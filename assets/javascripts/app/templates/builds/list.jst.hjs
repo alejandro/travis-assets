@@ -9,13 +9,15 @@
     </tr>
   </thead>
 
-  {{#collection tagName="tbody" contentBinding="builds" itemViewClass="Ember.View" itemClassBinding="content.color"}}
-      <td class="number"><a {{bindAttr href="content.url"}}>{{content.number}}</a></td>
-      <td class="commit"><a {{bindAttr href="content.urlGithubCommit"}}>{{content.formattedCommit}}</a></td>
-      <td class="message">{{{content.shortMessage}}}</td>
-      <td class="duration" {{bindAttr title="content.started_at"}}>{{content.formattedDuration}}</td>
-      <td class="finished_at timeago" {{bindAttr title="content.finished_at"}}>{{content.formattedFinishedAt}}</td>
+  {{#collection tagName="tbody" contentBinding="builds" itemClassBinding="content.color"}}
+    <td class="number"><a {{bindAttr href="view.content.url"}}>{{view.content.number}}</a></td>
+    <td class="commit"><a {{bindAttr href="view.content.urlGithubCommit"}}>{{view.content.formattedCommit}}</a></td>
+    <td class="message">{{{view.content.formattedShortMessage}}}</td>
+    <td class="duration" {{bindAttr title="view.content.started_at"}}>{{view.content.formattedDuration}}</td>
+    <td class="finished_at timeago" {{bindAttr title="view.content.finished_at"}}>{{view.content.formattedFinishedAt}}</td>
   {{/collection}}
 </table>
 
-{{#view Ember.Button targetBinding="builds" action="showMore" isVisibleBinding="builds.showMoreIsVisible"}}Show More{{/view}}
+<p>
+  <a href="#" {{action "showMore" on="click" target="builds" isVisibleBinding="builds.showMoreIsVisible"}}>Show more</a>
+</p>

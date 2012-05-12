@@ -1,27 +1,37 @@
-Travis.Build = Travis.Record.extend(Travis.Helpers.Common, {
-  repository_id:   Ember.Record.attr(Number),
-  config:          Ember.Record.attr(Object),
-  state:           Ember.Record.attr(String),
-  number:          Ember.Record.attr(Number),
-  commit:          Ember.Record.attr(String),
-  branch:          Ember.Record.attr(String),
-  message:         Ember.Record.attr(String),
-  result:          Ember.Record.attr(Number),
-  duration:        Ember.Record.attr(Number),
-  started_at:      Ember.Record.attr(String), // use DateTime?
-  finished_at:     Ember.Record.attr(String),
-  committed_at:    Ember.Record.attr(String),
-  committer_name:  Ember.Record.attr(String),
-  committer_email: Ember.Record.attr(String),
-  author_name:     Ember.Record.attr(String),
-  author_email:    Ember.Record.attr(String),
-  compare_url:     Ember.Record.attr(String),
-  log:             Ember.Record.attr(String),
+Travis.Build = Travis.Model.extend(Travis.Helpers, {
+  repository_id:   DS.attr('number'),
+  /* config:          DS.attr('object'), */
+  state:           DS.attr('string'),
+  number:          DS.attr('number'),
+  branch:          DS.attr('string'),
+  message:         DS.attr('string'),
+  result:          DS.attr('number'),
+  duration:        DS.attr('number'),
+  started_at:      DS.attr('string'), // use DateTime?
+  finished_at:     DS.attr('string'),
+  committed_at:    DS.attr('string'),
+  committer_name:  DS.attr('string'),
+  committer_email: DS.attr('string'),
+  author_name:     DS.attr('string'),
+  author_email:    DS.attr('string'),
+  compare_url:     DS.attr('string'),
+  log:             DS.attr('string'),
 
-  matrix: Ember.Record.toMany('Travis.Job', { nested: true }),
+  repository: DS.belongsTo('Travis.Repository'),
+  commit:     DS.belongsTo('Travis.Commit'),
+
+  // jobs needs to be implemented in a lazy loading manner
+  jobs:       DS.hasMany('Travis.Job', { key: 'job_ids' }),
+
+  // repository: function() {
+  //   if(this.get('repository_id')) return Travis.Repository.find(this.get('repository_id'));
+  // }.property('repository_id'),
+
+  // jobs: function() {
+  // }.property(),
 
   update: function(attrs) {
-    if('matrix' in attrs) attrs.matrix = this._joinMatrixAttributes(attrs.matrix);
+    if('jobs' in attrs) attrs.jobs = this._joinJobsAttributes(attrs.jobs);
     this._super(attrs);
   },
 
@@ -30,41 +40,41 @@ Travis.Build = Travis.Record.extend(Travis.Helpers.Common, {
     this.notifyPropertyChange('finished_at');
   },
 
-  // We need to join given attributes with existing attributes because Ember.Record.toMany
+  // We need to join given attributes with existing attributes because DS.Model.toMany
   // does not seem to allow partial updates, i.e. would remove existing attributes?
-  _joinMatrixAttributes: function(attrs) {
+  _joinJobsAttributes: function(attrs) {
     var _this = this;
     return $.each(attrs, function(ix, job) {
-      var _job = _this.get('matrix').objectAt(ix);
+      var _job = _this.get('jobs').objectAt(ix);
       if(_job) attrs[ix] = $.extend(_job.get('attributes') || {}, job);
     });
   },
 
-  required_matrix: function() {
-      return this.get('matrix').filter(function(item, index, self) { return item.get('allow_failure') != true });
-  }.property('matrix').cacheable(),
+  requiredJobs: function() {
+    return this.get('jobs').filter(function(item, index) { return item.get('allow_failure') != true });
+  }.property('jobs'),
 
-  allow_failure_matrix: function() {
-      return this.get('matrix').filter(function(item, index, self) { return item.get('allow_failure') });
-  }.property('matrix').cacheable(),
-
-  repository: function() {
-    if(this.get('repository_id')) return Travis.Repository.find(this.get('repository_id'));
-  }.property('repository_id').cacheable(),
+  allowFailureJobs: function() {
+    return this.get('jobs').filter(function(item, index) { return item.get('allow_failure') });
+  }.property('jobs'),
 
   hasFailureMatrix: function() {
-      return this.get('allow_failure_matrix').length > 0;
-  }.property('hasFailureMatrix').cacheable(),
+    return this.get('allowFailureJobs').length > 0;
+  }.property('allowFailureJobs'),
 
   isMatrix: function() {
-    return this.getPath('matrix.length') > 1;
-  }.property('matrix.length').cacheable(),
+    return this.getPath('jobs.length') > 1;
+  }.property('jobs.length'),
 
   color: function() {
     return this.colorForResult(this.get('result'));
-  }.property('result').cacheable(),
+  }.property('result'),
 
   // VIEW HELPERS
+
+  formattedConfig: function() {
+    return this._formattedConfig();
+  }.property('config'),
 
   formattedDuration: function() {
     return this._formattedDuration()
@@ -72,32 +82,28 @@ Travis.Build = Travis.Record.extend(Travis.Helpers.Common, {
 
   formattedFinishedAt: function() {
     return this._formattedFinishedAt();
-  }.property('finished_at').cacheable(),
+  }.property('finished_at'),
+
+  formattedMessage: function(){
+    return this._formattedMessage();
+  }.property('commit.message'),
 
   formattedCommit: function() {
     return this._formattedCommit()
-  }.property('commit', 'branch').cacheable(),
+  }.property('commit.sha', 'commit.branch'),
 
   formattedCompareUrl: function() {
     return this._formattedCompareUrl();
-  }.property('compare_url').cacheable(),
-
-  formattedConfig: function() {
-    return this._formattedConfig();
-  }.property('config').cacheable(),
+  }.property('commit.compare_url'),
 
   formattedMatrixHeaders: function() {
     var keys = $.keys($.only(this.get('config'), 'rvm', 'gemfile', 'env', 'otp_release', 'php', 'node_js', 'perl', 'python', 'scala'));
     return $.map([I18n.t("build.job"), I18n.t("build.duration"), I18n.t("build.finished_at")].concat(keys), function(key) { return $.camelize(key) });
-  }.property('config').cacheable(),
+  }.property('config'),
 
-  formattedMessage: function(){
-    return this._formattedMessage();
-  }.property('message'),
-
-  shortMessage: function(){
-    return this.emojize(this.escape((this.get('message') || '').split(/\n/)[0]));
-  }.property('message'),
+  formattedShortMessage: function(){
+    return this.emojize(this.escape((this.getPath('commit.message') || '').split(/\n/)[0]));
+  }.property('commit.message'),
 
   url: function() {
     return '#!/' + this.getPath('repository.slug') + '/builds/' + this.get('id');
@@ -105,26 +111,24 @@ Travis.Build = Travis.Record.extend(Travis.Helpers.Common, {
 
   urlAuthor: function() {
     return 'mailto:' + this.get('author_email');
-  }.property('author_email').cacheable(),
+  }.property('author_email'),
 
   urlCommitter: function() {
     return 'mailto:' + this.get('committer_email');
-  }.property('committer_email').cacheable(),
+  }.property('committer_email'),
 
   urlGithubCommit: function() {
     return 'http://github.com/' + this.getPath('repository.slug') + '/commit/' + this.get('commit');
-  }.property('repository.slug', 'commit').cacheable()
+  }.property('repository.slug', 'commit')
 });
 
 Travis.Build.reopenClass({
-  resource: 'builds',
+  /* url: 'builds', */
+  /* collectionUrl: '/builds', */
 
-  pushesByRepositoryId: function(id, parameters) {
-    return this.all({ url: '/repositories/%@/builds.json?bare=true'.fmt(id), repository_id: id, orderBy: 'number DESC', event_type: 'push' });
-  },
-
-  pullRequestsByRepositoryId: function(id, parameters) {
-    return this.all({ url: '/repositories/%@/builds.json?bare=true&event_type=pull_requests'.fmt(id), repository_id: id, orderBy: 'number DESC', event_type: 'pull_request' });
+  byRepositoryId: function(id, parameters) {
+    /* url: '/repositories/%@/builds.json'.fmt(id), */
+    return this.all($.extend(parameters || {}, { repository_id: id, orderBy: 'number DESC' }));
   },
 
   olderThanNumber: function(id, build_number) {

@@ -12,7 +12,7 @@ Travis.WorkerGroup = Ember.Object.extend({
   }
 });
 
-Travis.Worker = Travis.Record.extend({
+Travis.Worker = Travis.Model.extend({
   isTesting: function() {
     return this.get('state') == 'working' && !!this.getPath('payload.config');
   }.property('state', 'config'),

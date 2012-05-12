@@ -1,4 +1,4 @@
-Travis.Helpers.EmojiDictionary = 
+window.EmojiDictionary =
 [ "-1",
   "0",
   "1",

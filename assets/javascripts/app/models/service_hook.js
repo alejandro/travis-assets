@@ -1,4 +1,4 @@
-Travis.ServiceHook = Travis.Record.extend({
+Travis.ServiceHook = Travis.Model.extend({
   primaryKey: 'uid',
 
   toggle: function() {

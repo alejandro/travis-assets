@@ -1,4 +1,6 @@
-Travis.Log = {
+if('undefined' === typeof window.Travis) window.Travis = Ember.Namespace.create()
+
+window.Travis.Log = {
   FOLDS: {
     schema:  /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:schema:load[\s\S]*?<p.*?\/a>-- assume_migrated_upto_version[\s\S]*?<\/p>\n<p.*?\/a>.*<\/p>)/gm,
     migrate: /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:migrate[\s\S]*== +\w+: migrated \(.*\) =+)/gm,
