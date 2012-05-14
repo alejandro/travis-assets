@@ -1,38 +1,37 @@
 <div {{bindAttr class="build.color"}}>
   <dl class="summary clearfix">
     <div class="left">
-      <dt>{{i18n "builds.name"}}</dt>
-
+      <dt>{{t "builds.name"}}</dt>
       <dd class="number"><a {{bindAttr href="build.url"}}>{{build.number}}</a></dd>
-      <dt class="finished_at_label">{{i18n "builds.finished_at"}}</dt>
+      <dt class="finished_at_label">{{t "builds.finished_at"}}</dt>
       <dd class="finished_at timeago" {{bindAttr title="build.finished_at"}}>{{build.formattedFinishedAt}}</dd>
-      <dt>{{i18n "builds.duration"}}</dt>
+      <dt>{{t "builds.duration"}}</dt>
       <dd class="duration" {{bindAttr title="build.started_at"}}>{{build.formattedDuration}}</dd>
     </div>
 
     <div class="right">
-      <dt>{{i18n "builds.commit"}}</dt>
+      <dt>{{t "builds.commit"}}</dt>
       <dd class="commit-hash"><a {{bindAttr href="build.urlGithubCommit"}}>{{build.formattedCommit}}</a></dd>
       {{#if build.compare_url}}
-        <dt>{{i18n "builds.compare"}}</dt>
+        <dt>{{t "builds.compare"}}</dt>
         <dd class="compare_view"><a {{bindAttr href="build.compare_url"}}>{{build.formattedCompareUrl}}</a></dd>
       {{/if}}
       {{#if build.author_name}}
-        <dt>{{i18n "builds.author"}}</dt>
+        <dt>{{t "builds.author"}}</dt>
         <dd class="author"><a {{bindAttr href="build.urlAuthor"}}>{{build.author_name}}</a></dd>
       {{/if}}
       {{#if build.committer_name}}
-        <dt>{{i18n "builds.committer"}}</dt>
+        <dt>{{t "builds.committer"}}</dt>
         <dd class="committer"><a {{bindAttr href="build.urlCommitter"}}>{{build.committer_name}}</a></dd>
       {{/if}}
     </div>
 
-    <dt>{{i18n "builds.message"}}</dt>
+    <dt>{{t "builds.message"}}</dt>
     <dd class="commit-message">{{{build.formattedMessage}}}</dd>
 
     {{#if build.isMatrix}}
     {{else}}
-      <dt>{{i18n "builds.config"}}</dt>
+      <dt>{{t "builds.config"}}</dt>
       <dd class="config">{{build.formattedConfig}}</dd>
     {{/if}}
   </dl>

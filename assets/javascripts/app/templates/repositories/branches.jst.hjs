@@ -1,11 +1,11 @@
 <table id="branch_summary">
   <thead>
     <tr>
-      <th>{{i18n "repositories.branch"}}</th>
-      <th>{{i18n "repositories.commit"}}</th>
-      <th>{{i18n "repositories.message"}}</th>
-      <th>{{i18n "repositories.started_at"}}</th>
-      <th>{{i18n "repositories.finished_at"}}</th>
+      <th>{{t "repositories.branch"}}</th>
+      <th>{{t "repositories.commit"}}</th>
+      <th>{{t "repositories.message"}}</th>
+      <th>{{t "repositories.started_at"}}</th>
+      <th>{{t "repositories.finished_at"}}</th>
     </tr>
   </thead>
   {{#collection tagName="tbody" contentBinding="branches" itemClassBinding="content.color"}}

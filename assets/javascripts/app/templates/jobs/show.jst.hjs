@@ -3,32 +3,32 @@
     <div class="left">
       <dt>Job</dt>
       <dd class="number"><a {{bindAttr href="job.build.url"}}>{{job.number}}</a></dd>
-      <dt class="finished_at_label">{{i18n "jobs.finished_at"}}</dt>
+      <dt class="finished_at_label">{{t "jobs.finished_at"}}</dt>
       <dd class="finished_at timeago" {{bindAttr title="job.finished_at"}}>{{job.formattedFinishedAt}}</dd>
-      <dt>{{i18n "jobs.duration"}}</dt>
+      <dt>{{t "jobs.duration"}}</dt>
       <dd class="duration" {{bindAttr title="job.started_at"}}>{{job.formattedDuration}}</dd>
     </div>
 
     <div class="right">
-      <dt>{{i18n "jobs.commit"}}</dt>
+      <dt>{{t "jobs.commit"}}</dt>
       <dd class="commit-hash"><a {{bindAttr href="job.build.urlGithubCommit"}}>{{job.formattedCommit}}</a></dd>
       {{#if job.compare_url}}
-        <dt>{{i18n "jobs.compare"}}</dt>
+        <dt>{{t "jobs.compare"}}</dt>
         <dd class="compare_view"><a {{bindAttr href="job.compare_url"}}>{{job.formattedCompareUrl}}</a></dd>
       {{/if}}
       {{#if job.author_name}}
-        <dt>{{i18n "jobs.author"}}</dt>
+        <dt>{{t "jobs.author"}}</dt>
         <dd class="author"><a {{bindAttr href="job.build.urlAuthor"}}>{{job.author_name}}</a></dd>
       {{/if}}
       {{#if job.committer_name}}
-        <dt>{{i18n "jobs.committer"}}</dt>
+        <dt>{{t "jobs.committer"}}</dt>
         <dd class="committer"><a {{bindAttr href="job.build.urlCommitter"}}>{{job.committer_name}}</a></dd>
       {{/if}}
     </div>
 
-    <dt>{{i18n "jobs.message"}}</dt>
+    <dt>{{t "jobs.message"}}</dt>
     <dd class="commit-message">{{{job.formattedMessage}}}</dd>
-    <dt>{{i18n "jobs.config"}}</dt>
+    <dt>{{t "jobs.config"}}</dt>
     <dd class="config">{{job.formattedConfig}}</dd>
   </dl>
 
@@ -36,7 +36,7 @@
 
   {{#if job.sponsor.name}}
     <p class="sponsor">
-      {{i18n "jobs.messages.sponsored_by"}}
+      {{t "jobs.messages.sponsored_by"}}
       <a {{bindAttr href="job.sponsor.url"}}>{{job.sponsor.name}}</a>
     </p>
   {{/if}}

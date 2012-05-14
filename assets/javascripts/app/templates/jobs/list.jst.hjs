@@ -1,5 +1,5 @@
 <table id="builds">
-  <caption>{{i18n "jobs.build_matrix"}}</caption>
+  <caption>{{t "jobs.build_matrix"}}</caption>
   <thead>
     {{#each build.formattedMatrixHeaders}}
       <th>{{this}}</th>
@@ -18,7 +18,7 @@
 
 {{#if build.hasFailureMatrix}}
   <table id="allow_failure_builds">
-    <caption>{{i18n "jobs.allowed_failures"}}{{whats_this "allow_failure_help"}}
+    <caption>{{t "jobs.allowed_failures"}}{{whats_this "allow_failure_help"}}
   </caption>
     <thead>
       {{#collection tagName="tr" contentBinding="build.formattedMatrixHeaders" itemTagName="th"}}
@@ -37,7 +37,7 @@
   </table>
 
   <div id="allow_failure_help" class="context_help">
-  <div class="context_help_caption">{{i18n "jobs.allowed_failures"}}</div>
+  <div class="context_help_caption">{{t "jobs.allowed_failures"}}</div>
   <div class="context_help_body">Allowed Failures are items in your build matrix that are allowed to fail without causing the entire build to be shown as failed. This lets you add in experimental and preparatory builds to test against versions or configurations that you are not ready to officially support.<br><br>You can define allowed failures in the build matrix as follows:
   </br><pre>
   matrix:

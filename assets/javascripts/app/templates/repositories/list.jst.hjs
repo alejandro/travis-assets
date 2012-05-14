@@ -5,8 +5,8 @@
     <a {{bindAttr href="view.content.urlCurrent"}} class="slug">{{view.content.slug}}</a>
     <a {{bindAttr href="view.content.urlLastBuild"}} class="build">#{{view.content.last_build_number}}</a>
     <p class="summary">
-      <span class="duration_label">{{i18n "repositories.duration"}}:</span> <abbr class="duration" {{bindAttr title="view.content.last_build_started_at"}}>{{view.content.formattedLastBuildDuration}}</abbr>,
-      <span class="finished_at_label">{{i18n "repositories.finished_at"}}:</span> <abbr class="finished_at timeago" {{bindAttr title="view.content.last_build_finished_at"}}>{{view.content.formattedLastBuildFinishedAt}}</abbr>
+      <span class="duration_label">{{t "repositories.duration"}}:</span> <abbr class="duration" {{bindAttr title="view.content.last_build_started_at"}}>{{view.content.formattedLastBuildDuration}}</abbr>,
+      <span class="finished_at_label">{{t "repositories.finished_at"}}:</span> <abbr class="finished_at timeago" {{bindAttr title="view.content.last_build_finished_at"}}>{{view.content.formattedLastBuildFinishedAt}}</abbr>
     </p>
     {{#if view.content.description}}
       <p class="description">{{view.content.description}}</p>

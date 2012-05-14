@@ -14,7 +14,7 @@
       templateName: 'app/templates/layouts/_left'
       click: (event)->
         # TODO this is being triggered twice?
-        # TODO this is being triggered why the searchbox is clicked? wtf.
+        # TODO this is being triggered when the searchbox is clicked? wtf.
         id = $(event.srcElement).closest('.tabs li').attr('id')
         Travis.app.left.activate(id.replace('tab_', '')) if id
 

@@ -105,5 +105,4 @@ window.Travis.Helpers = {
     var parts = (this.getPath('commit.compare_url') || '').split('/');
     return parts[parts.length - 1];
   },
-
 };
