@@ -1,11 +1,4 @@
-@Travis.State = Ember.ViewState.extend
-  enter: (stateManager, transition) ->
-    @_super(stateManager, transition)
-    Ember.run.next =>
-      $('.tabs li').removeClass('active')
-      $('#tab_' + @get('name')).addClass('active')
-
-@Travis.RepositoryStates = Em.StateManager.extend
+@Travis.MainStates = Em.StateManager.extend
   activate: (state, params) ->
     @rootView = Travis.app.layout.main.tab
     @goToState(state)

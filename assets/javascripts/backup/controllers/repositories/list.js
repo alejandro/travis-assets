@@ -1,8 +1,7 @@
 //= require app/controllers/tabs.js
 
 Travis.Controllers.Repositories.List = Ember.ArrayController.extend({
-  searchBox: Ember.TextField.create({
-  }),
+  searchBox: Ember.TextField.create(),
 
   init: function() {
     this._super();
@@ -28,7 +27,7 @@ Travis.Controllers.Repositories.List = Ember.ArrayController.extend({
     this.tabs.activate('recent');
   },
 
-  owned_by: function(githubId) {
+  ownedBy: function(githubId) {
     this.set('content', Travis.Repository.owned_by(githubId));
     this.tabs.activate('my_repositories');
   },

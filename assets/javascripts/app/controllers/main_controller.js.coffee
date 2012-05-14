@@ -1,4 +1,4 @@
-@Travis.RepositoryController = Ember.Object.extend
+@Travis.MainController = Ember.Object.extend
   repositoryBinding: '_repositories.firstObject'
   buildsBinding: '_builds.content'
   buildBinding: '_build.content'
@@ -6,7 +6,7 @@
 
   init: ->
     @_super()
-    @tabs = Travis.RepositoryStates.create()
+    @tabs = Travis.MainStates.create()
     Ember.run.next => @initRoutes()
 
   initRoutes: ->

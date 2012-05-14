@@ -15,7 +15,7 @@ Travis.Branch = Travis.Model.extend(Travis.Helpers, {
   }.property('repository_id').cacheable(),
 
   color: function() {
-    return Travis.Helpers.Common.colorForResult(this.get('result'));
+    return this.colorForResult(this.get('result'));
   }.property(),
 
   buildUrl: function() {

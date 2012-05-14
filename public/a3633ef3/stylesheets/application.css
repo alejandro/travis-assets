@@ -203,7 +203,7 @@ caption {
   height: 30px;
   margin: 4px 40px 0 22px;
   text-indent: -9999px;
-  background: url(/118481bf/images/logo.png) no-repeat;
+  background: url(/a3633ef3/images/logo.png) no-repeat;
 }
 /* line 83, /output/application.css.scss.erb */
 #top ul {
@@ -405,65 +405,70 @@ caption {
 #left .tabs #tab_search.display {
   display: block;
 }
-/* line 226, /output/application.css.scss.erb */
+/* line 224, /output/application.css.scss.erb */
+#left .tab {
+  border-top: 1px solid #ccc;
+  margin-top: -1px;
+}
+/* line 230, /output/application.css.scss.erb */
 #left #repositories li {
   position: relative;
   font-size: 16px;
   height: 75px;
   overflow: visible;
 }
-/* line 232, /output/application.css.scss.erb */
+/* line 236, /output/application.css.scss.erb */
 #left #repositories li .wrapper {
   padding: 15px 25px 15px 45px !important;
   border-bottom: 1px solid #ccc;
   background-position: 24px 16px;
   background-repeat: no-repeat;
 }
-/* line 239, /output/application.css.scss.erb */
+/* line 243, /output/application.css.scss.erb */
 #left #repositories li:hover {
   z-index: 1000;
 }
-/* line 241, /output/application.css.scss.erb */
+/* line 245, /output/application.css.scss.erb */
 #left #repositories li:hover .wrapper {
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
-/* line 246, /output/application.css.scss.erb */
+/* line 250, /output/application.css.scss.erb */
 #left #repositories li:nth-child(odd) .wrapper {
   background-color: #fff;
 }
-/* line 249, /output/application.css.scss.erb */
+/* line 253, /output/application.css.scss.erb */
 #left #repositories li:nth-child(even) .wrapper {
   background-color: #f6f6f6;
 }
-/* line 252, /output/application.css.scss.erb */
+/* line 256, /output/application.css.scss.erb */
 #left #repositories li.green a {
   color: green;
 }
-/* line 255, /output/application.css.scss.erb */
+/* line 259, /output/application.css.scss.erb */
 #left #repositories li.red a {
   color: #c00;
 }
-/* line 258, /output/application.css.scss.erb */
+/* line 262, /output/application.css.scss.erb */
 #left #repositories li .build {
   float: right;
 }
-/* line 261, /output/application.css.scss.erb */
+/* line 265, /output/application.css.scss.erb */
 #left #repositories li .summary, #left #repositories li .description {
   margin: 5px 0 0 0;
   font-size: 13px;
   color: #666;
 }
-/* line 266, /output/application.css.scss.erb */
+/* line 270, /output/application.css.scss.erb */
 #left #repositories li .description, #left #repositories li .description {
   display: none;
 }
-/* line 269, /output/application.css.scss.erb */
+/* line 273, /output/application.css.scss.erb */
 #left #repositories li .indicator {
   display: none;
 }
-/* line 272, /output/application.css.scss.erb */
+/* line 276, /output/application.css.scss.erb */
 #left #repositories li.selected .indicator {
   display: block;
   position: absolute;
@@ -473,49 +478,49 @@ caption {
   height: 100%;
   background: no-repeat center left;
 }
-/* line 281, /output/application.css.scss.erb */
+/* line 285, /output/application.css.scss.erb */
 #left #repositories li:nth-child(odd) .indicator {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAdCAIAAADDzRDWAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABkElEQVQ4EY3U247BQBjA8TVKaLXEI7hwiAu8/72EkDhc4GI9g1VpiWL/7cgo25nu3Kh2fvkO/aaF8Xhs247nubVazXGccrkshCgk60uzxHA4DMPgdDpdLpfr9Xq/3x+PB0SzP74tqtXqYDA4Jut8PitmMjyDjUajn2SFYQi73W5E0zEhH9i2TTTJcqM9DRLW7/cPhwPSzAofOZDbZrNpNpv1ep2cS6WSbGM6Tyv9h2v29Xq97Xar7v9ln0aybre72+10LMNI1ul0dCzbmNmrbyoTdUFtRJOdDJPXLRtmMioa3fePR4YriiKGK8dI1m63fd8PggBDqHwjWavVAkRRPFP/Muz93u8tyyoW4/35BrBerzlbtATGWOQYwGq1Yo5c161UKhiOlslI0Gg0MEywGiKt+QDqzGvrMYBsYwYZBrBcLilA1pBOid1yvdUDWCwWFM2i6EwAexnAfD43R3iLw7dmOp0qoNr6zOb9J45DhMlk4nmeTMkM2C8As9mM14xhOnQ1pCMJAEOBARDB/KWW8hcJOPb3fiZrUQAAAABJRU5ErkJggg%3D%3D);
 }
-/* line 284, /output/application.css.scss.erb */
+/* line 288, /output/application.css.scss.erb */
 #left #repositories li:nth-child(even) .indicator {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAdCAIAAADDzRDWAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABn0lEQVQ4EY2UzW6CUBBGK6Lgf/dutMYYff9ncG+iMWpideEaLKaogPbgUCoULs6CwOUevplv5lKaTqf1er3dbjebzUajUa1WNU0rPeItJ7TxeOy67ul0ulwunucFQXC/33M2R8uaYRij0egrDOd8Pvu+D6PGNFjTNCeTiW1bx+MRzev1qsZCRjCShCFQA7vdbnlqESPYcDi0bVswasvD9IdMdKG2wWCw3W5j3yqVitj4vO1PR1bB+v0Py7IQJMlMtTQDaZpGr9dXYBlMIZbNqLGEB1JSfJUkd7tPLJHRYLJ4q2Jitf1+B8YU4qGu67m5JdV6juN8f7tMFk0rZoBpQLfb9X3P9wMeX2IY9sPhUC6XOSUvMQCbzYajxTGTsSjQAViv151Oh0PJ+GNAaEZc6/8bAd4fUavVEAFQ5ZYC6AyARLaOAsjWUQMZDMBqtaJoqqCG55TighO5ASyXSzWQ0AFYLBbiEq3IVBCpSIdBms1mKBDSu1+TQnNTETIoCIBI3GxhUrvlUQOYz+etVotOS9HF/14AhgIGQEYj89vPiz8hmBME75QEJwAAAABJRU5ErkJggg%3D%3D);
 }
 
-/* line 293, /output/application.css.scss.erb */
+/* line 297, /output/application.css.scss.erb */
 #left #repositories li .wrapper,
 #main .summary .number a,
 #main #builds td:first-child a,
 #main #builds .build td:first-child a {
-  background-image: url(/118481bf/images/icons/status.yellow.png);
+  background-image: url(/a3633ef3/images/icons/status.yellow.png);
   padding-left: 20px;
   background-repeat: no-repeat;
 }
 
-/* line 301, /output/application.css.scss.erb */
+/* line 305, /output/application.css.scss.erb */
 #left #repositories li.green .wrapper,
 #main .green .summary .number a,
 #main #builds .green td:first-child a,
 #main #builds .build.green td:first-child a {
-  background-image: url(/118481bf/images/icons/status.green.png);
+  background-image: url(/a3633ef3/images/icons/status.green.png);
   color: green;
   padding-left: 20px;
   background-repeat: no-repeat;
 }
 
-/* line 311, /output/application.css.scss.erb */
+/* line 315, /output/application.css.scss.erb */
 #left #repositories li.red .wrapper,
 #main .red .summary .number a,
 #main #builds .red td:first-child a,
 #main #builds .build.red td:first-child a {
-  background-image: url(/118481bf/images/icons/status.red.png);
+  background-image: url(/a3633ef3/images/icons/status.red.png);
   color: #c00;
   padding-left: 20px;
   background-repeat: no-repeat;
 }
 
 /* main */
-/* line 320, /output/application.css.scss.erb */
+/* line 324, /output/application.css.scss.erb */
 #main {
   z-index: 30;
   display: block;
@@ -526,52 +531,52 @@ caption {
   -o-transition: padding 0.5s ease-out;
   transition: padding 0.5s ease-out;
 }
-/* line 326, /output/application.css.scss.erb */
+/* line 330, /output/application.css.scss.erb */
 #main.loading {
   opacity: .1;
   min-height: 1000px;
 }
-/* line 330, /output/application.css.scss.erb */
+/* line 334, /output/application.css.scss.erb */
 #main.maximized {
   padding: 60px 100px 30px 440px;
 }
-/* line 333, /output/application.css.scss.erb */
+/* line 337, /output/application.css.scss.erb */
 #main #repository {
   position: relative;
 }
-/* line 336, /output/application.css.scss.erb */
+/* line 340, /output/application.css.scss.erb */
 #main h3 {
   margin: 15px 60px 0 0;
   height: 24px;
 }
-/* line 339, /output/application.css.scss.erb */
+/* line 343, /output/application.css.scss.erb */
 #main h3 a {
   font-size: 24px;
   line-height: 24px;
 }
-/* line 346, /output/application.css.scss.erb */
+/* line 350, /output/application.css.scss.erb */
 #main a {
   color: #666;
   text-decoration: underline;
 }
-/* line 350, /output/application.css.scss.erb */
+/* line 354, /output/application.css.scss.erb */
 #main .description, #main .language {
   font-weight: normal;
   font-size: 13px;
   color: #999;
 }
-/* line 355, /output/application.css.scss.erb */
+/* line 359, /output/application.css.scss.erb */
 #main .language {
   padding-right: 5px;
 }
-/* line 358, /output/application.css.scss.erb */
+/* line 362, /output/application.css.scss.erb */
 #main .github-stats {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 110;
 }
-/* line 363, /output/application.css.scss.erb */
+/* line 367, /output/application.css.scss.erb */
 #main .github-stats a {
   height: 16px;
   display: block;
@@ -583,19 +588,19 @@ caption {
   background: no-repeat 0px 2px;
   color: #999;
 }
-/* line 373, /output/application.css.scss.erb */
+/* line 377, /output/application.css.scss.erb */
 #main .github-stats a.watchers {
-  background-image: url(/118481bf/images/icons/github-watchers.png);
+  background-image: url(/a3633ef3/images/icons/github-watchers.png);
 }
-/* line 376, /output/application.css.scss.erb */
+/* line 380, /output/application.css.scss.erb */
 #main .github-stats a.forks {
-  background-image: url(/118481bf/images/icons/github-forks.png);
+  background-image: url(/a3633ef3/images/icons/github-forks.png);
 }
-/* line 381, /output/application.css.scss.erb */
+/* line 385, /output/application.css.scss.erb */
 #main .github-stats > * {
   float: left;
 }
-/* line 384, /output/application.css.scss.erb */
+/* line 388, /output/application.css.scss.erb */
 #main .github-admin {
   /* display: block; */
   display: none;
@@ -609,33 +614,39 @@ caption {
   text-decoration: none;
   text-align: right;
   color: #999;
-  background: url(/118481bf/images/icons/github-admin.png) no-repeat right 1px;
+  background: url(/a3633ef3/images/icons/github-admin.png) no-repeat right 1px;
   text-indent: -999px;
   overflow: hidden;
   z-index: 60;
 }
-/* line 401, /output/application.css.scss.erb */
+/* line 405, /output/application.css.scss.erb */
 #main .github-admin:hover {
   width: 100px;
   text-indent: 0;
 }
-/* line 407, /output/application.css.scss.erb */
+/* line 411, /output/application.css.scss.erb */
 #main .tabs {
   margin-top: 35px;
 }
-/* line 410, /output/application.css.scss.erb */
+/* line 414, /output/application.css.scss.erb */
 #main .tabs li {
   white-space: nowrap;
 }
-/* line 413, /output/application.css.scss.erb */
-#main .tab {
-  padding-left: 12px;
-}
-/* line 416, /output/application.css.scss.erb */
+/* line 417, /output/application.css.scss.erb */
 #main #tab_build:not(.active), #main #tab_job:not(.active), #main #tab_search:not(.active) {
   display: none;
 }
-/* line 419, /output/application.css.scss.erb */
+/* line 420, /output/application.css.scss.erb */
+#main .tab {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 64px;
+  padding-left: 12px;
+  border-top: 1px solid #ccc;
+  z-index: 1;
+}
+/* line 429, /output/application.css.scss.erb */
 #main .tools {
   position: relative;
   display: block;
@@ -647,7 +658,7 @@ caption {
   background: url(data:image/png;base64,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%3D%3D) no-repeat;
   cursor: pointer;
 }
-/* line 430, /output/application.css.scss.erb */
+/* line 440, /output/application.css.scss.erb */
 #main .tools .content {
   display: none;
   z-index: 1000;
@@ -661,16 +672,16 @@ caption {
   color: #666;
   width: 600px;
 }
-/* line 443, /output/application.css.scss.erb */
+/* line 453, /output/application.css.scss.erb */
 #main .tools .content p {
   margin: 10px 0;
 }
-/* line 446, /output/application.css.scss.erb */
+/* line 456, /output/application.css.scss.erb */
 #main .tools .content p label {
   width: 80px;
   display: inline-block;
 }
-/* line 451, /output/application.css.scss.erb */
+/* line 461, /output/application.css.scss.erb */
 #main .tools .content p input {
   border: 1px solid #DDD;
   -webkit-border-radius: 3px;
@@ -681,58 +692,58 @@ caption {
   width: 510px;
   padding: 4px;
 }
-/* line 460, /output/application.css.scss.erb */
+/* line 470, /output/application.css.scss.erb */
 #main dl {
   color: #666;
   font-size: 80%;
   margin-bottom: 30px;
 }
-/* line 465, /output/application.css.scss.erb */
+/* line 475, /output/application.css.scss.erb */
 #main .profile-avatar {
   float: left;
 }
-/* line 468, /output/application.css.scss.erb */
+/* line 478, /output/application.css.scss.erb */
 #main .profile {
   margin: 20px 0 30px 60px;
 }
-/* line 471, /output/application.css.scss.erb */
+/* line 481, /output/application.css.scss.erb */
 #main .profile dt {
   display: block;
   float: left;
   width: 50px;
 }
-/* line 476, /output/application.css.scss.erb */
+/* line 486, /output/application.css.scss.erb */
 #main .profile dd {
   clear: right;
 }
-/* line 479, /output/application.css.scss.erb */
+/* line 489, /output/application.css.scss.erb */
 #main .summary {
   margin: 20px 0 0 0;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 484, /output/application.css.scss.erb */
+/* line 494, /output/application.css.scss.erb */
 #main .summary .left,
 #main .summary .right {
   float: left;
 }
-/* line 488, /output/application.css.scss.erb */
+/* line 498, /output/application.css.scss.erb */
 #main .summary dt,
 #main .summary dd {
   float: left;
   min-height: 25px;
   margin: 0;
 }
-/* line 493, /output/application.css.scss.erb */
+/* line 503, /output/application.css.scss.erb */
 #main .summary dt {
   clear: left;
   width: 90px;
 }
-/* line 497, /output/application.css.scss.erb */
+/* line 507, /output/application.css.scss.erb */
 #main .summary dd {
   width: 150px;
 }
-/* line 500, /output/application.css.scss.erb */
+/* line 510, /output/application.css.scss.erb */
 #main .summary > dd {
   width: 80%;
   min-width: 315px;
@@ -740,12 +751,12 @@ caption {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-/* line 507, /output/application.css.scss.erb */
+/* line 517, /output/application.css.scss.erb */
 #main .summary .commit-message {
   white-space: normal;
   min-width: 0;
 }
-/* line 511, /output/application.css.scss.erb */
+/* line 521, /output/application.css.scss.erb */
 #main .log {
   clear: left;
   white-space: pre-wrap;
@@ -763,178 +774,178 @@ caption {
   border-radius: 4px;
   /* deansi styles, see javascripts/lib/deansi.js */
 }
-/* line 523, /output/application.css.scss.erb */
+/* line 533, /output/application.css.scss.erb */
 #main .log p {
   position: relative;
   padding: 0 15px 0 50px;
   margin: 0;
   min-height: 16px;
 }
-/* line 528, /output/application.css.scss.erb */
+/* line 538, /output/application.css.scss.erb */
 #main .log p:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
-/* line 531, /output/application.css.scss.erb */
+/* line 541, /output/application.css.scss.erb */
 #main .log p.highlight {
   background-color: rgba(255, 255, 255, 0.5);
 }
-/* line 534, /output/application.css.scss.erb */
+/* line 544, /output/application.css.scss.erb */
 #main .log p a {
   position: absolute;
   margin-left: -40px;
   cursor: pointer;
 }
-/* line 541, /output/application.css.scss.erb */
+/* line 551, /output/application.css.scss.erb */
 #main .log .fold {
   height: 16px;
   overflow: hidden;
-  background: #444444 url(/118481bf/images/icons/log.fold.closed.2.png) no-repeat 99.5% 2px;
+  background: #444444 url(/a3633ef3/images/icons/log.fold.closed.2.png) no-repeat 99.5% 2px;
   cursor: pointer;
 }
-/* line 547, /output/application.css.scss.erb */
+/* line 557, /output/application.css.scss.erb */
 #main .log .fold.open {
   height: auto;
-  background-image: url(/118481bf/images/icons/log.fold.open.2.png);
+  background-image: url(/a3633ef3/images/icons/log.fold.open.2.png);
 }
-/* line 555, /output/application.css.scss.erb */
+/* line 565, /output/application.css.scss.erb */
 #main .log .bold {
   font-weight: bold;
 }
-/* line 558, /output/application.css.scss.erb */
+/* line 568, /output/application.css.scss.erb */
 #main .log .italic {
   font-style: italic;
 }
-/* line 561, /output/application.css.scss.erb */
+/* line 571, /output/application.css.scss.erb */
 #main .log .underscore {
   /* monochrome displays only according to http://ascii-table.com/ansi-escape-sequences.php */
 }
-/* line 564, /output/application.css.scss.erb */
+/* line 574, /output/application.css.scss.erb */
 #main .log .black {
   color: black;
 }
-/* line 567, /output/application.css.scss.erb */
+/* line 577, /output/application.css.scss.erb */
 #main .log .red {
   color: red;
 }
-/* line 570, /output/application.css.scss.erb */
+/* line 580, /output/application.css.scss.erb */
 #main .log .green {
   color: lime;
 }
-/* line 573, /output/application.css.scss.erb */
+/* line 583, /output/application.css.scss.erb */
 #main .log .yellow {
   color: yellow;
 }
-/* line 576, /output/application.css.scss.erb */
+/* line 586, /output/application.css.scss.erb */
 #main .log .blue {
   color: blue;
 }
-/* line 579, /output/application.css.scss.erb */
+/* line 589, /output/application.css.scss.erb */
 #main .log .magenta {
   color: magenta;
 }
-/* line 582, /output/application.css.scss.erb */
+/* line 592, /output/application.css.scss.erb */
 #main .log .cyan {
   color: cyan;
 }
-/* line 585, /output/application.css.scss.erb */
+/* line 595, /output/application.css.scss.erb */
 #main .log .white {
   color: white;
 }
-/* line 588, /output/application.css.scss.erb */
+/* line 598, /output/application.css.scss.erb */
 #main .log .black.bright {
   color: #999;
 }
-/* line 591, /output/application.css.scss.erb */
+/* line 601, /output/application.css.scss.erb */
 #main .log .bg-black {
   background-color: black;
 }
-/* line 594, /output/application.css.scss.erb */
+/* line 604, /output/application.css.scss.erb */
 #main .log .bg-red {
   background-color: red;
 }
-/* line 597, /output/application.css.scss.erb */
+/* line 607, /output/application.css.scss.erb */
 #main .log .bg-green {
   background-color: lime;
 }
-/* line 600, /output/application.css.scss.erb */
+/* line 610, /output/application.css.scss.erb */
 #main .log .bg-yellow {
   background-color: yellow;
 }
-/* line 603, /output/application.css.scss.erb */
+/* line 613, /output/application.css.scss.erb */
 #main .log .bg-blue {
   background-color: blue;
 }
-/* line 606, /output/application.css.scss.erb */
+/* line 616, /output/application.css.scss.erb */
 #main .log .bg-magenta {
   background-color: magenta;
 }
-/* line 609, /output/application.css.scss.erb */
+/* line 619, /output/application.css.scss.erb */
 #main .log .bg-cyan {
   background-color: cyan;
 }
-/* line 612, /output/application.css.scss.erb */
+/* line 622, /output/application.css.scss.erb */
 #main .log .bg-white {
   background-color: white;
 }
-/* line 616, /output/application.css.scss.erb */
+/* line 626, /output/application.css.scss.erb */
 #main .sponsor {
   font-size: 13px;
   color: #999;
 }
-/* line 620, /output/application.css.scss.erb */
+/* line 630, /output/application.css.scss.erb */
 #main #builds {
   margin: 20px 0 0 -12px;
 }
-/* line 623, /output/application.css.scss.erb */
+/* line 633, /output/application.css.scss.erb */
 #main #builds caption {
   margin-left: 12px;
   margin-bottom: 8px;
 }
-/* line 627, /output/application.css.scss.erb */
+/* line 637, /output/application.css.scss.erb */
 #main #builds {
   width: 100%;
   margin: 25px 0 0 -12px;
 }
-/* line 631, /output/application.css.scss.erb */
+/* line 641, /output/application.css.scss.erb */
 #main #builds th {
   font-size: 13px;
   color: #666;
 }
-/* line 636, /output/application.css.scss.erb */
+/* line 646, /output/application.css.scss.erb */
 #main #builds th,
 #main #builds td {
   white-space: nowrap;
 }
-/* line 639, /output/application.css.scss.erb */
+/* line 649, /output/application.css.scss.erb */
 #main #builds td.message {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
 }
-/* line 644, /output/application.css.scss.erb */
+/* line 654, /output/application.css.scss.erb */
 #main #builds tr {
   max-height: 20px;
 }
-/* line 647, /output/application.css.scss.erb */
+/* line 657, /output/application.css.scss.erb */
 #main #builds tbody tr:nth-child(odd) {
   background-color: #f6f6f6;
 }
-/* line 650, /output/application.css.scss.erb */
+/* line 660, /output/application.css.scss.erb */
 #main #builds tbody tr.allow-failure {
   background-color: #BDBDBD;
 }
 
-/* line 656, /output/application.css.scss.erb */
+/* line 666, /output/application.css.scss.erb */
 #builds .green .number a {
   color: green;
 }
 
-/* line 659, /output/application.css.scss.erb */
+/* line 669, /output/application.css.scss.erb */
 #builds .red .number a {
   color: #C00;
 }
 
-/* line 663, /output/application.css.scss.erb */
+/* line 673, /output/application.css.scss.erb */
 .emoji {
   vertical-align: middle;
   width: 20px;
@@ -942,7 +953,7 @@ caption {
 }
 
 /* main overrides */
-/* line 672, /output/application.css.scss.erb */
+/* line 682, /output/application.css.scss.erb */
 #stats #main, #profile #main {
   padding: 0;
   padding-top: 60px;
@@ -952,7 +963,7 @@ caption {
 }
 
 /* right */
-/* line 684, /output/application.css.scss.erb */
+/* line 694, /output/application.css.scss.erb */
 #right {
   z-index: 10;
   font-size: 13px;
@@ -970,20 +981,20 @@ caption {
   -o-transition: width 0.5s ease-out;
   transition: width 0.5s ease-out;
 }
-/* line 688, /output/application.css.scss.erb */
+/* line 698, /output/application.css.scss.erb */
 #right h4 {
   margin: 25px 0 0 0;
 }
-/* line 691, /output/application.css.scss.erb */
+/* line 701, /output/application.css.scss.erb */
 #right ul {
   margin-top: 10px;
 }
-/* line 694, /output/application.css.scss.erb */
+/* line 704, /output/application.css.scss.erb */
 #right li {
   list-style-type: square;
   margin-left: 15px;
 }
-/* line 699, /output/application.css.scss.erb */
+/* line 709, /output/application.css.scss.erb */
 #right #workers li,
 #right #jobs li {
   color: #666;
@@ -992,7 +1003,7 @@ caption {
   margin: 0;
   list-style-type: none;
 }
-/* line 706, /output/application.css.scss.erb */
+/* line 716, /output/application.css.scss.erb */
 #right #workers li h5,
 #right #jobs li h5 {
   font-size: 13px;
@@ -1000,7 +1011,7 @@ caption {
   margin: 0px;
   cursor: pointer;
 }
-/* line 713, /output/application.css.scss.erb */
+/* line 723, /output/application.css.scss.erb */
 #right #workers li ul,
 #right #jobs li ul {
   margin-top: 2px;
@@ -1008,12 +1019,12 @@ caption {
   padding-left: 1px;
   display: none;
 }
-/* line 719, /output/application.css.scss.erb */
+/* line 729, /output/application.css.scss.erb */
 #right #workers li.open ul,
 #right #jobs li.open ul {
   display: block;
 }
-/* line 723, /output/application.css.scss.erb */
+/* line 733, /output/application.css.scss.erb */
 #right #workers li .icon,
 #right #jobs li .icon {
   clear: left;
@@ -1024,39 +1035,39 @@ caption {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   /* background: url(/assets/icons/status.square.gray.png); created, starting, stopping */
-  background: url(/118481bf/images/icons/status.square.green.png);
+  background: url(/a3633ef3/images/icons/status.square.green.png);
 }
-/* line 734, /output/application.css.scss.erb */
+/* line 744, /output/application.css.scss.erb */
 #right #workers li.waiting .icon,
 #right #jobs li.waiting .icon {
-  background: url(/118481bf/images/icons/status.square.green.png);
+  background: url(/a3633ef3/images/icons/status.square.green.png);
 }
-/* line 737, /output/application.css.scss.erb */
+/* line 747, /output/application.css.scss.erb */
 #right #workers li.working .icon,
 #right #jobs li.working .icon {
   /* background: url(/assets/images/icons/status.square.yellow.png); */
 }
-/* line 740, /output/application.css.scss.erb */
+/* line 750, /output/application.css.scss.erb */
 #right #workers li.errored .icon,
 #right #jobs li.errored .icon {
-  background: url(/118481bf/images/icons/status.square.red.png);
+  background: url(/a3633ef3/images/icons/status.square.red.png);
 }
-/* line 743, /output/application.css.scss.erb */
+/* line 753, /output/application.css.scss.erb */
 #right #workers li.stopped .icon,
 #right #jobs li.stopped .icon {
-  background: url(/118481bf/images/icons/status.square.gray.png);
+  background: url(/a3633ef3/images/icons/status.square.gray.png);
 }
-/* line 748, /output/application.css.scss.erb */
+/* line 758, /output/application.css.scss.erb */
 #right .placeholder,
 #right .indicator {
   display: none;
 }
-/* line 752, /output/application.css.scss.erb */
+/* line 762, /output/application.css.scss.erb */
 #right .empty .placeholder,
 #right .loading .indicator {
   display: none;
 }
-/* line 755, /output/application.css.scss.erb */
+/* line 765, /output/application.css.scss.erb */
 #right .box {
   margin-top: 25px;
   padding: 15px;
@@ -1068,30 +1079,30 @@ caption {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 762, /output/application.css.scss.erb */
+/* line 772, /output/application.css.scss.erb */
 #right .box h4 {
   margin: 0;
 }
-/* line 765, /output/application.css.scss.erb */
+/* line 775, /output/application.css.scss.erb */
 #right .box a {
   text-decoration: underline;
 }
-/* line 768, /output/application.css.scss.erb */
+/* line 778, /output/application.css.scss.erb */
 #right #alpha_warning {
   background-color: #ffffda;
 }
-/* line 771, /output/application.css.scss.erb */
+/* line 781, /output/application.css.scss.erb */
 #right #alpha_warning h4 {
   padding-left: 20px;
   /* background: url(/assets/construction.png) no-repeat top left; */
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAACXBIWXMAAAsTAAALEwEAmpwYAAACLUlEQVQoFY1STWsTURQ9d+bNJNOYJmnSNKaIlC5KSpVSNFGzaeuipeBG3bkNlip0LQXB7NwVERd+/Aqhfm2liwraaGrVQtAuikSbalIwmTQzz/tiBTtR8MIb3tx3zrvn3PtISglvEMd6DncAjYYfuFcY0wESXpL6fzKOwWgQOZ1cLKWxyKkNL+6vREyeH9ejZQPSxZ4Rm/hvYv3E3HRlOAXbbqJWeD3NxLveipo3kcsv9hj+Q9mWq8GBDsMKnp7N34t5cR1SJ9ZuZZJHPiZ87ihM9nh082Vf+tWzDHB56U9yB7GnsTnV/+Y2rLeAEQQi34DyLqaYdIB4QGqeyPTrOAuC6gvUEDQT8AtMzhD5/lmxdv1mquFfG2q4q9AaFbiWRN2KoH7y2NBIdjTFxMJv8r5Uop159B9O5i846Vnjc3cXDNlkjETNBuxKVYSLLy6uzNB25jG2WIpsS91dwCnbRjFR3ViAJuCwvj0zhKYRhquzQl0g9OXDNXZQLF3CGVW1XdHVcc6RCEfWH6I35kAMZiEDfSC+VtS24Hu/DO3dUx0+hImxzFsmeYPPBFZ+bGOsVAJ6Q0AXFxFC8AzVa22hugN8KgMDA0A4idVQHBmy7yMlGyjwuVn/yn5qfF+LCdxRnTuq+8Fyf+2tOEABNFn9mCBLu2rGXRPcC1O9D0XkUONQQcoMm0M3rwAvC6bT1ObF80fuSCLKZxq1PRFXUjhSn/1QXtlbe64qXf4uj/8EGPmtIwXAubMAAAAASUVORK5CYII%3D) no-repeat top left;
 }
-/* line 776, /output/application.css.scss.erb */
+/* line 786, /output/application.css.scss.erb */
 #right #alpha_warning p {
   margin-bottom: 0;
   color: #666;
 }
-/* line 783, /output/application.css.scss.erb */
+/* line 793, /output/application.css.scss.erb */
 #right .sponsors .platinum li,
 #right .sponsors .gold li {
   width: 205px;
@@ -1105,12 +1116,12 @@ caption {
   overflow: hidden;
   border: 1px solid #ddd;
 }
-/* line 791, /output/application.css.scss.erb */
+/* line 801, /output/application.css.scss.erb */
 #right .sponsors .platinum li:nth-child(2),
 #right .sponsors .gold li:nth-child(2) {
   margin-top: 8px;
 }
-/* line 794, /output/application.css.scss.erb */
+/* line 804, /output/application.css.scss.erb */
 #right .sponsors .platinum li img,
 #right .sponsors .gold li img {
   width: 205px;
@@ -1121,38 +1132,38 @@ caption {
   border-radius: 8px;
   overflow: hidden;
 }
-/* line 801, /output/application.css.scss.erb */
+/* line 811, /output/application.css.scss.erb */
 #right .sponsors .platinum li {
   height: 130px;
 }
-/* line 803, /output/application.css.scss.erb */
+/* line 813, /output/application.css.scss.erb */
 #right .sponsors .platinum li img {
   height: 130px;
 }
-/* line 809, /output/application.css.scss.erb */
+/* line 819, /output/application.css.scss.erb */
 #right .sponsors .gold li {
   height: 60px;
 }
-/* line 811, /output/application.css.scss.erb */
+/* line 821, /output/application.css.scss.erb */
 #right .sponsors .gold li img {
   height: 60px;
 }
-/* line 817, /output/application.css.scss.erb */
+/* line 827, /output/application.css.scss.erb */
 #right .sponsors .silver h5 {
   margin: 0;
   font-size: 13px;
 }
-/* line 821, /output/application.css.scss.erb */
+/* line 831, /output/application.css.scss.erb */
 #right .sponsors .silver p {
   margin: 0;
 }
-/* line 826, /output/application.css.scss.erb */
+/* line 836, /output/application.css.scss.erb */
 #right .hint {
   margin: 4px 0 0 2px;
   font-size: 10px;
   text-align: left;
 }
-/* line 845, /output/application.css.scss.erb */
+/* line 855, /output/application.css.scss.erb */
 #right .slider {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -1162,7 +1173,7 @@ caption {
   left: -10px;
   width: 10px;
 }
-/* line 850, /output/application.css.scss.erb */
+/* line 860, /output/application.css.scss.erb */
 #right .slider .icon {
   width: 0;
   height: 0;
@@ -1174,69 +1185,69 @@ caption {
   margin-top: -5px;
   margin-left: 3px;
 }
-/* line 867, /output/application.css.scss.erb */
+/* line 877, /output/application.css.scss.erb */
 #right:hover .slider {
   background: #e1e2e6;
 }
-/* line 869, /output/application.css.scss.erb */
+/* line 879, /output/application.css.scss.erb */
 #right:hover .slider .icon {
   border-color: #e1e2e6 #e1e2e6 #e1e2e6 #999999;
 }
-/* line 876, /output/application.css.scss.erb */
+/* line 886, /output/application.css.scss.erb */
 #right .inner .wrapper {
   padding: 20px 20px 20px 10px;
   min-width: 190px;
 }
-/* line 881, /output/application.css.scss.erb */
+/* line 891, /output/application.css.scss.erb */
 #right.maximized {
   width: 240px;
 }
-/* line 884, /output/application.css.scss.erb */
+/* line 894, /output/application.css.scss.erb */
 #right.minimized {
   width: 0px;
 }
-/* line 887, /output/application.css.scss.erb */
+/* line 897, /output/application.css.scss.erb */
 #right.minimized .slider {
   width: 20px;
   left: -21px;
   z-index: 50;
 }
-/* line 891, /output/application.css.scss.erb */
+/* line 901, /output/application.css.scss.erb */
 #right.minimized .slider .icon {
   border-color: #f2f4f9 #999999 #f2f4f9 #f2f4f9;
   border-width: 5px 5px 5px 0;
 }
-/* line 896, /output/application.css.scss.erb */
+/* line 906, /output/application.css.scss.erb */
 #right.minimized .slider:hover .icon {
   border-color: #e1e2e6 #999999 #e1e2e6 #e1e2e6;
 }
-/* line 902, /output/application.css.scss.erb */
+/* line 912, /output/application.css.scss.erb */
 #right.minimized .inner .wrapper {
   display: none;
 }
 
-/* line 910, /output/application.css.scss.erb */
+/* line 920, /output/application.css.scss.erb */
 .list.loading h4 {
-  background: url(/118481bf/images/spinner.gif) no-repeat 4px right;
+  background: url(/a3633ef3/images/spinner.gif) no-repeat 4px right;
   padding-right: 15px;
 }
 
-/* line 915, /output/application.css.scss.erb */
+/* line 925, /output/application.css.scss.erb */
 .list ul {
   min-height: 1em;
 }
 
-/* line 918, /output/application.css.scss.erb */
+/* line 928, /output/application.css.scss.erb */
 .list li:not(.empty) ~ .empty {
   display: none;
 }
 
 /* tabs */
-/* line 925, /output/application.css.scss.erb */
+/* line 935, /output/application.css.scss.erb */
 .tabs {
   position: relative;
 }
-/* line 928, /output/application.css.scss.erb */
+/* line 938, /output/application.css.scss.erb */
 .tabs h5 {
   float: left;
   position: relative;
@@ -1257,13 +1268,13 @@ caption {
   -o-border-top-right-radius: 4px;
   border-top-right-radius: 4px;
 }
-/* line 939, /output/application.css.scss.erb */
+/* line 949, /output/application.css.scss.erb */
 .tabs .active h5 {
   background-color: #fff;
   border-bottom-color: #fff;
   z-index: 2;
 }
-/* line 944, /output/application.css.scss.erb */
+/* line 954, /output/application.css.scss.erb */
 .tabs h5 a {
   padding: 0 10px;
   display: block;
@@ -1272,38 +1283,27 @@ caption {
   font-size: 13px;
   font-weight: normal;
 }
-/* line 954, /output/application.css.scss.erb */
+/* line 964, /output/application.css.scss.erb */
 .tabs .box h4 {
   margin: 0;
 }
-/* line 958, /output/application.css.scss.erb */
+/* line 968, /output/application.css.scss.erb */
 .tabs .box a {
   text-decoration: underline;
 }
-/* line 963, /output/application.css.scss.erb */
+/* line 973, /output/application.css.scss.erb */
 .tabs #alpha_warning {
   background-color: #ffffda;
 }
-/* line 966, /output/application.css.scss.erb */
+/* line 976, /output/application.css.scss.erb */
 .tabs #alpha_warning h4 {
   padding-left: 20px;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAACXBIWXMAAAsTAAALEwEAmpwYAAACLUlEQVQoFY1STWsTURQ9d+bNJNOYJmnSNKaIlC5KSpVSNFGzaeuipeBG3bkNlip0LQXB7NwVERd+/Aqhfm2liwraaGrVQtAuikSbalIwmTQzz/tiBTtR8MIb3tx3zrvn3PtISglvEMd6DncAjYYfuFcY0wESXpL6fzKOwWgQOZ1cLKWxyKkNL+6vREyeH9ejZQPSxZ4Rm/hvYv3E3HRlOAXbbqJWeD3NxLveipo3kcsv9hj+Q9mWq8GBDsMKnp7N34t5cR1SJ9ZuZZJHPiZ87ihM9nh082Vf+tWzDHB56U9yB7GnsTnV/+Y2rLeAEQQi34DyLqaYdIB4QGqeyPTrOAuC6gvUEDQT8AtMzhD5/lmxdv1mquFfG2q4q9AaFbiWRN2KoH7y2NBIdjTFxMJv8r5Uop159B9O5i846Vnjc3cXDNlkjETNBuxKVYSLLy6uzNB25jG2WIpsS91dwCnbRjFR3ViAJuCwvj0zhKYRhquzQl0g9OXDNXZQLF3CGVW1XdHVcc6RCEfWH6I35kAMZiEDfSC+VtS24Hu/DO3dUx0+hImxzFsmeYPPBFZ+bGOsVAJ6Q0AXFxFC8AzVa22hugN8KgMDA0A4idVQHBmy7yMlGyjwuVn/yn5qfF+LCdxRnTuq+8Fyf+2tOEABNFn9mCBLu2rGXRPcC1O9D0XkUONQQcoMm0M3rwAvC6bT1ObF80fuSCLKZxq1PRFXUjhSn/1QXtlbe64qXf4uj/8EGPmtIwXAubMAAAAASUVORK5CYII%3D) no-repeat top left;
 }
-/* line 971, /output/application.css.scss.erb */
+/* line 981, /output/application.css.scss.erb */
 .tabs #alpha_warning p {
   margin-bottom: 0;
   color: #666;
-}
-
-/* line 978, /output/application.css.scss.erb */
-#tab {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-top: 64px;
-  padding-left: 12px;
-  border-top: 1px solid #ccc;
-  z-index: 1;
 }
 
 /* scrollbars */
@@ -1469,19 +1469,19 @@ ul#tokens > li:first-child {
   height: 20px;
   width: 20px;
   padding-right: 0;
-  background: url(/118481bf/images/icons/github-admin.png) no-repeat 3px 4px;
+  background: url(/a3633ef3/images/icons/github-admin.png) no-repeat 3px 4px;
 }
 /* line 1100, /output/application.css.scss.erb */
 #service_hooks ul li .controls .switch {
   height: 20px;
   width: 80px;
   margin-left: 10px;
-  background: url(/118481bf/images/off.png) no-repeat;
+  background: url(/a3633ef3/images/off.png) no-repeat;
   cursor: pointer;
 }
 /* line 1106, /output/application.css.scss.erb */
 #service_hooks ul li .controls .switch.active {
-  background: url(/118481bf/images/on.png) no-repeat;
+  background: url(/a3633ef3/images/on.png) no-repeat;
 }
 /* line 1111, /output/application.css.scss.erb */
 #service_hooks ul li:nth-child(odd) .controls {
@@ -1548,7 +1548,7 @@ ul#tokens > li:first-child {
 /* line 1170, /output/application.css.scss.erb */
 #main #allow_failure_builds td:first-child a,
 #main #allow_failure_builds .build td:first-child a {
-  background-image: url(/118481bf/images/icons/status.yellow.png);
+  background-image: url(/a3633ef3/images/icons/status.yellow.png);
   padding-left: 20px;
   background-repeat: no-repeat;
 }
@@ -1556,7 +1556,7 @@ ul#tokens > li:first-child {
 /* line 1176, /output/application.css.scss.erb */
 #main #allow_failure_builds .green td:first-child a,
 #main #allow_failure_builds .build.green td:first-child a {
-  background-image: url(/118481bf/images/icons/status.green.png);
+  background-image: url(/a3633ef3/images/icons/status.green.png);
   color: green;
   padding-left: 20px;
   background-repeat: no-repeat;
@@ -1567,7 +1567,7 @@ ul#tokens > li:first-child {
 #main .red .summary .number a,
 #main #allow_failure_builds .red td:first-child a,
 #main #allow_failure_builds .build.red td:first-child a {
-  background-image: url(/118481bf/images/icons/status.red.png);
+  background-image: url(/a3633ef3/images/icons/status.red.png);
   color: #c00;
   padding-left: 20px;
   background-repeat: no-repeat;
@@ -1640,7 +1640,7 @@ ul#tokens > li:first-child {
   margin-left: 10px;
   display: inline-block;
   width: 16px;
-  background: url(/118481bf/images/icons/help.png) no-repeat scroll 0 0 transparent;
+  background: url(/a3633ef3/images/icons/help.png) no-repeat scroll 0 0 transparent;
 }
 
 /* line 1242, /output/application.css.scss.erb */
@@ -1681,7 +1681,7 @@ pre {
 /* line 1271, /output/application.css.scss.erb */
 #main #branch_summary td:first-child a,
 #main #branch_summary .build td:first-child a {
-  background-image: url(/118481bf/images/icons/status.yellow.png);
+  background-image: url(/a3633ef3/images/icons/status.yellow.png);
   padding-left: 20px;
   background-repeat: no-repeat;
 }
@@ -1689,7 +1689,7 @@ pre {
 /* line 1277, /output/application.css.scss.erb */
 #main #branch_summary .green td:first-child a,
 #main #branch_summary .build.green td:first-child a {
-  background-image: url(/118481bf/images/icons/status.green.png);
+  background-image: url(/a3633ef3/images/icons/status.green.png);
   color: green;
   padding-left: 20px;
   background-repeat: no-repeat;
@@ -1700,7 +1700,7 @@ pre {
 #main .red .summary .number a,
 #main #branch_summary .red td:first-child a,
 #main #branch_summary .build.red td:first-child a {
-  background-image: url(/118481bf/images/icons/status.red.png);
+  background-image: url(/a3633ef3/images/icons/status.red.png);
   color: #c00;
   padding-left: 20px;
   background-repeat: no-repeat;

@@ -13,7 +13,6 @@ vendor/highcharts.js
 vendor/pusher-1.6.min.js
 vendor/i18n.js
 
-app/_init.js.coffee
 lib/**/*.js*
 app/controllers/*.js.coffee
 app/views.js.coffee

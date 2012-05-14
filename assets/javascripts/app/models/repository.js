@@ -109,11 +109,11 @@ Travis.Repository.reopenClass({
   },
 
   owned_by: function(owner_name) {
-    return Travis.store.find(Ember.Query.remote(Travis.Repository, { url: 'repositories.json?owner_name=' + owner_name, orderBy: 'name' }));
+    return this.all({ owner_name: owner_name, orderBy: 'name' });
   },
 
-  search: function(search) {
-    return Travis.store.find(Ember.Query.remote(Travis.Repository, { url: 'repositories.json?search=' + search, orderBy: 'name' }));
+  search: function(query) {
+    return this.all({ search: query, orderBy: 'name' });
   },
 
   bySlug: function(slug) {

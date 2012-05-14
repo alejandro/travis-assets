@@ -1,5 +1,3 @@
-@Travis = Ember.Namespace.create() if @Travis == undefined
-
 @Travis.AppController = Ember.Application.extend
   UPDATE_TIMES_INTERVAL: 5000
 
@@ -20,9 +18,10 @@
     @layout = Travis.Views.Layouts.Default.create()
     @layout.appendTo('body')
 
-    @set 'main', Travis.RepositoryController.create()
+    Ember.run.next =>
+      @set 'left', Travis.LeftController.create()
+      @set 'main', Travis.MainController.create()
     # @events = Travis.Controllers.Events.create()
-    # @left   = Travis.Controllers.Repositories.List.create()
     # @right  = Travis.Controllers.Sidebar.create()
 
   action: ->
@@ -107,6 +106,8 @@
   #       $('.tools .content').fadeOut('fast')
   #     }
   #   })
+  #
+  #   $('h5').tipsy();
   # },
 
   # startLoading: ->

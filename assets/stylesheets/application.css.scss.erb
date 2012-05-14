@@ -221,6 +221,10 @@ caption {
       }
     }
   }
+  .tab {
+    border-top: 1px solid #ccc;
+    margin-top: -1px;
+  }
 
   #repositories {
     li {
@@ -410,11 +414,17 @@ caption {
   .tabs li {
     white-space: nowrap;
   }
-  .tab {
-    padding-left: 12px;
-  }
   #tab_build:not(.active), #tab_job:not(.active), #tab_search:not(.active) {
     display: none;
+  }
+  .tab {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 64px;
+    padding-left: 12px;
+    border-top: 1px solid #ccc;
+    z-index: 1;
   }
   .tools {
     position: relative;
@@ -973,16 +983,6 @@ caption {
     color: #666;
    }
   }
-}
-
-#tab {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-top: 64px;
-  padding-left: 12px;
-  border-top: 1px solid #ccc;
-  z-index: 1;
 }
 
 /* scrollbars */
