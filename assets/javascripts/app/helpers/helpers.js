@@ -13,7 +13,7 @@ window.Travis.Helpers = {
     return started && finished ? Math.round((finished - started) / 1000) : 0;
   },
 
-  readableTime: function(duration) {
+  timeInWords: function(duration) {
     var days    = Math.floor(duration / 86400);
     var hours   = Math.floor(duration % 86400 / 3600);
     var minutes = Math.floor(duration % 3600 / 60);
@@ -50,6 +50,21 @@ window.Travis.Helpers = {
     return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
   },
 
+  formatConfig: function(config) {
+    var config = $.only(config, 'rvm', 'gemfile', 'env', 'otp_release', 'php', 'node_js', 'scala', 'jdk', 'python', 'perl');
+    var values = $.map(config, function(value, key) {
+      value = (value && value.join) ? value.join(', ') : (value || '');
+      return '%@: %@'.fmt($.camelize(key), value);
+    });
+    return values.length == 0 ? '-' : values.join(', ');
+  },
+
+  formatMessage: function(message, options) {
+    message = message || '';
+    if(options.short) message = message.split(/\n/)[0];
+    return this.emojize(this.escape(message)).replace(/\n/g, '<br/>');
+  },
+
   emojize: function(text) {
     var emojis = text.match(/:\S+?:/g);
     if (emojis !== null){
@@ -65,10 +80,7 @@ window.Travis.Helpers = {
   },
 
   escape: function(text) {
-    return text
-              .replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;');
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   },
 
   // extracted from build and job models
@@ -76,7 +88,7 @@ window.Travis.Helpers = {
   _formattedDuration: function() {
     var duration = this.get('duration');
     if(!duration) duration = this.durationFrom(this.get('started_at'), this.get('finished_at'));
-    return this.readableTime(duration);
+    return this.timeInWords(duration);
   },
 
   _formattedFinishedAt: function() {

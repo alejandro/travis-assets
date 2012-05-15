@@ -1,16 +1,18 @@
 <table id="builds">
   <caption>{{t "jobs.build_matrix"}}</caption>
   <thead>
-    {{#each build.formattedMatrixHeaders}}
-      <th>{{this}}</th>
-    {{/each}}
+    <tr>
+      {{#each configKeys}}
+        <th>{{this}}</th>
+      {{/each}}
+    </tr>
   </thead>
 
-  {{#collection tagName="tbody" contentBinding="build.requiredJobs" itemClassBinding="content.color"}}
-    <td class="number"><a {{bindAttr href="view.content.url"}}>{{view.content.number}}</a></td>
-    <td class="duration" {{bindAttr title="view.content.started_at"}}>{{view.content.formattedDuration}}</td>
-    <td class="finished_at timeago" {{bindAttr title="view.content.finished_at"}}>{{view.content.formattedFinishedAt}}</td>
-    {{#each view.content.formattedConfigValues}}
+  {{#collection itemViewClass="Travis.Views.Jobs.Item" contentBinding="build.requiredJobs" itemClassBinding="content.color"}}
+    <td class="number"><a {{bindAttr href="content.url"}}>{{content.number}}</a></td>
+    <td class="duration" {{bindAttr title="content.started_at"}}>{{formatDuration content.duration}}</td>
+    <td class="finished_at timeago" {{bindAttr title="content.finished_at"}}>{{formatTime content.finished_at}}</td>
+    {{#each configValues}}
       <td>{{value}}</td>
     {{/each}}
   {{/collection}}
@@ -18,19 +20,20 @@
 
 {{#if build.hasFailureMatrix}}
   <table id="allow_failure_builds">
-    <caption>{{t "jobs.allowed_failures"}}{{whats_this "allow_failure_help"}}
-  </caption>
+    <caption>{{t "jobs.allowed_failures"}}{{whats_this "allow_failure_help"}}</caption>
     <thead>
-      {{#collection tagName="tr" contentBinding="build.formattedMatrixHeaders" itemTagName="th"}}
-        {{view.content}}
-      {{/collection}}
+      <tr>
+        {{#each configKeys}}
+          <th>{{this}}</th>
+        {{/each}}
+      </tr>
     </thead>
 
-    {{#collection tagName="tbody" contentBinding="build.allowFailureJobs" itemViewClass="Ember.View" itemClassBinding="content.color"}}
-      <td class="number"><a {{bindAttr href="view.content.url"}}>{{view.content.number}}</a></td>
-      <td class="duration" {{bindAttr title="view.content.started_at"}}>{{view.content.formattedDuration}}</td>
-      <td class="finished_at timeago" {{bindAttr title="view.content.finished_at"}}>{{view.content.formattedFinishedAt}}</td>
-      {{#each view.content.formattedConfigValues itemTagName="td"}}
+    {{#collection itemViewClass="Travis.Views.Jobs.Item" contentBinding="build.allowedFailureJobs" itemClassBinding="content.color"}}
+      <td class="number"><a {{bindAttr href="content.url"}}>{{content.number}}</a></td>
+      <td class="duration" {{bindAttr title="content.started_at"}}>{{formatDuration content.duration}}</td>
+      <td class="finished_at timeago" {{bindAttr title="content.finished_at"}}>{{formatTime content.finished_at}}</td>
+      {{#each configValues}}
         <td>{{value}}</td>
       {{/each}}
     {{/collection}}

@@ -33,9 +33,8 @@
       revision: 4
       adapter: DS.RESTAdapter.create
         plurals:
-          repositories: 'repositories',
-          builds: 'builds',
-          branches: 'branches'
+          repository: 'repositories',
+          branch: 'branches'
 
     @store.adapter.set 'mappings',
         builds: Travis.Build,

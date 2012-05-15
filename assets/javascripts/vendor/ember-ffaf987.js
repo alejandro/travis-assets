@@ -1,6 +1,6 @@
 var ENV = ENV || {};
 ENV.CP_DEFAULT_CACHEABLE = true;
-ENV.VIEW_PRESERVES_CONTEXT = true;
+// ENV.VIEW_PRESERVES_CONTEXT = true;
 
 (function() {
 /*global __fail__*/

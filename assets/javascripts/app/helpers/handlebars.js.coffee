@@ -10,6 +10,27 @@ Handlebars.registerHelper 'tipsy', (text, tip) ->
 Handlebars.registerHelper 't', (key) ->
   safe I18n.t(key)
 
-# TODO how to get this to work so it updates the bindings?
-Handlebars.registerHelper 'timeAgoInWords', (path, object) ->
-  safe Travis.Helpers.timeAgoInWords(Ember.getPath(this, path)) || '-'
+Ember.registerBoundHelper 'formatTime', (value, options) ->
+  safe Travis.Helpers.timeAgoInWords(value) || '-'
+
+Ember.registerBoundHelper 'formatDuration', (duration, options) ->
+  safe Travis.Helpers.timeInWords(duration)
+
+Ember.registerBoundHelper 'formatCommit', (commit, options) ->
+  return '' unless commit
+  branch = commit.get('branch')
+  branch = ' (%@)'.fmt(branch) if branch
+  safe (commit.get('sha') || '').substr(0, 7) + branch
+
+Ember.registerBoundHelper 'pathFrom', (url, options) ->
+  safe (url || '').split('/').pop()
+
+Ember.registerBoundHelper 'formatMessage', (message, options) ->
+  safe Travis.Helpers.formatMessage(message, options)
+
+Ember.registerBoundHelper 'formatConfig', (config, options) ->
+  safe Travis.Helpers.formatConfig(config)
+
+Ember.registerBoundHelper 'formatLog', (log, options) ->
+  Travis.Log.filter(log) if log
+

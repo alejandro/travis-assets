@@ -17,7 +17,7 @@
 
   branches: Travis.State.create
     name: 'branches'
-    view: Travis.Views.Repositories.Branches
+    view: Travis.Views.Branches.List
 
   build: Travis.State.create
     name: 'build'

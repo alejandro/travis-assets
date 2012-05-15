@@ -6,7 +6,7 @@ window.Travis.Model = DS.Model.extend({
 
   refresh: function() {
     var id = this.get('id');
-    if(id) return Travis.app.store.adapter.find(Travis.store, this.constructor, id);
+    if(id) return Travis.app.store.adapter.find(Travis.app.store, this.constructor, id);
   }
 
   // update: function(attrs) {

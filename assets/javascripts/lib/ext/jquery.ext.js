@@ -30,8 +30,8 @@ $.fn.extend({
   activateTab: function(tab) {
     Utils.activateTab(this, tab);
   },
-  readableTime: function() {
-    $(this).each(function() { $(this).text(Utils.readableTime(parseInt($(this).attr('title')))); })
+  timeInWords: function() {
+    $(this).each(function() { $(this).text(Utils.timeInWords(parseInt($(this).attr('title')))); })
   },
   updateGithubStats: function(repository) {
     Utils.updateGithubStats(repository, $(this));

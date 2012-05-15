@@ -6,20 +6,8 @@ Travis.Repository = Travis.Model.extend(Travis.Helpers, {
   last_build_id:          DS.attr('number'),
   last_build_number:      DS.attr('string'),
   last_build_result:      DS.attr('number'),
-  last_build_duration:    DS.attr('number'),
   last_build_started_at:  DS.attr('string'),  // DateTime doesn't seem to work?
   last_build_finished_at: DS.attr('string'),
-
-  select: function() {
-    this.whenReady(function(self) {
-      Travis.Repository.select(self.get('id'))
-    });
-  },
-
-  updateTimes: function() {
-    this.notifyPropertyChange('last_build_duration');
-    this.notifyPropertyChange('last_build_finished_at');
-  },
 
   branches: function() {
     return Travis.Branch.byRepositoryId(this.get('id'));
@@ -37,25 +25,24 @@ Travis.Repository = Travis.Model.extend(Travis.Helpers, {
     return Travis.Build.find(this.get('last_build_id'));
   }.property('last_build_id'),
 
-  // VIEW HELPERS
-
-  color: function() {
-    return this.colorForResult(this.get('last_build_result'));
-  }.property('last_build_result'),
-
-  formattedLastBuildDuration: function() {
-    var duration = this.get('last_build_duration');
+  last_build_duration: function() {
+    var duration = this.getPath('data.last_build_duration');
     if(!duration) duration = this.durationFrom(this.get('last_build_started_at'), this.get('last_build_finished_at'));
-    return this.readableTime(duration);
+    return duration;
   }.property('last_build_duration', 'last_build_started_at', 'last_build_finished_at'),
 
-  formattedLastBuildFinishedAt: function() {
-    return this.timeAgoInWords(this.get('last_build_finished_at')) || '-';
-  }.property('last_build_finished_at'),
+  select: function() {
+    this.whenReady(function(self) {
+      Travis.Repository.select(self.get('id'))
+    });
+  },
 
-  cssClasses: function() { // ugh
-    return $.compact(['repository', this.get('color'), this.get('selected') ? 'selected' : null]).join(' ');
-  }.property('color', 'selected'),
+  updateTimes: function() {
+    this.notifyPropertyChange('last_build_duration');
+    this.notifyPropertyChange('last_build_finished_at');
+  },
+
+  // VIEW HELPERS
 
   urlCurrent: function() {
     return '#!/' + this.getPath('slug');
@@ -99,16 +86,12 @@ Travis.Repository = Travis.Model.extend(Travis.Helpers, {
 
 });
 
-/* DS.RESTAdapter.plurals['repository'] = 'repositories' */
-
 Travis.Repository.reopenClass({
-  url: 'repositories',
-
   recent: function() {
     return this.all({ orderBy: 'last_build_started_at DESC' });
   },
 
-  owned_by: function(owner_name) {
+  ownedBy: function(owner_name) {
     return this.all({ owner_name: owner_name, orderBy: 'name' });
   },
 

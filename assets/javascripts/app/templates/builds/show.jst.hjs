@@ -4,41 +4,41 @@
       <dt>{{t "builds.name"}}</dt>
       <dd class="number"><a {{bindAttr href="build.url"}}>{{build.number}}</a></dd>
       <dt class="finished_at_label">{{t "builds.finished_at"}}</dt>
-      <dd class="finished_at timeago" {{bindAttr title="build.finished_at"}}>{{build.formattedFinishedAt}}</dd>
+      <dd class="finished_at timeago" {{bindAttr title="build.finished_at"}}>{{formatTime build.finished_at}}</dd>
       <dt>{{t "builds.duration"}}</dt>
-      <dd class="duration" {{bindAttr title="build.started_at"}}>{{build.formattedDuration}}</dd>
+      <dd class="duration" {{bindAttr title="build.started_at"}}>{{formatDuration build.duration}}</dd>
     </div>
 
     <div class="right">
       <dt>{{t "builds.commit"}}</dt>
-      <dd class="commit-hash"><a {{bindAttr href="build.urlGithubCommit"}}>{{build.formattedCommit}}</a></dd>
-      {{#if build.compare_url}}
+      <dd class="commit-hash"><a {{bindAttr href="build.urlGithubCommit"}}>{{formatCommit commit}}</a></dd>
+      {{#if commit.compare_url}}
         <dt>{{t "builds.compare"}}</dt>
-        <dd class="compare_view"><a {{bindAttr href="build.compare_url"}}>{{build.formattedCompareUrl}}</a></dd>
+        <dd class="compare_view"><a {{bindAttr href="commit.compare_url"}}>{{pathFrom commit.compare_url}}</a></dd>
       {{/if}}
-      {{#if build.author_name}}
+      {{#if commit.author_name}}
         <dt>{{t "builds.author"}}</dt>
-        <dd class="author"><a {{bindAttr href="build.urlAuthor"}}>{{build.author_name}}</a></dd>
+        <dd class="author"><a {{bindAttr href="commit.urlAuthor"}}>{{commit.author_name}}</a></dd>
       {{/if}}
-      {{#if build.committer_name}}
+      {{#if commit.committer_name}}
         <dt>{{t "builds.committer"}}</dt>
-        <dd class="committer"><a {{bindAttr href="build.urlCommitter"}}>{{build.committer_name}}</a></dd>
+        <dd class="committer"><a {{bindAttr href="build.urlCommitter"}}>{{commit.committer_name}}</a></dd>
       {{/if}}
     </div>
 
     <dt>{{t "builds.message"}}</dt>
-    <dd class="commit-message">{{{build.formattedMessage}}}</dd>
+    <dd class="commit-message">{{{formatMessage commit.message}}}</dd>
 
     {{#if build.isMatrix}}
     {{else}}
       <dt>{{t "builds.config"}}</dt>
-      <dd class="config">{{build.formattedConfig}}</dd>
+      <dd class="config">{{formatConfig build.config}}</dd>
     {{/if}}
   </dl>
 
   {{#if build.isMatrix}}
-    {{view Ember.View templateName="app/templates/jobs/list"}}
+    {{view Travis.Views.Jobs.List buildBinding="build"}}
   {{else}}
-    {{view Ember.View templateName="app/templates/jobs/log" jobBinding="build.jobs.firstObject"}}
+    {{view Travis.Views.Jobs.Log jobBinding="build.jobs.firstObject"}}
   {{/if}}
 </div>
