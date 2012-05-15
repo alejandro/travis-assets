@@ -32,7 +32,7 @@
     <dd class="config">{{formatConfig job.config}}</dd>
   </dl>
 
-  <pre class="log">{{{formatLog job.log}}}</pre>
+  {{view Travis.Views.Jobs.Log jobBinding="job"}}
 
   {{#if job.sponsor.name}}
     <p class="sponsor">

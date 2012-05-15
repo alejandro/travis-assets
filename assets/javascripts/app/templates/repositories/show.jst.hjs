@@ -6,8 +6,8 @@
 
 <ul class="github-stats">
   <li class="language">{{repository.last_build_language}}</li>
-  <li><a class="watchers" title="Watches" {{bindAttr href="repository.urlGithubWatchers"}}></a></li>
-  <li><a class="forks" title="Forks" {{bindAttr href="repository.urlGithubNetwork"}}></a></li>
+  <li><a class="watchers" title="Watches" {{bindAttr href="repository.urlGithubWatchers"}}>{{repository.github.watchers}}</a></li>
+  <li><a class="forks" title="Forks" {{bindAttr href="repository.urlGithubNetwork"}}>{{repository.github.forks}}</a></li>
 </ul>
 
 <ul class="tabs">
@@ -31,13 +31,4 @@
   </li>
 </ul>
 
-<div class="tools">
-  <a href="#"></a>
-  <div class="content">
-    <p><label>{{t "repositories.branch"}}:</label><select></select></p>
-    <p><label>{{t "repositories.image_url"}}:</label><input type="text" class="url"></input></p>
-    <p><label>{{t "repositories.markdown"}}:</label><input type="text" class="markdown"></input></p>
-    <p><label>{{t "repositories.textile"}}:</label><input type="text" class="textile"></input></p>
-    <p><label>{{t "repositories.rdoc"}}:</label><input type="text" class="rdoc"></input></p>
-  </div>
-</div>
+{{view Travis.Views.Repositories.Tools repositoryBinding="repository"}}

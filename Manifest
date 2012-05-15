@@ -15,7 +15,7 @@ vendor/i18n.js
 
 lib/**/*.js*
 app/controllers/*.js.coffee
-app/views.js.coffee
+app/views/*.js.coffee
 app/states/*.js.coffee
 
 app/helpers/**/*.js*

@@ -34,8 +34,9 @@ window.Travis.Log = {
   numberLines: function(log) {
     var result = '';
     $.each(log.trim().split('\n'), function (ix, line) {
-      var path = Travis.Log.location().substr(1).replace(/\/L\d+/, '') + '/L' + (ix + 1);
-      result += '<p><a href="#%@" id="%@" name="L%@">%@</a>%@</p>\n'.fmt(path, path, (ix + 1), (ix + 1), line);
+      var number = ix + 1;
+      var path = Travis.Log.location().substr(1).replace(/\/L\d+/, '') + '/L' + number;
+      result += '<p><a href="#%@" id="%@" name="L%@">%@</a>%@</p>\n'.fmt(path, path, number, number, line);
     });
     return result.trim();
   },

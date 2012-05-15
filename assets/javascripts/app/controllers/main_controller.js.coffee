@@ -10,19 +10,29 @@
     Ember.run.next => @initRoutes()
 
   initRoutes: ->
-    Ember.routes.add '!/:owner/:name/jobs/:id/:line_number', (params) => @activate('job', params)
-    Ember.routes.add '!/:owner/:name/jobs/:id',              (params) => @activate('job', params)
-    Ember.routes.add '!/:owner/:name/builds/:id',            (params) => @activate('build', params)
-    Ember.routes.add '!/:owner/:name/builds',                (params) => @activate('history', params)
-    Ember.routes.add '!/:owner/:name/pull_requests',         (params) => @activate('pull_requests', params)
-    Ember.routes.add '!/:owner/:name/branches',              (params) => @activate('branches', params)
-    Ember.routes.add '!/:owner/:name',                       (params) => @activate('current', params)
-    Ember.routes.add '',                                     (params) => @activate('current')
+    Ember.routes.add '!/:owner/:name/jobs/:id/:number', (params) => @activate('job', params)
+    Ember.routes.add '!/:owner/:name/jobs/:id',         (params) => @activate('job', params)
+    Ember.routes.add '!/:owner/:name/builds/:id',       (params) => @activate('build', params)
+    Ember.routes.add '!/:owner/:name/builds',           (params) => @activate('history', params)
+    Ember.routes.add '!/:owner/:name/pull_requests',    (params) => @activate('pull_requests', params)
+    Ember.routes.add '!/:owner/:name/branches',         (params) => @activate('branches', params)
+    Ember.routes.add '!/:owner/:name',                  (params) => @activate('current', params)
+    Ember.routes.add '',                                (params) => @activate('current')
 
   activate: (tab, params) ->
     @set('params', params)
     @set('tab', tab)
     @tabs.activate(tab)
+
+  # TODO this doesn't work ...
+  showMore: ->
+    repositoryId = @getPath('repository.id')
+    number = @getPath('builds.lastObject.number')
+    builds = @get('builds')
+    builds.contentWillChange()
+    Travis.Build.olderThanNumber(repositoryId, number).forEach (build) ->
+      builds.addObject(build)
+    builds.contentDidChange()
 
   job: (->
     Travis.Job.find(@get('params').id) if @get('tab') == 'job'

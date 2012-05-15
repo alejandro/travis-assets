@@ -1,4 +1,6 @@
-<div class="slider"><div class="icon"></div>&nbsp;</div>
+<div class="slider" {{action toggle}}>
+  <div class="icon"></div>&nbsp;
+</div>
 <div class="inner">
   <div class="wrapper">
     <h4>

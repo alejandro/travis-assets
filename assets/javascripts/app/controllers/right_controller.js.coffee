@@ -13,11 +13,9 @@ Travis.RightController = Ember.Object.extend
     @_super()
 
     Travis.WorkersController.create()
-
     $(@queues).each (ix, queue) ->
       Travis.QueueController.create(queue)
 
-    $(".slider").click => @toggle()
     @minimize() if $.cookie(@cookie) == 'true'
     @persist()
 
