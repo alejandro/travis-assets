@@ -3,6 +3,7 @@
     @_super()
     @tabs = Travis.LeftStates.create()
     @set 'searchBox', Travis.app.layout.left.searchBox
+    @ticker = Travis.Ticker.create(context: this, targets: ['content'])
 
   activate: (tab, params) ->
     @set('content', @[tab]())

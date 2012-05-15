@@ -1,9 +1,9 @@
 @Travis.AppController = Ember.Application.extend
-  UPDATE_TIMES_INTERVAL: 5000
+  TICK_INTERVAL: 1000
 
   channels: ['common']
-  active_channels: []
   channel_prefix: ''
+  active_channels: []
 
   init: ->
     @_super()

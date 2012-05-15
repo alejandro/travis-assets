@@ -23,6 +23,11 @@ Travis.Branch = Travis.Model.extend(Travis.Helpers, {
   commitUrl: function() {
     return 'http://github.com/' + this.getPath('repository.slug') + '/commit/' + this.getPath('commit.sha');
   }.property(),
+
+  tick: function() {
+    this.notifyPropertyChange('started_at');
+    this.notifyPropertyChange('finished_at');
+  },
 });
 
 Travis.Branch.reopenClass({

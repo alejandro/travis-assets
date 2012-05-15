@@ -15,6 +15,7 @@
     color: (->
       Travis.Helpers.colorForResult(this.getPath('content.last_build_result'))
     ).property('content.last_build_result')
+
     class: (->
       classes = ['repository', @get('color')]
       classes.push 'selected' if @getPath('content.selected')
@@ -26,24 +27,31 @@
   Tools: Ember.View.extend
     templateName: 'app/templates/repositories/tools'
     selector: '#repository .tools'
+
     toggle: ->
       $(this.selector + ' .content').toggle()
+
     update: ->
       @set 'branch', $(this.selector + ' select').val()
+
     repositoryUrl: (->
       'http://travis-ci.org/%@'.fmt(@getPath('repository.slug'))
     ).property('repository.slug')
+
     imageUrl: (->
       branch = @get('branch')
       path = 'https://secure.travis-ci.org/%@.png'.fmt(@getPath('repository.slug'))
       if branch then path + '?branch=' + branch else path
     ).property('repository.slug', 'branch')
+
     markdown: (->
       '[![Build Status](%@)](%@)'.fmt(@get('imageUrl'), @get('repositoryUrl'))
     ).property('imageUrl')
+
     textile: (->
       '!%@(Build Status)!:%@'.fmt(@get('imageUrl'), @get('repositoryUrl'))
     ).property('imageUrl')
+
     rdoc: (->
       '{<img src="%@" alt="Build Status" />}[%@]'.fmt(@get('imageUrl'), @get('repositoryUrl'))
     ).property('imageUrl')

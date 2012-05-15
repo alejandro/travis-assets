@@ -29,9 +29,9 @@ Travis.Job = Travis.Model.extend(Travis.Helpers, {
 
   log: function() {
     this.subscribe();
-    var log = this.getPath('data.log') || '';
+    var log = this.getPath('data.log');
     if(log === undefined) this.refresh();
-    return log;
+    return log || '';
   }.property('data.log'),
 
   // TODO ...
@@ -55,11 +55,12 @@ Travis.Job = Travis.Model.extend(Travis.Helpers, {
   subscribe: function() {
     var id = this.get('id');
     if(id)
+      // TODO this is bad. the job needs to be subscribed until it is finished
       Travis.app.unsubscribeAll(/^job-/)
       Travis.app.subscribe('job-' + id);
   },
 
-  updateTimes: function() {
+  tick: function() {
     this.notifyPropertyChange('duration');
     this.notifyPropertyChange('finished_at');
   },

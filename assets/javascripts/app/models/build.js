@@ -49,11 +49,6 @@ Travis.Build = Travis.Model.extend(Travis.Helpers, {
     this._super(attrs);
   },
 
-  updateTimes: function() {
-    this.notifyPropertyChange('duration');
-    this.notifyPropertyChange('finished_at');
-  },
-
   // We need to join given attributes with existing attributes because DS.Model.toMany
   // does not seem to allow partial updates, i.e. would remove existing attributes?
   _joinJobsAttributes: function(attrs) {
@@ -62,6 +57,11 @@ Travis.Build = Travis.Model.extend(Travis.Helpers, {
       var _job = _this.get('jobs').objectAt(ix);
       if(_job) attrs[ix] = $.extend(_job.get('attributes') || {}, job);
     });
+  },
+
+  tick: function() {
+    this.notifyPropertyChange('duration');
+    this.notifyPropertyChange('finished_at');
   },
 
   // VIEW HELPERS

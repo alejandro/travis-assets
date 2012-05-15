@@ -7,6 +7,7 @@
   init: ->
     @_super()
     @tabs = Travis.MainStates.create()
+    @ticker = Travis.Ticker.create(context: this, targets: ['builds', 'build', 'branches'])
     Ember.run.next => @initRoutes()
 
   initRoutes: ->
@@ -23,16 +24,6 @@
     @set('params', params)
     @set('tab', tab)
     @tabs.activate(tab)
-
-  # TODO this doesn't work ...
-  showMore: ->
-    repositoryId = @getPath('repository.id')
-    number = @getPath('builds.lastObject.number')
-    builds = @get('builds')
-    builds.contentWillChange()
-    Travis.Build.olderThanNumber(repositoryId, number).forEach (build) ->
-      builds.addObject(build)
-    builds.contentDidChange()
 
   job: (->
     Travis.Job.find(@get('params').id) if @get('tab') == 'job'
@@ -66,4 +57,12 @@
     parts.join('/') if parts.length > 0
   ).property('params')
 
-
+  # TODO this doesn't work ...
+  showMore: ->
+    repositoryId = @getPath('repository.id')
+    number = @getPath('builds.lastObject.number')
+    builds = @get('builds')
+    builds.contentWillChange()
+    Travis.Build.olderThanNumber(repositoryId, number).forEach (build) ->
+      builds.addObject(build)
+    builds.contentDidChange()

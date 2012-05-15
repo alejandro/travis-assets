@@ -31,11 +31,11 @@ Travis.Repository = Travis.Model.extend(Travis.Helpers, {
     return duration;
   }.property('last_build_duration', 'last_build_started_at', 'last_build_finished_at'),
 
-  github: function() {
+  stats: function() {
     if(Travis.env != 'production') return;
     var url = 'https://api.github.com/json/repos/show/' + this.get('slug');
-    return this.get('_github') || $.get(url, function(data) { this.set('_github', data) }.bind(this)) && null;
-  }.property('_github'),
+    return this.get('_stats') || $.get(url, function(data) { this.set('_stats', data) }.bind(this)) && null;
+  }.property('_stats'),
 
   select: function() {
     this.whenReady(function(self) {
@@ -43,7 +43,7 @@ Travis.Repository = Travis.Model.extend(Travis.Helpers, {
     });
   },
 
-  updateTimes: function() {
+  tick: function() {
     this.notifyPropertyChange('last_build_duration');
     this.notifyPropertyChange('last_build_finished_at');
   },
