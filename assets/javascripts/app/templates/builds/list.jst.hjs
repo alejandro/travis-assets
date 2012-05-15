@@ -19,5 +19,5 @@
 </table>
 
 <p>
-  <a href="#" {{action "showMore" on="click" target="builds" isVisibleBinding="builds.showMoreIsVisible"}}>Show more</a>
+  <a href="#" {{action "showMore" on="click" target="builds" isVisibleBinding="builds.hasMore"}}>Show more</a>
 </p>

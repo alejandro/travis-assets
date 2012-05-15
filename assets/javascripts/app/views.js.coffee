@@ -14,6 +14,9 @@
         id = $(event.srcElement).closest('.tabs li').attr('id')
         Travis.app.left.activate(id.replace('tab_', '')) if id
 
+    Right: Ember.View.extend
+      templateName: 'app/templates/layouts/_right'
+
   Repositories:
     Show: Ember.View.extend
       templateName: 'app/templates/repositories/show'
@@ -51,6 +54,13 @@
       templateName: 'app/templates/builds/list'
       repositoryBinding: 'Travis.app.main.repository'
       buildsBinding: 'Travis.app.main.builds'
+      showMore: ->
+        id = this.getPath('repository.id')
+        number = this.getPath('builds.lastObject.number')
+        Travis.Build.olderThanNumber(id, number)
+      hasMore: Em.Binding.oneWay('content.lastObject.number').transform (value) ->
+        console.log value
+        value && value > 1
 
     Item: Ember.View.extend
       color: (->
@@ -73,6 +83,9 @@
       templateName: 'app/templates/jobs/show'
       jobBinding: 'Travis.app.main.job'
       commitBinding: 'Travis.app.main.job.commit'
+      color: (->
+        Travis.Helpers.colorForResult(this.getPath('job.result'))
+      ).property('job.result')
 
     Log: Ember.View.extend
       templateName: 'app/templates/jobs/log'
@@ -101,5 +114,12 @@
         $.map(values, (value) -> Ember.Object.create(value: value))
       ).property('content.config')
 
+  Workers:
+    List: Ember.View.extend
+      templateName: 'app/templates/workers/list'
+
+  Queues:
+    Show: Ember.View.extend
+      templateName: 'app/templates/queues/show'
 
 

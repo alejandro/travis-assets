@@ -19,10 +19,10 @@
     @layout.appendTo('body')
 
     Ember.run.next =>
-      @set 'left', Travis.LeftController.create()
-      @set 'main', Travis.MainController.create()
-    # @events = Travis.Controllers.Events.create()
-    # @right  = Travis.Controllers.Sidebar.create()
+      @set 'left',   Travis.LeftController.create()
+      @set 'main',   Travis.MainController.create()
+      @set 'right',  Travis.RightController.create()
+      @set 'events', Travis.EventsController.create()
 
   action: ->
     action = $('body').attr('id')
@@ -57,6 +57,10 @@
     if ix == -1
       @active_channels.splice(ix, 1)
       pusher.unsubscribe(@channel_prefix + channel) if window.pusher
+
+  unsubscribeAll: (pattern) ->
+    $(@active_channels).each (ix, channel) =>
+      @unsubscribe(channel) if channel.match(pattern)
 
   initPusher: ->
     $.each(Travis.channels, (ix, channel) => @subscribe(channel)) if window.pusher

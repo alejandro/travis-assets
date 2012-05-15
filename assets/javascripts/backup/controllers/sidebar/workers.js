@@ -24,3 +24,4 @@ Travis.Controllers.Workers = Ember.ArrayController.extend({
     this.set('content', $.values(this.groups));
   }.observes('workers.length')
 });
+

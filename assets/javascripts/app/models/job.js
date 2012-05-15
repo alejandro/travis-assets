@@ -24,11 +24,12 @@ Travis.Job = Travis.Model.extend(Travis.Helpers, {
 
   // TODO how to define a DS.attr that returns an object?
   config: function() {
-    return this.getPath('data.config') || '';
+    return this.getPath('data.config');
   }.property('data.config'),
 
   log: function() {
-    var log = this.getPath('data.log');
+    this.subscribe();
+    var log = this.getPath('data.log') || '';
     if(log === undefined) this.refresh();
     return log;
   }.property('data.log'),
@@ -53,15 +54,9 @@ Travis.Job = Travis.Model.extend(Travis.Helpers, {
 
   subscribe: function() {
     var id = this.get('id');
-    if(id && !this._subscribed) {
-      this._subscribed = true;
-      Travis.subscribe('job-' + id);
-    }
-  },
-
-  unsubscribe: function() {
-    this._subscribed = false;
-    Travis.unsubscribe('job-' + this.get('id'));
+    if(id)
+      Travis.app.unsubscribeAll(/^job-/)
+      Travis.app.subscribe('job-' + id);
   },
 
   updateTimes: function() {
@@ -77,4 +72,7 @@ Travis.Job = Travis.Model.extend(Travis.Helpers, {
 });
 
 Travis.Job.reopenClass({
+  queued: function(queue) {
+    return this.all({ state: 'created', queue: 'builds.' + queue });
+  }
 });

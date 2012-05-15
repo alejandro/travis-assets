@@ -13,6 +13,11 @@ Travis.WorkerGroup = Ember.Object.extend({
 });
 
 Travis.Worker = Travis.Model.extend({
+  state:        DS.attr('string'),
+  name:         DS.attr('string'),
+  host:         DS.attr('string'),
+  last_seen_at: DS.attr('string'),
+
   isTesting: function() {
     return this.get('state') == 'working' && !!this.getPath('payload.config');
   }.property('state', 'config'),
@@ -41,6 +46,5 @@ Travis.Worker = Travis.Model.extend({
 });
 
 Travis.Worker.reopenClass({
-  resource: 'workers'
 });
 

@@ -1,4 +1,4 @@
-<div {{bindAttr class="job.color"}}>
+<div {{bindAttr class="color"}}>
   <dl class="summary clearfix">
     <div class="left">
       <dt>Job</dt>
