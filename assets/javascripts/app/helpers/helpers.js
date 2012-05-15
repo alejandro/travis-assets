@@ -82,39 +82,4 @@ window.Travis.Helpers = {
   escape: function(text) {
     return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   },
-
-  // extracted from build and job models
-
-  _formattedDuration: function() {
-    var duration = this.get('duration');
-    if(!duration) duration = this.durationFrom(this.get('started_at'), this.get('finished_at'));
-    return this.timeInWords(duration);
-  },
-
-  _formattedFinishedAt: function() {
-    return this.timeAgoInWords(this.get('finished_at')) || '-';
-  },
-
-  _formattedConfig: function() {
-    var config = $.only(this.get('config'), 'rvm', 'gemfile', 'env', 'otp_release', 'php', 'node_js', 'scala', 'jdk', 'python', 'perl');
-    var values = $.map(config, function(value, key) {
-      value = (value && value.join) ? value.join(', ') : (value || '');
-      return '%@: %@'.fmt($.camelize(key), value);
-    });
-    return values.length == 0 ? '-' : values.join(', ');
-  },
-
-  _formattedMessage: function() {
-    return this.emojize(this.escape(this.getPath('commit.message') || '')).replace(/\n/g,'<br/>');
-  },
-
-  _formattedCommit: function(record) {
-    var branch = this.getPath('commit.branch');
-    return (this.getPath('commit.sha') || '').substr(0, 7) + (branch ? ' (%@)'.fmt(branch) : '');
-  },
-
-  _formattedCompareUrl: function() {
-    var parts = (this.getPath('commit.compare_url') || '').split('/');
-    return parts[parts.length - 1];
-  },
 };

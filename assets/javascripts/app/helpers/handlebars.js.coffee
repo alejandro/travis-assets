@@ -22,6 +22,9 @@ Ember.registerBoundHelper 'formatCommit', (commit, options) ->
   branch = ' (%@)'.fmt(branch) if branch
   safe (commit.get('sha') || '').substr(0, 7) + branch
 
+Ember.registerBoundHelper 'formatSha', (sha, options) ->
+  safe (sha || '').substr(0, 7)
+
 Ember.registerBoundHelper 'pathFrom', (url, options) ->
   safe (url || '').split('/').pop()
 

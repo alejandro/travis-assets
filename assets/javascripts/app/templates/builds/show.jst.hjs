@@ -1,4 +1,4 @@
-<div {{bindAttr class="build.color"}}>
+<div {{bindAttr class="color"}}>
   <dl class="summary clearfix">
     <div class="left">
       <dt>{{t "builds.name"}}</dt>

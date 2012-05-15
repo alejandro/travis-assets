@@ -28,7 +28,7 @@
     Item: Ember.View.extend
       color: (->
         Travis.Helpers.colorForResult(this.getPath('content.last_build_result'))
-      ).property('content.result')
+      ).property('content.last_build_result')
       class: (->
         classes = ['repository', @get('color')]
         classes.push 'selected' if @getPath('content.selected')
@@ -43,11 +43,19 @@
       repositoryBinding: 'Travis.app.main.repository'
       buildBinding: 'Travis.app.main.build'
       commitBinding: 'Travis.app.main.build.commit'
+      color: (->
+        Travis.Helpers.colorForResult(this.getPath('build.result'))
+      ).property('build.result')
 
     List: Ember.View.extend
       templateName: 'app/templates/builds/list'
       repositoryBinding: 'Travis.app.main.repository'
       buildsBinding: 'Travis.app.main.builds'
+
+    Item: Ember.View.extend
+      color: (->
+        Travis.Helpers.colorForResult(this.getPath('content.result'))
+      ).property('content.result')
 
   Branches:
     List: Ember.View.extend
@@ -83,6 +91,9 @@
 
     Item: Ember.View.extend
       tagName: 'tbody'
+      color: (->
+        Travis.Helpers.colorForResult(this.getPath('content.result'))
+      ).property('content.result')
       configValues: (->
         config = @getPath('content.config')
         return [] unless config
