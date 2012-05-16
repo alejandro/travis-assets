@@ -6,7 +6,7 @@
     @ticker = Travis.Ticker.create(context: this, targets: ['content'])
 
   activate: (tab, params) ->
-    @set('content', @[tab]())
+    @set('content', @sorted(@[tab]()))
     @tabs.activate(tab)
 
   recent: ->
@@ -24,3 +24,10 @@
   searchObserver: (->
     @activate(if @query() then 'search' else 'recent')
   ).observes('searchBox.value')
+
+  sorted: (content) ->
+    # TODO how to sort a RecordArray?
+    # content.addObserver 'length', ->
+    #   sorted = content.sort (a, b) ->
+    #     b.get('last_build_started_at') - a.get('last_build_started_at')
+    content

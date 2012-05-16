@@ -1,5 +1,8 @@
 @Travis.ServiceHook = Travis.Model.extend
   primaryKey: 'uid'
+  name:       DS.attr('string')
+  owner_name: DS.attr('string')
+  active:     DS.attr('boolean')
 
   toggle: ->
     @writeAttribute('active', !@get('active'))
@@ -10,5 +13,5 @@
   ).property('slug').cacheable(),
 
 @Travis.ServiceHook.reopenClass
-  resource: 'profile/service_hooks'
+  url: 'profile/service_hooks'
 

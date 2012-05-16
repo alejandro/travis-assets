@@ -4,11 +4,11 @@
     @[action](data)
 
   jobCreated: (data) ->
-    Travis.Job.createOrUpdate($.extend(data, { state: 'created' }))
+    Travis.Job.createOrUpdate($.extend(data, state: 'created'))
 
   jobStarted: (data) ->
     job = Travis.Job.find(data.id)
-    job.update($.extend(data, { state: 'started' })) if(job)
+    job.update($.extend(data, state: 'started')) if(job)
 
   jobLog: (data) ->
     job = Travis.Job.find(data.id)

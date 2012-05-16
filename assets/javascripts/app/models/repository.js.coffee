@@ -88,7 +88,7 @@
 
 @Travis.Repository.reopenClass
   recent: ->
-    @all(orderBy: 'last_build_started_at DESC')
+    @all() # (orderBy: 'last_build_started_at DESC')
 
   ownedBy: (owner_name) ->
     @all(owner_name: owner_name, orderBy: 'name')

@@ -31,15 +31,7 @@
   initStore: ->
     @store = DS.Store.create
       revision: 4
-      adapter: DS.RESTAdapter.create
-        plurals:
-          repository: 'repositories',
-          branch: 'branches'
-
-    @store.adapter.set 'mappings',
-        builds: Travis.Build,
-        commits: Travis.Commit,
-        jobs: Travis.Job
+      adapter: Travis.DataStoreAdapter.create()
 
   profile: ->
     Travis.ServiceHooksController.create()
