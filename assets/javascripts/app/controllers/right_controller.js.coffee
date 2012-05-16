@@ -1,4 +1,4 @@
-Travis.RightController = Ember.Object.extend
+@Travis.RightController = Ember.Object.extend
   cookie: 'sidebar_minimized'
   queues: [
     { name: 'common',  display: 'Common' },

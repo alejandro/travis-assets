@@ -3,8 +3,9 @@
 @Travis.Views.Branches =
   List: Ember.View.extend
     templateName: 'app/templates/branches/list'
-    repositoryBinding: 'Travis.app.main.repository'
-    branchesBinding: 'Travis.app.main.branches'
+    controllerBinding: 'Travis.app.main'
+    repositoryBinding: 'controller.repository'
+    branchesBinding: 'controller.branches'
 
   Item: Ember.View.extend
     color: (->

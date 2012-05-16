@@ -1,4 +1,4 @@
-Travis.EventsController = Ember.Object.extend
+@Travis.EventsController = Ember.Object.extend
   receive: (event, data) ->
     action = $.camelize(event.replace(':', '_'), false)
     @[action](data)

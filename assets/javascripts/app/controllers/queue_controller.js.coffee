@@ -1,4 +1,4 @@
-Travis.QueueController = Ember.ArrayController.extend
+@Travis.QueueController = Ember.ArrayController.extend
   init: ->
     @_super()
     @set 'content', Travis.Job.queued(@get('name'))

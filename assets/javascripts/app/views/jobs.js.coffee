@@ -3,15 +3,19 @@
 @Travis.Views.Jobs =
   Show: Ember.View.extend
     templateName: 'app/templates/jobs/show'
-    jobBinding: 'Travis.app.main.job'
-    commitBinding: 'Travis.app.main.job.commit'
+    controllerBinding: 'Travis.app.main'
+    jobBinding: 'controller.job'
+    commitBinding: 'controller.job.commit'
+
     color: (->
       Travis.Helpers.colorForResult(this.getPath('job.result'))
     ).property('job.result')
 
   Log: Ember.View.extend
     templateName: 'app/templates/jobs/log'
-    jobBinding: 'Travis.app.main.job'
+    controllerBinding: 'Travis.app.main'
+    jobBinding: 'controller.job'
+
     didInsertElement: ->
       @_super.apply(this, arguments)
       # TODO: FIXME: how/where to do this properly?
@@ -25,7 +29,9 @@
 
   List: Ember.View.extend
     templateName: 'app/templates/jobs/list'
-    buildBinding: 'Travis.app.main.build'
+    controllerBinding: 'Travis.app.main'
+    buildBinding: 'controller.build'
+
     configKeys: (->
       config = @getPath('build.config')
       return [] unless config
@@ -36,9 +42,11 @@
 
   Item: Ember.View.extend
     tagName: 'tbody'
+
     color: (->
       Travis.Helpers.colorForResult(this.getPath('content.result'))
     ).property('content.result')
+
     configValues: (->
       config = @getPath('content.config')
       return [] unless config

@@ -35286,649 +35286,118 @@ $.extend({
     return string.length > length ? string.trim().substring(0, length) + '...' : string;
   }
 });
-window.EmojiDictionary =
-[ "-1",
-  "0",
-  "1",
-  "109",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "8ball",
-  "9",
-  "a",
-  "ab",
-  "airplane",
-  "alien",
-  "ambulance",
-  "angel",
-  "anger",
-  "angry",
-  "apple",
-  "aquarius",
-  "aries",
-  "arrow_backward",
-  "arrow_down",
-  "arrow_forward",
-  "arrow_left",
-  "arrow_lower_left",
-  "arrow_lower_right",
-  "arrow_right",
-  "arrow_up",
-  "arrow_upper_left",
-  "arrow_upper_right",
-  "art",
-  "astonished",
-  "atm",
-  "b",
-  "baby",
-  "baby_chick",
-  "baby_symbol",
-  "balloon",
-  "bamboo",
-  "bank",
-  "barber",
-  "baseball",
-  "basketball",
-  "bath",
-  "bear",
-  "beer",
-  "beers",
-  "beginner",
-  "bell",
-  "bento",
-  "bike",
-  "bikini",
-  "bird",
-  "birthday",
-  "black_square",
-  "blue_car",
-  "blue_heart",
-  "blush",
-  "boar",
-  "boat",
-  "bomb",
-  "book",
-  "boot",
-  "bouquet",
-  "bow",
-  "bowtie",
-  "boy",
-  "bread",
-  "briefcase",
-  "broken_heart",
-  "bug",
-  "bulb",
-  "bullettrain_front",
-  "bullettrain_side",
-  "bus",
-  "busstop",
-  "cactus",
-  "cake",
-  "calling",
-  "camel",
-  "camera",
-  "cancer",
-  "capricorn",
-  "car",
-  "cat",
-  "cd",
-  "chart",
-  "checkered_flag",
-  "cherry_blossom",
-  "chicken",
-  "christmas_tree",
-  "church",
-  "cinema",
-  "city_sunrise",
-  "city_sunset",
-  "clap",
-  "clapper",
-  "clock1",
-  "clock10",
-  "clock11",
-  "clock12",
-  "clock2",
-  "clock3",
-  "clock4",
-  "clock5",
-  "clock6",
-  "clock7",
-  "clock8",
-  "clock9",
-  "closed_umbrella",
-  "cloud",
-  "clubs",
-  "cn",
-  "cocktail",
-  "coffee",
-  "cold_sweat",
-  "computer",
-  "confounded",
-  "congratulations",
-  "construction",
-  "construction_worker",
-  "convenience_store",
-  "cool",
-  "cop",
-  "copyright",
-  "couple",
-  "couple_with_heart",
-  "couplekiss",
-  "cow",
-  "crossed_flags",
-  "crown",
-  "cry",
-  "cupid",
-  "currency_exchange",
-  "curry",
-  "cyclone",
-  "dancer",
-  "dancers",
-  "dango",
-  "dart",
-  "dash",
-  "de",
-  "department_store",
-  "diamonds",
-  "disappointed",
-  "dog",
-  "dolls",
-  "dolphin",
-  "dress",
-  "dvd",
-  "ear",
-  "ear_of_rice",
-  "egg",
-  "eggplant",
-  "egplant",
-  "eight_pointed_black_star",
-  "eight_spoked_asterisk",
-  "elephant",
-  "email",
-  "es",
-  "european_castle",
-  "exclamation",
-  "eyes",
-  "factory",
-  "fallen_leaf",
-  "fast_forward",
-  "fax",
-  "fearful",
-  "feelsgood",
-  "feet",
-  "ferris_wheel",
-  "finnadie",
-  "fire",
-  "fire_engine",
-  "fireworks",
-  "fish",
-  "fist",
-  "flags",
-  "flushed",
-  "football",
-  "fork_and_knife",
-  "fountain",
-  "four_leaf_clover",
-  "fr",
-  "fries",
-  "frog",
-  "fuelpump",
-  "gb",
-  "gem",
-  "gemini",
-  "ghost",
-  "gift",
-  "gift_heart",
-  "girl",
-  "goberserk",
-  "godmode",
-  "golf",
-  "green_heart",
-  "grey_exclamation",
-  "grey_question",
-  "grin",
-  "guardsman",
-  "guitar",
-  "gun",
-  "haircut",
-  "hamburger",
-  "hammer",
-  "hamster",
-  "hand",
-  "handbag",
-  "hankey",
-  "hash",
-  "headphones",
-  "heart",
-  "heart_decoration",
-  "heart_eyes",
-  "heartbeat",
-  "heartpulse",
-  "hearts",
-  "hibiscus",
-  "high_heel",
-  "horse",
-  "hospital",
-  "hotel",
-  "hotsprings",
-  "house",
-  "hurtrealbad",
-  "icecream",
-  "id",
-  "ideograph_advantage",
-  "imp",
-  "information_desk_person",
-  "iphone",
-  "it",
-  "jack_o_lantern",
-  "japanese_castle",
-  "joy",
-  "jp",
-  "key",
-  "kimono",
-  "kiss",
-  "kissing_face",
-  "kissing_heart",
-  "koala",
-  "koko",
-  "kr",
-  "leaves",
-  "leo",
-  "libra",
-  "lips",
-  "lipstick",
-  "lock",
-  "loop",
-  "loudspeaker",
-  "love_hotel",
-  "mag",
-  "mahjong",
-  "mailbox",
-  "man",
-  "man_with_gua_pi_mao",
-  "man_with_turban",
-  "maple_leaf",
-  "mask",
-  "massage",
-  "mega",
-  "memo",
-  "mens",
-  "metal",
-  "metro",
-  "microphone",
-  "minidisc",
-  "mobile_phone_off",
-  "moneybag",
-  "monkey",
-  "monkey_face",
-  "moon",
-  "mortar_board",
-  "mount_fuji",
-  "mouse",
-  "movie_camera",
-  "muscle",
-  "musical_note",
-  "nail_care",
-  "necktie",
-  "new",
-  "no_good",
-  "no_smoking",
-  "nose",
-  "notes",
-  "o",
-  "o2",
-  "ocean",
-  "octocat",
-  "octopus",
-  "oden",
-  "office",
-  "ok",
-  "ok_hand",
-  "ok_woman",
-  "older_man",
-  "older_woman",
-  "open_hands",
-  "ophiuchus",
-  "palm_tree",
-  "parking",
-  "part_alternation_mark",
-  "pencil",
-  "penguin",
-  "pensive",
-  "persevere",
-  "person_with_blond_hair",
-  "phone",
-  "pig",
-  "pill",
-  "pisces",
-  "plus1",
-  "point_down",
-  "point_left",
-  "point_right",
-  "point_up",
-  "point_up_2",
-  "police_car",
-  "poop",
-  "post_office",
-  "postbox",
-  "pray",
-  "princess",
-  "punch",
-  "purple_heart",
-  "question",
-  "rabbit",
-  "racehorse",
-  "radio",
-  "rage",
-  "rage1",
-  "rage2",
-  "rage3",
-  "rage4",
-  "rainbow",
-  "raised_hands",
-  "ramen",
-  "red_car",
-  "red_circle",
-  "registered",
-  "relaxed",
-  "relieved",
-  "restroom",
-  "rewind",
-  "ribbon",
-  "rice",
-  "rice_ball",
-  "rice_cracker",
-  "rice_scene",
-  "ring",
-  "rocket",
-  "roller_coaster",
-  "rose",
-  "ru",
-  "runner",
-  "sa",
-  "sagittarius",
-  "sailboat",
-  "sake",
-  "sandal",
-  "santa",
-  "satellite",
-  "satisfied",
-  "saxophone",
-  "school",
-  "school_satchel",
-  "scissors",
-  "scorpius",
-  "scream",
-  "seat",
-  "secret",
-  "shaved_ice",
-  "sheep",
-  "shell",
-  "ship",
-  "shipit",
-  "shirt",
-  "shit",
-  "shoe",
-  "signal_strength",
-  "six_pointed_star",
-  "ski",
-  "skull",
-  "sleepy",
-  "slot_machine",
-  "smile",
-  "smiley",
-  "smirk",
-  "smoking",
-  "snake",
-  "snowman",
-  "sob",
-  "soccer",
-  "space_invader",
-  "spades",
-  "spaghetti",
-  "sparkler",
-  "sparkles",
-  "speaker",
-  "speedboat",
-  "squirrel",
-  "star",
-  "star2",
-  "stars",
-  "station",
-  "statue_of_liberty",
-  "stew",
-  "strawberry",
-  "sunflower",
-  "sunny",
-  "sunrise",
-  "sunrise_over_mountains",
-  "surfer",
-  "sushi",
-  "suspect",
-  "sweat",
-  "sweat_drops",
-  "swimmer",
-  "syringe",
-  "tada",
-  "tangerine",
-  "taurus",
-  "taxi",
-  "tea",
-  "telephone",
-  "tennis",
-  "tent",
-  "thumbsdown",
-  "thumbsup",
-  "ticket",
-  "tiger",
-  "tm",
-  "toilet",
-  "tokyo_tower",
-  "tomato",
-  "tongue",
-  "top",
-  "tophat",
-  "traffic_light",
-  "train",
-  "trident",
-  "trophy",
-  "tropical_fish",
-  "truck",
-  "trumpet",
-  "tshirt",
-  "tulip",
-  "tv",
-  "u5272",
-  "u55b6",
-  "u6307",
-  "u6708",
-  "u6709",
-  "u6e80",
-  "u7121",
-  "u7533",
-  "u7a7a",
-  "umbrella",
-  "unamused",
-  "underage",
-  "unlock",
-  "up",
-  "us",
-  "v",
-  "vhs",
-  "vibration_mode",
-  "virgo",
-  "vs",
-  "walking",
-  "warning",
-  "watermelon",
-  "wave",
-  "wc",
-  "wedding",
-  "whale",
-  "wheelchair",
-  "white_square",
-  "wind_chime",
-  "wink",
-  "wink2",
-  "wolf",
-  "woman",
-  "womans_hat",
-  "womens",
-  "x",
-  "yellow_heart",
-  "zap",
-  "zzz"
-]
+(function() {
 
+  this.EmojiDictionary = ['-1', '0', '1', '109', '2', '3', '4', '5', '6', '7', '8', '8ball', '9', 'a', 'ab', 'airplane', 'alien', 'ambulance', 'angel', 'anger', 'angry', 'apple', 'aquarius', 'aries', 'arrow_backward', 'arrow_down', 'arrow_forward', 'arrow_left', 'arrow_lower_left', 'arrow_lower_right', 'arrow_right', 'arrow_up', 'arrow_upper_left', 'arrow_upper_right', 'art', 'astonished', 'atm', 'b', 'baby', 'baby_chick', 'baby_symbol', 'balloon', 'bamboo', 'bank', 'barber', 'baseball', 'basketball', 'bath', 'bear', 'beer', 'beers', 'beginner', 'bell', 'bento', 'bike', 'bikini', 'bird', 'birthday', 'black_square', 'blue_car', 'blue_heart', 'blush', 'boar', 'boat', 'bomb', 'book', 'boot', 'bouquet', 'bow', 'bowtie', 'boy', 'bread', 'briefcase', 'broken_heart', 'bug', 'bulb', 'bullettrain_front', 'bullettrain_side', 'bus', 'busstop', 'cactus', 'cake', 'calling', 'camel', 'camera', 'cancer', 'capricorn', 'car', 'cat', 'cd', 'chart', 'checkered_flag', 'cherry_blossom', 'chicken', 'christmas_tree', 'church', 'cinema', 'city_sunrise', 'city_sunset', 'clap', 'clapper', 'clock1', 'clock10', 'clock11', 'clock12', 'clock2', 'clock3', 'clock4', 'clock5', 'clock6', 'clock7', 'clock8', 'clock9', 'closed_umbrella', 'cloud', 'clubs', 'cn', 'cocktail', 'coffee', 'cold_sweat', 'computer', 'confounded', 'congratulations', 'construction', 'construction_worker', 'convenience_store', 'cool', 'cop', 'copyright', 'couple', 'couple_with_heart', 'couplekiss', 'cow', 'crossed_flags', 'crown', 'cry', 'cupid', 'currency_exchange', 'curry', 'cyclone', 'dancer', 'dancers', 'dango', 'dart', 'dash', 'de', 'department_store', 'diamonds', 'disappointed', 'dog', 'dolls', 'dolphin', 'dress', 'dvd', 'ear', 'ear_of_rice', 'egg', 'eggplant', 'egplant', 'eight_pointed_black_star', 'eight_spoked_asterisk', 'elephant', 'email', 'es', 'european_castle', 'exclamation', 'eyes', 'factory', 'fallen_leaf', 'fast_forward', 'fax', 'fearful', 'feelsgood', 'feet', 'ferris_wheel', 'finnadie', 'fire', 'fire_engine', 'fireworks', 'fish', 'fist', 'flags', 'flushed', 'football', 'fork_and_knife', 'fountain', 'four_leaf_clover', 'fr', 'fries', 'frog', 'fuelpump', 'gb', 'gem', 'gemini', 'ghost', 'gift', 'gift_heart', 'girl', 'goberserk', 'godmode', 'golf', 'green_heart', 'grey_exclamation', 'grey_question', 'grin', 'guardsman', 'guitar', 'gun', 'haircut', 'hamburger', 'hammer', 'hamster', 'hand', 'handbag', 'hankey', 'hash', 'headphones', 'heart', 'heart_decoration', 'heart_eyes', 'heartbeat', 'heartpulse', 'hearts', 'hibiscus', 'high_heel', 'horse', 'hospital', 'hotel', 'hotsprings', 'house', 'hurtrealbad', 'icecream', 'id', 'ideograph_advantage', 'imp', 'information_desk_person', 'iphone', 'it', 'jack_o_lantern', 'japanese_castle', 'joy', 'jp', 'key', 'kimono', 'kiss', 'kissing_face', 'kissing_heart', 'koala', 'koko', 'kr', 'leaves', 'leo', 'libra', 'lips', 'lipstick', 'lock', 'loop', 'loudspeaker', 'love_hotel', 'mag', 'mahjong', 'mailbox', 'man', 'man_with_gua_pi_mao', 'man_with_turban', 'maple_leaf', 'mask', 'massage', 'mega', 'memo', 'mens', 'metal', 'metro', 'microphone', 'minidisc', 'mobile_phone_off', 'moneybag', 'monkey', 'monkey_face', 'moon', 'mortar_board', 'mount_fuji', 'mouse', 'movie_camera', 'muscle', 'musical_note', 'nail_care', 'necktie', 'new', 'no_good', 'no_smoking', 'nose', 'notes', 'o', 'o2', 'ocean', 'octocat', 'octopus', 'oden', 'office', 'ok', 'ok_hand', 'ok_woman', 'older_man', 'older_woman', 'open_hands', 'ophiuchus', 'palm_tree', 'parking', 'part_alternation_mark', 'pencil', 'penguin', 'pensive', 'persevere', 'person_with_blond_hair', 'phone', 'pig', 'pill', 'pisces', 'plus1', 'point_down', 'point_left', 'point_right', 'point_up', 'point_up_2', 'police_car', 'poop', 'post_office', 'postbox', 'pray', 'princess', 'punch', 'purple_heart', 'question', 'rabbit', 'racehorse', 'radio', 'rage', 'rage1', 'rage2', 'rage3', 'rage4', 'rainbow', 'raised_hands', 'ramen', 'red_car', 'red_circle', 'registered', 'relaxed', 'relieved', 'restroom', 'rewind', 'ribbon', 'rice', 'rice_ball', 'rice_cracker', 'rice_scene', 'ring', 'rocket', 'roller_coaster', 'rose', 'ru', 'runner', 'sa', 'sagittarius', 'sailboat', 'sake', 'sandal', 'santa', 'satellite', 'satisfied', 'saxophone', 'school', 'school_satchel', 'scissors', 'scorpius', 'scream', 'seat', 'secret', 'shaved_ice', 'sheep', 'shell', 'ship', 'shipit', 'shirt', 'shit', 'shoe', 'signal_strength', 'six_pointed_star', 'ski', 'skull', 'sleepy', 'slot_machine', 'smile', 'smiley', 'smirk', 'smoking', 'snake', 'snowman', 'sob', 'soccer', 'space_invader', 'spades', 'spaghetti', 'sparkler', 'sparkles', 'speaker', 'speedboat', 'squirrel', 'star', 'star2', 'stars', 'station', 'statue_of_liberty', 'stew', 'strawberry', 'sunflower', 'sunny', 'sunrise', 'sunrise_over_mountains', 'surfer', 'sushi', 'suspect', 'sweat', 'sweat_drops', 'swimmer', 'syringe', 'tada', 'tangerine', 'taurus', 'taxi', 'tea', 'telephone', 'tennis', 'tent', 'thumbsdown', 'thumbsup', 'ticket', 'tiger', 'tm', 'toilet', 'tokyo_tower', 'tomato', 'tongue', 'top', 'tophat', 'traffic_light', 'train', 'trident', 'trophy', 'tropical_fish', 'truck', 'trumpet', 'tshirt', 'tulip', 'tv', 'u5272', 'u55b6', 'u6307', 'u6708', 'u6709', 'u6e80', 'u7121', 'u7533', 'u7a7a', 'umbrella', 'unamused', 'underage', 'unlock', 'up', 'us', 'v', 'vhs', 'vibration_mode', 'virgo', 'vs', 'walking', 'warning', 'watermelon', 'wave', 'wc', 'wedding', 'whale', 'wheelchair', 'white_square', 'wind_chime', 'wink', 'wink2', 'wolf', 'woman', 'womans_hat', 'womens', 'x', 'yellow_heart', 'zap', 'zzz'];
 
-if('undefined' === typeof window.Travis) window.Travis = Ember.Namespace.create()
+}).call(this);
+(function() {
 
-window.Travis.Log = {
-  FOLDS: {
-    schema:  /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:schema:load[\s\S]*?<p.*?\/a>-- assume_migrated_upto_version[\s\S]*?<\/p>\n<p.*?\/a>.*<\/p>)/gm,
-    migrate: /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:migrate[\s\S]*== +\w+: migrated \(.*\) =+)/gm,
-    bundle:  /(<p.*?\/a>\$ bundle install.*<\/p>\n(<p.*?\/a>(Updating|Using|Installing|Fetching|remote:|Receiving|Resolving).*?<\/p>\n|<p.*?\/a><\/p>\n)*)/gm,
-    exec:    /(<p.*?\/a>[\/\w]*.rvm\/rubies\/[\S]*?\/(ruby|rbx|jruby) .*?<\/p>)/g
-  },
+  if ('undefined' === typeof this.Travis) {
+    this.Travis = Ember.Namespace.create();
+  }
 
-  filter: function(log) {
-    // log = this.stripPaths(log);
-    log = this.escapeHtml(log);
-    log = this.deansi(log);
-    log = log.replace(/\r/g, '');
-    log = this.numberLines(log);
-    log = this.fold(log);
-    log = log.replace(/\n/g, '');
-    return log;
-  },
-
-  stripPaths: function(log) {
-    return log.replace(/\/home\/vagrant\/builds(\/[^\/\n]+){2}\//g, '');
-  },
-
-  escapeHtml: function(log) {
-    return Handlebars.Utils.escapeExpression(log);
-  },
-
-  escapeRuby: function(log) {
-    return log.replace(/#<(\w+.*?)>/, '#&lt;$1&gt;');
-  },
-
-  numberLines: function(log) {
-    var result = '';
-    $.each(log.trim().split('\n'), function (ix, line) {
-      var number = ix + 1;
-      var path = Travis.Log.location().substr(1).replace(/\/L\d+/, '') + '/L' + number;
-      result += '<p><a href="#%@" id="%@" name="L%@">%@</a>%@</p>\n'.fmt(path, path, number, number, line);
-    });
-    return result.trim();
-  },
-
-  deansi: function(log) {
-    //
-    // Following replaces ANSI sequences responsible for erasing lines and
-    // carret returns. Lack of those causes progress bars and such to fail
-    // miserably.
-    //
-    log = log
-            .replace(/\r\r/g, '\r')
-            .replace(/\033\[K\r/g, '\r')
-            .replace(/^.*\r(?!$)/gm, '')
-            .replace(/\[2K/g, '')
-            .replace(/\033\(B/g, "");
-
-
-    var ansi = ansiparse(log),
-        text = '';
-
-    ansi.forEach(function (part) {
-      var classes = [];
-
-      part.foreground && classes.push(part.foreground);
-      part.background && classes.push('bg-' + part.background);
-      part.bold       && classes.push('bold');
-      part.italic     && classes.push('italic');
-
-      text += classes.length
-            ? ('<span class="' + classes.join(' ') + '">' + part.text + '</span>')
-            : part.text;
-    });
-    return text.replace(/\033/g, '');
-  },
-
-  fold: function(log) {
-    log = this.unfold(log);
-    $.each(Travis.Log.FOLDS, function(name, pattern) {
-      log = log.replace(pattern, function() {
-        return '<div class="fold ' + name + '">' + arguments[1].trim() + '</div>';
+  this.Travis.Log = {
+    FOLDS: {
+      schema: /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:schema:load[\s\S]*?<p.*?\/a>-- assume_migrated_upto_version[\s\S]*?<\/p>\n<p.*?\/a>.*<\/p>)/g,
+      migrate: /(<p.*?\/a>\$ (?:bundle exec )?rake( db:create)? db:migrate[\s\S]*== +\w+: migrated \(.*\) =+)/g,
+      bundle: /(<p.*?\/a>\$ bundle install.*<\/p>\n(<p.*?\/a>(Updating|Using|Installing|Fetching|remote:|Receiving|Resolving).*?<\/p>\n|<p.*?\/a><\/p>\n)*)/g,
+      exec: /(<p.*?\/a>[\/\w]*.rvm\/rubies\/[\S]*?\/(ruby|rbx|jruby) .*?<\/p>)/g
+    },
+    filter: function(log) {
+      log = this.escapeHtml(log);
+      log = this.deansi(log);
+      log = log.replace(/\r/g, '');
+      log = this.numberLines(log);
+      log = this.fold(log);
+      log = log.replace(/\n/g, '');
+      return log;
+    },
+    stripPaths: function(log) {
+      return log.replace(/\/home\/vagrant\/builds(\/[^\/\n]+){2}\//g, '');
+    },
+    escapeHtml: function(log) {
+      return Handlebars.Utils.escapeExpression(log);
+    },
+    escapeRuby: function(log) {
+      return log.replace(/#<(\w+.*?)>/, '#&lt;$1&gt;');
+    },
+    numberLines: function(log) {
+      var result;
+      result = '';
+      $.each(log.trim().split('\n'), function(ix, line) {
+        var number, path;
+        number = ix + 1;
+        path = Travis.Log.location().substr(1).replace(/\/L\d+/, '') + '/L' + number;
+        return result += '<p><a href=\'#%@\' id=\'%@\' name=\'L%@\'>%@</a>%@</p>\n'.fmt(path, path, number, number, line);
       });
-    });
-    return log;
-  },
+      return result.trim();
+    },
+    deansi: function(log) {
+      var ansi, text;
+      log = log.replace(/\r\r/g, '\r').replace(/\033\[K\r/g, '\r').replace(/^.*\r(?!$)/g, '').replace(/\[2K/g, '').replace(/\033\(B/g, '');
+      ansi = ansiparse(log);
+      text = '';
+      ansi.forEach(function(part) {
+        var classes;
+        classes = [];
+        part.foreground && classes.push(part.foreground);
+        part.background && classes.push('bg-' + part.background);
+        part.bold && classes.push('bold');
+        part.italic && classes.push('italic');
+        return text += (classes.length ? '<span class=\'' + classes.join(' ') + '\'>' + part.text + '</span>' : part.text);
+      });
+      return text.replace(/\033/g, '');
+    },
+    fold: function(log) {
+      log = this.unfold(log);
+      $.each(Travis.Log.FOLDS, function(name, pattern) {
+        return log = log.replace(pattern, function() {
+          return '<div class=\'fold ' + name + '\'>' + arguments[1].trim() + '</div>';
+        });
+      });
+      return log;
+    },
+    unfold: function(log) {
+      return log.replace(/<div class='fold[^']*'>([\s\S]*?)<\/div>/g, '$1\n');
+    },
+    location: function() {
+      return window.location.hash;
+    }
+  };
 
-  unfold: function(log) {
-    return log.replace(/<div class="fold[^"]*">([\s\S]*?)<\/div>/mg, '$1\n');
-  },
+}).call(this);
+(function() {
 
-  location: function() { // need something to spy on in tests
-    return window.location.hash;
+  if ('undefined' === typeof window.Travis) {
+    window.Travis = Ember.Namespace.create();
   }
-};
-if('undefined' === typeof window.Travis) window.Travis = Ember.Namespace.create()
 
-window.Travis.Model = DS.Model.extend({
-  primaryKey: 'id',
-  id: DS.attr('number'),
+  window.Travis.Model = DS.Model.extend({
+    primaryKey: 'id',
+    id: DS.attr('number'),
+    refresh: function() {
+      var id;
+      id = this.get('id');
+      if (id) {
+        return Travis.app.store.adapter.find(Travis.app.store, this.constructor, id);
+      }
+    }
+  });
 
-  refresh: function() {
-    var id = this.get('id');
-    if(id) return Travis.app.store.adapter.find(Travis.app.store, this.constructor, id);
-  }
+  window.Travis.Model.reopenClass({
+    find: function(id, callback) {
+      if (id === void 0) {
+        throw 'id is undefined';
+      }
+      return Travis.app.store.find(this, id);
+    },
+    all: function(query) {
+      return Travis.app.store.find(this, query);
+    }
+  });
 
-  // update: function(attrs) {
-  //   this.whenReady(function(record) {
-  //     $.each(attrs, function(key, value) {
-  //       if(key != 'id') record.set(key, value);
-  //     });
-  //   });
-  //   return this;
-  // },
-});
-
-window.Travis.Model.reopenClass({
-  find: function(id, callback) {
-    if(id === undefined) throw('id is undefined');
-    return Travis.app.store.find(this, id);
-  },
-
-  all: function(query) {
-    return Travis.app.store.find(this, query);
-  }
-
-  // exists: function(id) {
-  //   if(id === undefined) throw('id is undefined');
-  //   return Travis.store.storeKeyExists(this, id);
-  // },
-
-  // createOrUpdate: function(attrs) {
-  //   if(this.exists(attrs.id)) {
-  //     return this.update(attrs);
-  //   } else {
-  //     return Travis.store.createRecord(this, attrs);
-  //   }
-  // },
-
-  // update: function(attrs) {
-  //   if(attrs.id === undefined) throw('id is undefined');
-  //   var record = this.find(attrs.id);
-  //   return record.update(attrs);
-  // },
-});
+}).call(this);
 (function() {
 
   if (this.Travis === void 0) {
@@ -35998,7 +35467,9 @@ window.Travis.Model.reopenClass({
       return this.initStore();
     },
     run: function() {
-      return this.action();
+      this.action();
+      this.initEvents();
+      return this.initPusher();
     },
     home: function() {
       var _this = this;
@@ -36073,13 +35544,37 @@ window.Travis.Model.reopenClass({
           return _this.subscribe(channel);
         });
       }
+    },
+    initEvents: function() {
+      $('#workers .group').live('click', function() {
+        return $(this).toggleClass('open');
+      });
+      $('.tool-tip').tipsy({
+        gravity: 'n',
+        fade: true
+      });
+      $('.fold').live('click', function() {
+        return $(this).toggleClass('open');
+      });
+      $('#top .profile').mouseover(function() {
+        return $('#top .profile ul').show();
+      });
+      $('#top .profile').mouseout(function() {
+        return $('#top .profile ul').hide();
+      });
+      $('.repository').live('mouseover', function() {
+        return $(this).find('.description').show();
+      });
+      return $('.repository').live('mouseout', function() {
+        return $(this).find('.description').hide();
+      });
     }
   });
 
 }).call(this);
 (function() {
 
-  Travis.EventsController = Ember.Object.extend({
+  this.Travis.EventsController = Ember.Object.extend({
     receive: function(event, data) {
       var action;
       action = $.camelize(event.replace(':', '_'), false);
@@ -36306,7 +35801,7 @@ window.Travis.Model.reopenClass({
 }).call(this);
 (function() {
 
-  Travis.QueueController = Ember.ArrayController.extend({
+  this.Travis.QueueController = Ember.ArrayController.extend({
     init: function() {
       this._super();
       this.set('content', Travis.Job.queued(this.get('name')));
@@ -36326,7 +35821,7 @@ window.Travis.Model.reopenClass({
 }).call(this);
 (function() {
 
-  Travis.RightController = Ember.Object.extend({
+  this.Travis.RightController = Ember.Object.extend({
     cookie: 'sidebar_minimized',
     queues: [
       {
@@ -36388,7 +35883,7 @@ window.Travis.Model.reopenClass({
 (function() {
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  Travis.WorkersController = Ember.ArrayController.extend({
+  this.Travis.WorkersController = Ember.ArrayController.extend({
     init: function() {
       this._super();
       this.set('workers', Travis.Worker.all({
@@ -36430,8 +35925,9 @@ window.Travis.Model.reopenClass({
   this.Travis.Views.Branches = {
     List: Ember.View.extend({
       templateName: 'app/templates/branches/list',
-      repositoryBinding: 'Travis.app.main.repository',
-      branchesBinding: 'Travis.app.main.branches'
+      controllerBinding: 'Travis.app.main',
+      repositoryBinding: 'controller.repository',
+      branchesBinding: 'controller.branches'
     }),
     Item: Ember.View.extend({
       color: (function() {
@@ -36450,17 +35946,19 @@ window.Travis.Model.reopenClass({
   this.Travis.Views.Builds = {
     Show: Ember.View.extend({
       templateName: 'app/templates/builds/show',
-      repositoryBinding: 'Travis.app.main.repository',
-      buildBinding: 'Travis.app.main.build',
-      commitBinding: 'Travis.app.main.build.commit',
+      controllerBinding: 'Travis.app.main',
+      repositoryBinding: 'controller.repository',
+      buildBinding: 'controller.build',
+      commitBinding: 'controller.build.commit',
       color: (function() {
         return Travis.Helpers.colorForResult(this.getPath('build.result'));
       }).property('build.result')
     }),
     List: Ember.View.extend({
       templateName: 'app/templates/builds/list',
-      repositoryBinding: 'Travis.app.main.repository',
-      buildsBinding: 'Travis.app.main.builds',
+      controllerBinding: 'Travis.app.main',
+      repositoryBinding: 'controller.repository',
+      buildsBinding: 'controller.builds',
       showMore: function() {
         return Travis.app.main.showMore();
       },
@@ -36485,15 +35983,17 @@ window.Travis.Model.reopenClass({
   this.Travis.Views.Jobs = {
     Show: Ember.View.extend({
       templateName: 'app/templates/jobs/show',
-      jobBinding: 'Travis.app.main.job',
-      commitBinding: 'Travis.app.main.job.commit',
+      controllerBinding: 'Travis.app.main',
+      jobBinding: 'controller.job',
+      commitBinding: 'controller.job.commit',
       color: (function() {
         return Travis.Helpers.colorForResult(this.getPath('job.result'));
       }).property('job.result')
     }),
     Log: Ember.View.extend({
       templateName: 'app/templates/jobs/log',
-      jobBinding: 'Travis.app.main.job',
+      controllerBinding: 'Travis.app.main',
+      jobBinding: 'controller.job',
       didInsertElement: function() {
         this._super.apply(this, arguments);
         return Ember.run.later(this, (function() {
@@ -36509,7 +36009,8 @@ window.Travis.Model.reopenClass({
     }),
     List: Ember.View.extend({
       templateName: 'app/templates/jobs/list',
-      buildBinding: 'Travis.app.main.build',
+      controllerBinding: 'Travis.app.main',
+      buildBinding: 'controller.build',
       configKeys: (function() {
         var config, headers, keys;
         config = this.getPath('build.config');
@@ -36599,13 +36100,15 @@ window.Travis.Model.reopenClass({
   this.Travis.Views.Repositories = {
     Show: Ember.View.extend({
       templateName: 'app/templates/repositories/show',
-      repositoryBinding: 'Travis.app.main.repository',
-      buildBinding: 'Travis.app.main.build',
-      jobBinding: 'Travis.app.main.job'
+      controllerBinding: 'Travis.app.main',
+      repositoryBinding: 'controller.repository',
+      buildBinding: 'controller.build',
+      jobBinding: 'controller.job'
     }),
     List: Ember.View.extend({
       templateName: 'app/templates/repositories/list',
-      repositoriesBinding: 'Travis.app.left'
+      controllerBinding: 'Travis.app.left',
+      repositoriesBinding: 'controller'
     }),
     Item: Ember.View.extend({
       color: (function() {
@@ -36787,500 +36290,499 @@ window.Travis.Model.reopenClass({
   });
 
 }).call(this);
-window.Travis.Helpers = {
-  colorForResult: function(result) {
-    return result == 0 ? 'green' : result == 1 ? 'red' : null;
-  },
+(function() {
 
-  timeAgoInWords: function(date) {
-    return $.timeago.distanceInWords(date);
-  },
-
-  durationFrom: function(started, finished) {
-    started  = started  && this._toUtc(new Date(this._normalizeDateString(started)));
-    finished = finished ? this._toUtc(new Date(this._normalizeDateString(finished))) : this._nowUtc();
-    return started && finished ? Math.round((finished - started) / 1000) : 0;
-  },
-
-  timeInWords: function(duration) {
-    var days    = Math.floor(duration / 86400);
-    var hours   = Math.floor(duration % 86400 / 3600);
-    var minutes = Math.floor(duration % 3600 / 60);
-    var seconds = duration % 60;
-
-    if(days > 0) {
-      return 'more than 24 hrs';
-    } else {
-      var result = [];
-      if(hours  == 1) { result.push(hours + ' hr'); }
-      if(hours   > 1) { result.push(hours + ' hrs'); }
-      if(minutes > 0) { result.push(minutes + ' min'); }
-      if(seconds > 0) { result.push(seconds + ' sec'); }
-      return result.length > 0 ? result.join(' ') : '-';
+  this.Travis.Helpers = {
+    colorForResult: function(result) {
+      if (result === 0) {
+        return 'green';
+      } else {
+        if (result === 1) {
+          return 'red';
+        } else {
+          return null;
+        }
+      }
+    },
+    formatConfig: function(config) {
+      var values;
+      config = $.only(config, 'rvm', 'gemfile', 'env', 'otp_release', 'php', 'node_js', 'scala', 'jdk', 'python', 'perl');
+      values = $.map(config, function(value, key) {
+        value = (value && value.join ? value.join(', ') : value) || '';
+        return '%@: %@'.fmt($.camelize(key), value);
+      });
+      if (values.length === 0) {
+        return '-';
+      } else {
+        return values.join(', ');
+      }
+    },
+    formatMessage: function(message, options) {
+      message = message || '';
+      if (options.short) {
+        message = message.split(/\n/)[0];
+      }
+      return this._emojize(this._escape(message)).replace(/\n/g, '<br/>');
+    },
+    timeAgoInWords: function(date) {
+      return $.timeago.distanceInWords(date);
+    },
+    durationFrom: function(started, finished) {
+      started = started && this._toUtc(new Date(this._normalizeDateString(started)));
+      finished = finished ? this._toUtc(new Date(this._normalizeDateString(finished))) : this._nowUtc();
+      if (started && finished) {
+        return Math.round((finished - started) / 1000);
+      } else {
+        return 0;
+      }
+    },
+    timeInWords: function(duration) {
+      var days, hours, minutes, result, seconds;
+      days = Math.floor(duration / 86400);
+      hours = Math.floor(duration % 86400 / 3600);
+      minutes = Math.floor(duration % 3600 / 60);
+      seconds = duration % 60;
+      if (days > 0) {
+        return 'more than 24 hrs';
+      } else {
+        result = [];
+        if (hours === 1) {
+          result.push(hours + ' hr');
+        }
+        if (hours > 1) {
+          result.push(hours + ' hrs');
+        }
+        if (minutes > 0) {
+          result.push(minutes + ' min');
+        }
+        if (seconds > 0) {
+          result.push(seconds + ' sec');
+        }
+        if (result.length > 0) {
+          return result.join(' ');
+        } else {
+          return '-';
+        }
+      }
+    },
+    _normalizeDateString: function(string) {
+      if (window.JHW) {
+        string = string.replace('T', ' ').replace(/-/g, '/');
+        string = string.replace('Z', '').replace(/\..*$/, '');
+      }
+      return string;
+    },
+    _nowUtc: function() {
+      return this._toUtc(new Date());
+    },
+    _toUtc: function(date) {
+      return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+    },
+    _emojize: function(text) {
+      var emojis;
+      emojis = text.match(/:\S+?:/g);
+      if (emojis !== null) {
+        $.each(emojis.uniq(), function(ix, emoji) {
+          var image, strippedEmoji;
+          strippedEmoji = emoji.substring(1, emoji.length - 1);
+          if (EmojiDictionary.indexOf(strippedEmoji) !== -1) {
+            image = '<img class=\'emoji\' title=\'' + emoji + '\' alt=\'' + emoji + '\' src=\'' + Travis.assets.host + '/' + Travis.assets.version + '/images/emoji/' + strippedEmoji + '.png\'/>';
+            return text = text.replace(new RegExp(emoji, 'g'), image);
+          }
+        });
+      }
+      return text;
+    },
+    _escape: function(text) {
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
-  },
+  };
 
-  _normalizeDateString: function(string) {
-    if(window.JHW) {
-      // TODO i'm not sure why we need to do this. in the chrome console the
-      // Date constructor would take a string like "2011-09-02T15:53:20.927Z"
-      // whereas in unit tests this returns an "invalid date". wtf ...
-      string = string.replace('T', ' ').replace(/-/g, '/');
-      string = string.replace('Z', '').replace(/\..*$/, '');
+}).call(this);
+(function() {
+
+  this.Travis.Branch = Travis.Model.extend(Travis.Helpers, {
+    repository_id: DS.attr('number'),
+    number: DS.attr('number'),
+    branch: DS.attr('string'),
+    message: DS.attr('string'),
+    result: DS.attr('number'),
+    duration: DS.attr('number'),
+    started_at: DS.attr('string'),
+    finished_at: DS.attr('string'),
+    commit: DS.belongsTo('Travis.Commit'),
+    repository: (function() {
+      if (this.get('repository_id')) {
+        return Travis.Repository.find(this.get('repository_id'));
+      }
+    }).property('repository_id').cacheable(),
+    buildUrl: (function() {
+      return '#!/' + this.getPath('repository.slug') + '/builds/' + this.get('build_id');
+    }).property(),
+    commitUrl: (function() {
+      return 'http://github.com/' + this.getPath('repository.slug') + '/commit/' + this.getPath('commit.sha');
+    }).property(),
+    tick: function() {
+      this.notifyPropertyChange('started_at');
+      return this.notifyPropertyChange('finished_at');
     }
-    return string;
-  },
+  });
 
-  _nowUtc: function() {
-    return this._toUtc(new Date());
-  },
+  this.Travis.Branch.reopenClass({
+    byRepositoryId: function(id) {
+      return this.all({
+        repository_id: id
+      });
+    }
+  });
 
-  _toUtc: function(date) {
-    return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
-  },
+}).call(this);
+(function() {
 
-  formatConfig: function(config) {
-    var config = $.only(config, 'rvm', 'gemfile', 'env', 'otp_release', 'php', 'node_js', 'scala', 'jdk', 'python', 'perl');
-    var values = $.map(config, function(value, key) {
-      value = (value && value.join) ? value.join(', ') : (value || '');
-      return '%@: %@'.fmt($.camelize(key), value);
-    });
-    return values.length == 0 ? '-' : values.join(', ');
-  },
-
-  formatMessage: function(message, options) {
-    message = message || '';
-    if(options.short) message = message.split(/\n/)[0];
-    return this.emojize(this.escape(message)).replace(/\n/g, '<br/>');
-  },
-
-  emojize: function(text) {
-    var emojis = text.match(/:\S+?:/g);
-    if (emojis !== null){
-      $.each(emojis.uniq(), function(ix, emoji) {
-        var strippedEmoji = emoji.substring(1, emoji.length - 1);
-        if (EmojiDictionary.indexOf(strippedEmoji) != -1) {
-          var image = '<img class="emoji" title="' + emoji + '" alt="' + emoji + '" src="' + Travis.assets.host + '/' + Travis.assets.version + '/images/emoji/' + strippedEmoji + '.png"/>';
-          text = text.replace(new RegExp(emoji, 'g'), image);
+  this.Travis.Build = Travis.Model.extend(Travis.Helpers, {
+    repository_id: DS.attr('number'),
+    state: DS.attr('string'),
+    number: DS.attr('number'),
+    branch: DS.attr('string'),
+    message: DS.attr('string'),
+    result: DS.attr('number'),
+    duration: DS.attr('number'),
+    started_at: DS.attr('string'),
+    finished_at: DS.attr('string'),
+    committed_at: DS.attr('string'),
+    committer_name: DS.attr('string'),
+    committer_email: DS.attr('string'),
+    author_name: DS.attr('string'),
+    author_email: DS.attr('string'),
+    compare_url: DS.attr('string'),
+    log: DS.attr('string'),
+    repository: DS.belongsTo('Travis.Repository'),
+    commit: DS.belongsTo('Travis.Commit'),
+    jobs: DS.hasMany('Travis.Job', {
+      key: 'job_ids'
+    }),
+    config: (function() {
+      return this.getPath('data.config');
+    }).property('data.config'),
+    requiredJobs: (function() {
+      return this.get('jobs').filter(function(item, index) {
+        return item.get('allow_failure') !== true;
+      });
+    }).property('jobs'),
+    allowFailureJobs: (function() {
+      return this.get('jobs').filter(function(item, index) {
+        return item.get('allow_failure');
+      });
+    }).property('jobs'),
+    hasFailureMatrix: (function() {
+      return this.get('allowFailureJobs').length > 0;
+    }).property('allowFailureJobs'),
+    isMatrix: (function() {
+      return this.getPath('jobs.length') > 1;
+    }).property('jobs.length'),
+    update: function(attrs) {
+      if ('jobs' in attrs) {
+        attrs.jobs = this._joinJobsAttributes(attrs.jobs);
+      }
+      return this._super(attrs);
+    },
+    _joinJobsAttributes: function(attrs) {
+      var _this;
+      _this = this;
+      return $.each(attrs, function(ix, job) {
+        var _job;
+        _job = _this.get('jobs').objectAt(ix);
+        if (_job) {
+          return attrs[ix] = $.extend(_job.get('attributes') || {}, job);
         }
       });
-    }
-    return text;
-  },
+    },
+    tick: function() {
+      this.notifyPropertyChange('duration');
+      return this.notifyPropertyChange('finished_at');
+    },
+    url: (function() {
+      return '#!/' + this.getPath('repository.slug') + '/builds/' + this.get('id');
+    }).property('repository.status', 'id'),
+    urlAuthor: (function() {
+      return 'mailto:' + this.get('author_email');
+    }).property('author_email'),
+    urlCommitter: (function() {
+      return 'mailto:' + this.get('committer_email');
+    }).property('committer_email'),
+    urlGithubCommit: (function() {
+      return 'http://github.com/%@/commit/%@'.fmt(this.getPath('repository.slug'), this.get('commit'));
+    }).property('repository.slug', 'commit')
+  });
 
-  escape: function(text) {
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  },
-};
-Travis.Branch = Travis.Model.extend(Travis.Helpers, {
-  repository_id:   DS.attr('number'),
-  number:          DS.attr('number'),
-  branch:          DS.attr('string'),
-  message:         DS.attr('string'),
-  result:          DS.attr('number'),
-  duration:        DS.attr('number'),
-  started_at:      DS.attr('string'), // use DateTime?
-  finished_at:     DS.attr('string'),
-
-  commit: DS.belongsTo('Travis.Commit'),
-
-  repository: function() {
-    if(this.get('repository_id')) return Travis.Repository.find(this.get('repository_id'));
-  }.property('repository_id').cacheable(),
-
-  // VIEW HELPERS
-
-  buildUrl: function() {
-    return '#!/' + this.getPath('repository.slug') + '/builds/' + this.get('build_id');
-  }.property(),
-
-  commitUrl: function() {
-    return 'http://github.com/' + this.getPath('repository.slug') + '/commit/' + this.getPath('commit.sha');
-  }.property(),
-
-  tick: function() {
-    this.notifyPropertyChange('started_at');
-    this.notifyPropertyChange('finished_at');
-  },
-});
-
-Travis.Branch.reopenClass({
-  byRepositoryId: function(id) {
-    return this.all({ repository_id: id });
-  }
-});
-Travis.Build = Travis.Model.extend(Travis.Helpers, {
-  repository_id:   DS.attr('number'),
-  // config:          DS.attr('object'),
-  state:           DS.attr('string'),
-  number:          DS.attr('number'),
-  branch:          DS.attr('string'),
-  message:         DS.attr('string'),
-  result:          DS.attr('number'),
-  duration:        DS.attr('number'),
-  started_at:      DS.attr('string'), // use DateTime?
-  finished_at:     DS.attr('string'),
-  committed_at:    DS.attr('string'),
-  committer_name:  DS.attr('string'),
-  committer_email: DS.attr('string'),
-  author_name:     DS.attr('string'),
-  author_email:    DS.attr('string'),
-  compare_url:     DS.attr('string'),
-  log:             DS.attr('string'),
-
-  repository: DS.belongsTo('Travis.Repository'),
-  commit:     DS.belongsTo('Travis.Commit'),
-
-  // TODO jobs needs to be implemented in a lazy loading manner
-  jobs:       DS.hasMany('Travis.Job', { key: 'job_ids' }),
-
-  // TODO how to define a DS.attr that returns an object?
-  config: function() {
-    return this.getPath('data.config')
-  }.property('data.config'),
-
-  requiredJobs: function() {
-    return this.get('jobs').filter(function(item, index) { return item.get('allow_failure') != true });
-  }.property('jobs'),
-
-  allowFailureJobs: function() {
-    return this.get('jobs').filter(function(item, index) { return item.get('allow_failure') });
-  }.property('jobs'),
-
-  hasFailureMatrix: function() {
-    return this.get('allowFailureJobs').length > 0;
-  }.property('allowFailureJobs'),
-
-  isMatrix: function() {
-    return this.getPath('jobs.length') > 1;
-  }.property('jobs.length'),
-
-  update: function(attrs) {
-    if('jobs' in attrs) attrs.jobs = this._joinJobsAttributes(attrs.jobs);
-    this._super(attrs);
-  },
-
-  // We need to join given attributes with existing attributes because DS.Model.toMany
-  // does not seem to allow partial updates, i.e. would remove existing attributes?
-  _joinJobsAttributes: function(attrs) {
-    var _this = this;
-    return $.each(attrs, function(ix, job) {
-      var _job = _this.get('jobs').objectAt(ix);
-      if(_job) attrs[ix] = $.extend(_job.get('attributes') || {}, job);
-    });
-  },
-
-  tick: function() {
-    this.notifyPropertyChange('duration');
-    this.notifyPropertyChange('finished_at');
-  },
-
-  // VIEW HELPERS
-
-  url: function() {
-    return '#!/' + this.getPath('repository.slug') + '/builds/' + this.get('id');
-  }.property('repository.status', 'id'),
-
-  urlAuthor: function() {
-    return 'mailto:' + this.get('author_email');
-  }.property('author_email'),
-
-  urlCommitter: function() {
-    return 'mailto:' + this.get('committer_email');
-  }.property('committer_email'),
-
-  urlGithubCommit: function() {
-    return 'http://github.com/' + this.getPath('repository.slug') + '/commit/' + this.get('commit');
-  }.property('repository.slug', 'commit')
-});
-
-Travis.Build.reopenClass({
-  byRepositoryId: function(id, parameters) {
-    return this.all($.extend(parameters || {}, { repository_id: id, orderBy: 'number DESC' }));
-  },
-
-  // TODO ugh. better naming?
-  olderThanNumber: function(id, build_number) {
-    return this.all({ url: '/repositories/' + id + '/builds.json?bare=true&after_number=' + build_number, repository_id: id, orderBy: 'number DESC' });
-  }
-});
-Travis.Commit = Travis.Model.extend(Travis.Helpers, {
-  sha:             DS.attr('string'),
-  branch:          DS.attr('string'),
-  message:         DS.attr('string'),
-  compare_url:     DS.attr('string'),
-  author_email:    DS.attr('string'),
-  author_name:     DS.attr('string'),
-  committer_name:  DS.attr('string'),
-  committer_email: DS.attr('string'),
-
-  build: DS.belongsTo('Travis.Build'),
-});
-Travis.Job = Travis.Model.extend(Travis.Helpers, {
-  repository_id:   DS.attr('number'),
-  build_id:        DS.attr('number'),
-  // config:          DS.attr('object'),
-  state:           DS.attr('string'),
-  number:          DS.attr('string'),
-  commit:          DS.attr('string'),
-  branch:          DS.attr('string'),
-  message:         DS.attr('string'),
-  result:          DS.attr('number'),
-  started_at:      DS.attr('string'), // use DateTime?
-  finished_at:     DS.attr('string'),
-  committed_at:    DS.attr('string'),
-  committer_name:  DS.attr('string'),
-  committer_email: DS.attr('string'),
-  author_name:     DS.attr('string'),
-  author_email:    DS.attr('string'),
-  compare_url:     DS.attr('string'),
-  allow_failure:   DS.attr('boolean'),
-
-  repository: DS.belongsTo('Travis.Repository'),
-  // build:      DS.belongsTo('Travis.Build'),
-  commit:     DS.belongsTo('Travis.Commit'),
-
-  // TODO how to define a DS.attr that returns an object?
-  config: function() {
-    return this.getPath('data.config');
-  }.property('data.config'),
-
-  log: function() {
-    this.subscribe();
-    var log = this.getPath('data.log');
-    if(log === undefined) this.refresh();
-    return log || '';
-  }.property('data.log'),
-
-  // TODO ...
-  duration: function() {
-    return this.durationFrom(this.get('started_at'), this.get('finished_at'));
-  }.property('started_at', 'finished_at'),
-
-  update: function(attrs) {
-    var build = this.get('build');
-    if(build) build.whenReady(function(build) {
-      var job = build.get('jobs').find(function(job) { return job.get('id') == this.get('id') });
-      if(job) { job.update(attrs); }
-    });
-    this._super(attrs);
-  },
-
-  appendLog: function(log) {
-    this.set('log', this.get('log') + log);
-  },
-
-  subscribe: function() {
-    var id = this.get('id');
-    if(id)
-      // TODO this is bad. the job needs to be subscribed until it is finished
-      Travis.app.unsubscribeAll(/^job-/)
-      Travis.app.subscribe('job-' + id);
-  },
-
-  tick: function() {
-    this.notifyPropertyChange('duration');
-    this.notifyPropertyChange('finished_at');
-  },
-
-  // VIEW HELPERS
-
-  url: function() {
-    return '#!/' + this.getPath('repository.slug') + '/jobs/' + this.get('id');
-  }.property('repository', 'id'),
-});
-
-Travis.Job.reopenClass({
-  queued: function(queue) {
-    return this.all({ state: 'created', queue: 'builds.' + queue });
-  }
-});
-Travis.Repository = Travis.Model.extend(Travis.Helpers, {
-  slug:                   DS.attr('string'),
-  name:                   DS.attr('string'),
-  owner:                  DS.attr('string'),
-  description:            DS.attr('string'),
-  last_build_id:          DS.attr('number'),
-  last_build_number:      DS.attr('string'),
-  last_build_result:      DS.attr('number'),
-  last_build_started_at:  DS.attr('string'),  // DateTime doesn't seem to work?
-  last_build_finished_at: DS.attr('string'),
-
-  branches: function() {
-    return Travis.Branch.byRepositoryId(this.get('id'));
-  }.property(),
-
-  builds: function() {
-    return Travis.Build.byRepositoryId(this.get('id'), { event_type: 'push' });
-  }.property(),
-
-  pullRequests: function() {
-    return Travis.Build.byRepositoryId(this.get('id'), { event_type: 'pull_request' });
-  }.property(),
-
-  lastBuild: function() {
-    return Travis.Build.find(this.get('last_build_id'));
-  }.property('last_build_id'),
-
-  last_build_duration: function() {
-    var duration = this.getPath('data.last_build_duration');
-    if(!duration) duration = this.durationFrom(this.get('last_build_started_at'), this.get('last_build_finished_at'));
-    return duration;
-  }.property('last_build_duration', 'last_build_started_at', 'last_build_finished_at'),
-
-  stats: function() {
-    if(Travis.env != 'production') return;
-    var url = 'https://api.github.com/json/repos/show/' + this.get('slug');
-    return this.get('_stats') || $.get(url, function(data) { this.set('_stats', data) }.bind(this)) && null;
-  }.property('_stats'),
-
-  select: function() {
-    this.whenReady(function(self) {
-      Travis.Repository.select(self.get('id'))
-    });
-  },
-
-  tick: function() {
-    this.notifyPropertyChange('last_build_duration');
-    this.notifyPropertyChange('last_build_finished_at');
-  },
-
-  // VIEW HELPERS
-
-  urlCurrent: function() {
-    return '#!/' + this.getPath('slug');
-  }.property('slug'),
-
-  urlBuilds: function() {
-    return '#!/' + this.get('slug') + '/builds';
-  }.property('slug'),
-
-  urlBranches: function() {
-    return '#!/' + this.get('slug') + '/branches';
-  }.property('slug'),
-
-  urlPullRequests: function() {
-    return '#!/' + this.get('slug') + '/pull_requests';
-  }.property('slug'),
-
-  urlLastBuild: function() {
-    return '#!/' + this.get('slug') + '/builds/' + this.get('last_build_id');
-  }.property('last_build_id'),
-
-  urlGithub: function() {
-    return 'http://github.com/' + this.get('slug');
-  }.property('slug'),
-
-  urlGithubWatchers: function() {
-    return 'http://github.com/' + this.get('slug') + '/watchers';
-  }.property('slug'),
-
-  urlGithubNetwork: function() {
-    return 'http://github.com/' + this.get('slug') + '/network';
-  }.property('slug'),
-
-  urlGithubAdmin: function() {
-    return this.get('url') + '/admin/hooks#travis_minibucket';
-  }.property('slug'),
-
-  urlStatusImage: function() {
-    return this.get('slug') + '.png'
-  }.property('slug')
-
-});
-
-Travis.Repository.reopenClass({
-  recent: function() {
-    return this.all({ orderBy: 'last_build_started_at DESC' });
-  },
-
-  ownedBy: function(owner_name) {
-    return this.all({ owner_name: owner_name, orderBy: 'name' });
-  },
-
-  search: function(query) {
-    return this.all({ search: query, orderBy: 'name' });
-  },
-
-  bySlug: function(slug) {
-    return this.all({ slug: slug });
-  },
-
-  select: function(id) {
-    this.all().forEach(function(repository) {
-      repository.whenReady(function() {
-        repository.set('selected', repository.get('id') == id);
+  this.Travis.Build.reopenClass({
+    byRepositoryId: function(id, parameters) {
+      return this.all($.extend(parameters || {}, {
+        repository_id: id,
+        orderBy: 'number DESC'
+      }));
+    },
+    olderThanNumber: function(id, build_number) {
+      return this.all({
+        url: '/repositories/' + id + '/builds.json?bare=true&after_number=' + build_number,
+        repository_id: id,
+        orderBy: 'number DESC'
       });
-    });
-  }
-});
-Travis.ServiceHook = Travis.Model.extend({
-  primaryKey: 'uid',
-
-  toggle: function() {
-    this.writeAttribute('active', !this.get('active'));
-    this.commitRecord({ owner_name: this.get('owner_name'), name: this.get('name') });
-  },
-
-  urlGithubAdmin: function() {
-    return this.get('url') + '/admin/hooks#travis_minibucket';
-  }.property('slug').cacheable(),
-});
-
-Travis.ServiceHook.reopenClass({
-  resource: 'profile/service_hooks'
-});
-
-Travis.WorkerGroup = Ember.Object.extend({
-  init: function() {
-    this.set('workers', []);
-  },
-
-  host: function() {
-    return this.getPath('workers.firstObject.host');
-  }.property(),
-
-  add: function(worker) {
-    this.get('workers').push(worker);
-  }
-});
-
-Travis.Worker = Travis.Model.extend({
-  state:        DS.attr('string'),
-  name:         DS.attr('string'),
-  host:         DS.attr('string'),
-  last_seen_at: DS.attr('string'),
-
-  isTesting: function() {
-    return this.get('state') == 'working' && !!this.getPath('payload.config');
-  }.property('state', 'config'),
-
-  number: function() {
-    return this.get('name').match(/\d+$/)[0];
-  }.property('name'),
-
-  display: function() {
-    var name = this.get('name').replace('travis-', '');
-    var state = this.get('state');
-    var payload = this.get('payload');
-
-    if(state == 'working' && payload != undefined) {
-      var repository = payload.repository ? $.truncate(payload.repository.slug, 18) : undefined;
-      var number = payload.build && payload.build.number ? ' #' + payload.build.number : '';
-      var state = repository ? repository + number : state;
     }
+  });
 
-    return name + ': ' + state;
-  }.property('state'),
+}).call(this);
+(function() {
 
-  urlJob: function() {
-    return '#!/' + this.getPath('payload.repository.slug') + '/jobs/' + this.getPath('payload.build.id');
-  }.property('state', 'payload')
-});
+  this.Travis.Commit = Travis.Model.extend({
+    sha: DS.attr('string'),
+    branch: DS.attr('string'),
+    message: DS.attr('string'),
+    compare_url: DS.attr('string'),
+    author_email: DS.attr('string'),
+    author_name: DS.attr('string'),
+    committer_name: DS.attr('string'),
+    committer_email: DS.attr('string'),
+    build: DS.belongsTo('Travis.Build')
+  });
 
-Travis.Worker.reopenClass({
-});
+}).call(this);
+(function() {
 
+  this.Travis.Job = Travis.Model.extend(Travis.Helpers, {
+    repository_id: DS.attr('number'),
+    build_id: DS.attr('number'),
+    state: DS.attr('string'),
+    number: DS.attr('string'),
+    result: DS.attr('number'),
+    started_at: DS.attr('string'),
+    finished_at: DS.attr('string'),
+    allow_failure: DS.attr('boolean'),
+    repository: DS.belongsTo('Travis.Repository'),
+    commit: DS.belongsTo('Travis.Commit'),
+    config: (function() {
+      return this.getPath('data.config');
+    }).property('data.config'),
+    log: (function() {
+      var log;
+      this.subscribe();
+      log = this.getPath('data.log');
+      if (log === undefined) {
+        this.refresh();
+      }
+      return log || '';
+    }).property('data.log'),
+    duration: (function() {
+      return this.durationFrom(this.get('started_at'), this.get('finished_at'));
+    }).property('started_at', 'finished_at'),
+    subscribe: function() {
+      var id;
+      id = this.get('id');
+      if (id) {
+        Travis.app.unsubscribeAll(/^job-/);
+      }
+      return Travis.app.subscribe('job-' + id);
+    },
+    tick: function() {
+      this.notifyPropertyChange('duration');
+      return this.notifyPropertyChange('finished_at');
+    },
+    url: (function() {
+      return '#!/%@/jobs/%@'.fmt(this.getPath('repository.slug'), this.get('id'));
+    }).property('repository', 'id')
+  });
+
+  this.Travis.Job.reopenClass({
+    queued: function(queue) {
+      return this.all({
+        state: 'created',
+        queue: 'builds.' + queue
+      });
+    }
+  });
+
+}).call(this);
+(function() {
+
+  this.Travis.Repository = Travis.Model.extend(Travis.Helpers, {
+    slug: DS.attr('string'),
+    name: DS.attr('string'),
+    owner: DS.attr('string'),
+    description: DS.attr('string'),
+    last_build_id: DS.attr('number'),
+    last_build_number: DS.attr('string'),
+    last_build_result: DS.attr('number'),
+    last_build_started_at: DS.attr('string'),
+    last_build_finished_at: DS.attr('string'),
+    branches: (function() {
+      return Travis.Branch.byRepositoryId(this.get('id'));
+    }).property(),
+    builds: (function() {
+      return Travis.Build.byRepositoryId(this.get('id'), {
+        event_type: 'push'
+      });
+    }).property(),
+    pullRequests: (function() {
+      return Travis.Build.byRepositoryId(this.get('id'), {
+        event_type: 'pull_request'
+      });
+    }).property(),
+    lastBuild: (function() {
+      return Travis.Build.find(this.get('last_build_id'));
+    }).property('last_build_id'),
+    last_build_duration: (function() {
+      var duration;
+      duration = this.getPath('data.last_build_duration');
+      if (!duration) {
+        duration = this.durationFrom(this.get('last_build_started_at'), this.get('last_build_finished_at'));
+      }
+      return duration;
+    }).property('last_build_duration', 'last_build_started_at', 'last_build_finished_at'),
+    stats: (function() {
+      var url,
+        _this = this;
+      if (Travis.env !== 'production') {
+        return;
+      }
+      url = 'https://api.github.com/json/repos/show/' + this.get('slug');
+      return this.get('_stats') || $.get(url, function(data) {
+        return _this.set('_stats', data);
+      }) && void 0;
+    }).property('_stats'),
+    select: function() {
+      return Travis.Repository.select(self.get('id'));
+    },
+    tick: function() {
+      this.notifyPropertyChange('last_build_duration');
+      return this.notifyPropertyChange('last_build_finished_at');
+    },
+    urlCurrent: (function() {
+      return '#!/' + this.getPath('slug');
+    }).property('slug'),
+    urlBuilds: (function() {
+      return '#!/' + this.get('slug') + '/builds';
+    }).property('slug'),
+    urlBranches: (function() {
+      return '#!/' + this.get('slug') + '/branches';
+    }).property('slug'),
+    urlPullRequests: (function() {
+      return '#!/' + this.get('slug') + '/pull_requests';
+    }).property('slug'),
+    urlLastBuild: (function() {
+      return '#!/' + this.get('slug') + '/builds/' + this.get('last_build_id');
+    }).property('last_build_id'),
+    urlGithub: (function() {
+      return 'http://github.com/' + this.get('slug');
+    }).property('slug'),
+    urlGithubWatchers: (function() {
+      return 'http://github.com/' + this.get('slug') + '/watchers';
+    }).property('slug'),
+    urlGithubNetwork: (function() {
+      return 'http://github.com/' + this.get('slug') + '/network';
+    }).property('slug'),
+    urlGithubAdmin: (function() {
+      return this.get('url') + '/admin/hooks#travis_minibucket';
+    }).property('slug'),
+    urlStatusImage: (function() {
+      return this.get('slug') + '.png';
+    }).property('slug')
+  });
+
+  this.Travis.Repository.reopenClass({
+    recent: function() {
+      return this.all({
+        orderBy: 'last_build_started_at DESC'
+      });
+    },
+    ownedBy: function(owner_name) {
+      return this.all({
+        owner_name: owner_name,
+        orderBy: 'name'
+      });
+    },
+    search: function(query) {
+      return this.all({
+        search: query,
+        orderBy: 'name'
+      });
+    },
+    bySlug: function(slug) {
+      return this.all({
+        slug: slug
+      });
+    },
+    select: function(id) {
+      return this.all().forEach(function(repository) {
+        return repository.set('selected', repository.get('id') === id);
+      });
+    }
+  });
+
+}).call(this);
+(function() {
+
+  this.Travis.ServiceHook = Travis.Model.extend({
+    primaryKey: 'uid',
+    toggle: function() {
+      this.writeAttribute('active', !this.get('active'));
+      return this.commitRecord({
+        owner_name: this.get('owner_name'),
+        name: this.get('name')
+      });
+    },
+    urlGithubAdmin: (function() {
+      return this.get('url') + '/admin/hooks#travis_minibucket';
+    }).property('slug').cacheable()
+  });
+
+  this.Travis.ServiceHook.reopenClass({
+    resource: 'profile/service_hooks'
+  });
+
+}).call(this);
+(function() {
+
+  this.Travis.WorkerGroup = Ember.Object.extend({
+    init: function() {
+      return this.set('workers', []);
+    },
+    host: (function() {
+      return this.getPath('workers.firstObject.host');
+    }).property(),
+    add: function(worker) {
+      return this.get('workers').push(worker);
+    }
+  });
+
+  this.Travis.Worker = Travis.Model.extend({
+    state: DS.attr('string'),
+    name: DS.attr('string'),
+    host: DS.attr('string'),
+    last_seen_at: DS.attr('string'),
+    isTesting: (function() {
+      return this.get('state') === 'working' && !!this.getPath('payload.config');
+    }).property('state', 'config'),
+    number: (function() {
+      return this.get('name').match(/\d+$/)[0];
+    }).property('name'),
+    display: (function() {
+      var name, number, payload, repo, state;
+      name = this.get('name').replace('travis-', '');
+      state = this.get('state');
+      payload = this.get('payload');
+      if (state === 'working' && payload !== void 0) {
+        repo = payload.repository ? $.truncate(payload.repository.slug, 18) : void 0;
+        number = payload.build && payload.build.number ? ' #' + payload.build.number : '';
+        state = repo ? repo + number : state;
+      }
+      return name + ': ' + state;
+    }).property('state'),
+    urlJob: (function() {
+      return '#!/%@/jobs/%@'.fmt(this.getPath('payload.repository.slug'), this.getPath('payload.build.id'));
+    }).property('payload', 'state')
+  });
+
+}).call(this);
 Ember.TEMPLATES['app/templates/branches/list']=Ember.Handlebars.compile("<table id=\"branch_summary\">\n  <thead>\n    <tr>\n      <th>{{t \"repositories.branch\"}}</th>\n      <th>{{t \"repositories.commit\"}}</th>\n      <th>{{t \"repositories.message\"}}</th>\n      <th>{{t \"repositories.started_at\"}}</th>\n      <th>{{t \"repositories.finished_at\"}}</th>\n    </tr>\n  </thead>\n  {{#collection tagName=\"tbody\" contentBinding=\"branches\" itemViewClass=\"Travis.Views.Branches.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.buildUrl\"}}>{{content.commit.branch}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.commitUrl\"}}>{{formatSha content.commit.sha}}</a></td>\n    <td class=\"message\">{{{formatMessage content.commit.message short=\"true\"}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatTime content.started_at}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n");Ember.TEMPLATES['app/templates/builds/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <thead>\n    <tr>\n      <th>{{t \"builds.name\"}}</th>\n      <th>{{t \"builds.commit\"}}</th>\n      <th>{{t \"builds.message\"}}</th>\n      <th>{{t \"builds.duration\"}}</th>\n      <th>{{t \"builds.finished_at\"}}</th>\n    </tr>\n  </thead>\n\n  {{#collection tagName=\"tbody\" contentBinding=\"builds\" itemViewClass=\"Travis.Views.Builds.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.urlGithubCommit\"}}>{{formatCommit content.commit}}</a></td>\n    <td class=\"message\">{{{content.formattedShortMessage}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n\n<p>\n  <button {{action \"showMore\" on=\"click\" target=\"builds\" isVisibleBinding=\"hasMore\"}}>\n    {{t \"builds.show_more\"}}\n  </button>\n</p>\n");Ember.TEMPLATES['app/templates/builds/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>{{t \"builds.name\"}}</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"build.url\"}}>{{build.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"builds.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"build.finished_at\"}}>{{formatTime build.finished_at}}</dd>\n      <dt>{{t \"builds.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"build.started_at\"}}>{{formatDuration build.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"builds.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"builds.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"commit.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"builds.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"commit.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"builds.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"builds.message\"}}</dt>\n    <dd class=\"commit-message\">{{{formatMessage commit.message}}}</dd>\n\n    {{#if build.isMatrix}}\n    {{else}}\n      <dt>{{t \"builds.config\"}}</dt>\n      <dd class=\"config\">{{formatConfig build.config}}</dd>\n    {{/if}}\n  </dl>\n\n  {{#if build.isMatrix}}\n    {{view Travis.Views.Jobs.List buildBinding=\"build\"}}\n  {{else}}\n    {{view Travis.Views.Jobs.Log jobBinding=\"build.jobs.firstObject\"}}\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/jobs/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <caption>{{t \"jobs.build_matrix\"}}</caption>\n  <thead>\n    <tr>\n      {{#each configKeys}}\n        <th>{{this}}</th>\n      {{/each}}\n    </tr>\n  </thead>\n\n  {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.requiredJobs\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n    {{#each configValues}}\n      <td>{{value}}</td>\n    {{/each}}\n  {{/collection}}\n</table>\n\n{{#if build.hasFailureMatrix}}\n  <table id=\"allow_failure_builds\">\n    <caption>{{t \"jobs.allowed_failures\"}}{{whats_this \"allow_failure_help\"}}</caption>\n    <thead>\n      <tr>\n        {{#each configKeys}}\n          <th>{{this}}</th>\n        {{/each}}\n      </tr>\n    </thead>\n\n    {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.allowedFailureJobs\" itemClassBinding=\"color\"}}\n      <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n      <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n      <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n      {{#each configValues}}\n        <td>{{value}}</td>\n      {{/each}}\n    {{/collection}}\n  </table>\n\n  <div id=\"allow_failure_help\" class=\"context_help\">\n  <div class=\"context_help_caption\">{{t \"jobs.allowed_failures\"}}</div>\n  <div class=\"context_help_body\">Allowed Failures are items in your build matrix that are allowed to fail without causing the entire build to be shown as failed. This lets you add in experimental and preparatory builds to test against versions or configurations that you are not ready to officially support.<br><br>You can define allowed failures in the build matrix as follows:\n  </br><pre>\n  matrix:\n    allow_failures:\n      - rvm: ruby-head\n  </pre></div>\n  </div>\n{{/if}}\n");Ember.TEMPLATES['app/templates/jobs/log']=Ember.Handlebars.compile("{{#if job.log}}\n  <pre class=\"log\">{{{formatLog job.log}}}</pre>\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n    {{t \"builds.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n{{/if}}\n\n");Ember.TEMPLATES['app/templates/jobs/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>Job</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"job.build.url\"}}>{{job.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"jobs.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"job.finished_at\"}}>{{formatTime job.finished_at}}</dd>\n      <dt>{{t \"jobs.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"job.started_at\"}}>{{formatDuration job.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"jobs.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"job.build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"jobs.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"job.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"jobs.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"job.build.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"jobs.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"job.build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"jobs.message\"}}</dt>\n    <dd class=\"commit-message\">{{formatMessage commit.message}}</dd>\n    <dt>{{t \"jobs.config\"}}</dt>\n    <dd class=\"config\">{{formatConfig job.config}}</dd>\n  </dl>\n\n  {{view Travis.Views.Jobs.Log jobBinding=\"job\"}}\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n      {{t \"jobs.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/layouts/_left']=Ember.Handlebars.compile("<div id=\"search_box\">\n  {{view Ember.TextField viewName=\"searchBox\"}}\n</div>\n\n<ul class=\"tabs\">\n  <li id=\"tab_recent\" class=\"active\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.recent\"}}</a></h5>\n  </li>\n  {{#if current_user}}\n    <li id=\"tab_my_repositories\" data-github-id=\"{{current_user.login}}\">\n      <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.my_repositories\"}}</a></h5>\n    </li>\n  {{/if}}\n  <li id=\"tab_search\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.search\"}}</a></h5>\n  </li>\n</ul>\n\n{{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n");Ember.TEMPLATES['app/templates/layouts/_main']=Ember.Handlebars.compile("<div id=\"repository\">\n  {{view Travis.Views.Repositories.Show}}\n  {{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n</div>\n\n");Ember.TEMPLATES['app/templates/layouts/_right']=Ember.Handlebars.compile("<div class=\"slider\" {{action toggle}}>\n  <div class=\"icon\"></div>&nbsp;\n</div>\n<div class=\"inner\">\n  <div class=\"wrapper\">\n    <h4>\n      {{t \"layouts.application.sponsers\"}}\n    </h4>\n    <div class=\"sponsors top\"></div>\n\n    <p class=\"hint\">\n      <a href=\"https://love.travis-ci.org/sponsors\">\n        {{t \"layouts.application.sponsors_link\"}}\n      </a>\n    </p>\n\n    {{view Ember.CollectionView id=\"workers\" viewName=\"workers\"}}\n    {{view Ember.CollectionView id=\"queues\" viewName=\"queues\"}}\n\n    <div class=\"box\">\n      <h4>\n        {{t \"layouts.application.sponsers\" }}\n      </h4>\n      <div class=\"sponsors bottom\"></div>\n    </div>\n\n    <div id=\"alpha_warning\" class=\"box\">\n      <h4>{{t \"layouts.about.alpha\"}}</h4>\n      <p>{{t \"layouts.about.messages.alpha\"}}</p>\n    </div>\n\n    <div id=\"about\" class=\"box\">\n      <h4>{{t \"layouts.about.join\"}}</h4>\n      <ul>\n        <li>{{t \"layouts.about.repository\"}}: <a href=\"http://github.com/travis-ci\">Github</a></li>\n        <li>{{t \"layouts.about.twitter\"}}: <a href=\"http://twitter.com/travisci\">@travisci</a></li>\n        <li>{{t \"layouts.about.mailing_list\"}}: <a href=\"http://groups.google.com/group/travis-ci\">travis-ci</a></li>\n        <li><a href=\"irc://irc.freenode.net#travis\">irc.freenode.net#travis</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n");Ember.TEMPLATES['app/templates/layouts/default']=Ember.Handlebars.compile("{{view Travis.Views.Layouts.Left id=\"left\" viewName=\"left\"}}\n{{view Travis.Views.Layouts.Main id=\"main\" viewName=\"main\"}}\n{{view Travis.Views.Layouts.Right id=\"right\" viewName=\"right\" class=\"maximized\"}}\n\n<div id=\"github\">\n  <a href=\"https://github.com/travis-ci\" title=\"Fork me on GitHub\">\n    {{t \"layouts.application.fork_me\"}}\n  </a>\n</div>\n\n<div id=\"flash-messages\"></div>\n");Ember.TEMPLATES['app/templates/queues/show']=Ember.Handlebars.compile("<h4>{{t \"queue\"}}: {{queue.display}}</h4>\n{{#collection tagName=\"ul\" classBinding=\"className\" itemClass=\"job\" contentBinding=\"jobs\"}}\n  {{content.repository.slug}}\n  {{#if content.number}}\n    #{{content.number}}\n  {{/if}}\n{{else}}\n  {{t \"no_job\"}}\n{{/collection}}\n\n");Ember.TEMPLATES['app/templates/repositories/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" id=\"repositories\" contentBinding=\"repositories\" itemViewClass=\"Travis.Views.Repositories.Item\" itemClassBinding=\"class\"}}\n  <div class=\"wrapper\">\n    <a {{bindAttr href=\"content.urlCurrent\"}} class=\"slug\">{{content.slug}}</a>\n    <a {{bindAttr href=\"content.urlLastBuild\"}} class=\"build\">#{{content.last_build_number}}</a>\n    <p class=\"summary\">\n      <span class=\"duration_label\">{{t \"repositories.duration\"}}:</span>\n      <abbr class=\"duration\" {{bindAttr title=\"content.last_build_started_at\"}}>{{formatDuration content.last_build_duration}}</abbr>,\n      <span class=\"finished_at_label\">{{t \"repositories.finished_at\"}}:</span>\n      <abbr class=\"finished_at timeago\" {{bindAttr title=\"content.last_build_finished_at\"}}>{{formatTime content.last_build_finished_at}}</abbr>\n    </p>\n    {{#if content.description}}\n      <p class=\"description\">{{content.description}}</p>\n    {{/if}}\n    <span class=\"indicator\"></span>\n  </div>\n{{/collection}}\n\n{{^collection contentBinding=\"repositories\" id=\"list\" class=\"loading\"}}\n  <p></p>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/repositories/show']=Ember.Handlebars.compile("<h3>\n  <a {{bindAttr href=\"repository.urlGithub\"}}>{{repository.slug}}</a>\n</h3>\n\n<p class=\"description\">{{repository.description}}</p>\n\n<ul class=\"github-stats\">\n  <li class=\"language\">{{repository.last_build_language}}</li>\n  <li><a class=\"watchers\" title=\"Watches\" {{bindAttr href=\"repository.urlGithubWatchers\"}}>{{repository.stats.watchers}}</a></li>\n  <li><a class=\"forks\" title=\"Forks\" {{bindAttr href=\"repository.urlGithubNetwork\"}}>{{repository.stats.forks}}</a></li>\n</ul>\n\n<ul class=\"tabs\">\n  <li id=\"tab_current\">\n    <h5><a {{bindAttr href=\"repository.urlCurrent\"}}>{{t \"repositories.tabs.current\"}}</a></h5>\n  </li>\n  <li id=\"tab_history\">\n    <h5><a {{bindAttr href=\"repository.urlBuilds\"}}>{{t \"repositories.tabs.build_history\"}}</a></h5>\n  </li>\n  <li id=\"tab_pull_requests\">\n    <h5><a {{bindAttr href=\"repository.urlPullRequests\"}}>{{t \"repositories.tabs.pull_requests\"}}</a></h5>\n  </li>\n  <li id=\"tab_branches\">\n    <h5><a {{bindAttr href=\"repository.urlBranches\"}}>{{t \"repositories.tabs.branches\"}}</a></h5>\n  </li>\n  <li id=\"tab_build\">\n    <h5><a {{bindAttr href=\"build.url\"}}>{{t \"repositories.tabs.build\"}} #{{build.number}}</a></h5>\n  </li>\n  <li id=\"tab_job\">\n    <h5><a {{bindAttr href=\"job.url\"}}>{{t \"repositories.tabs.job\"}} #{{job.number}}</a></h5>\n  </li>\n</ul>\n\n{{view Travis.Views.Repositories.Tools repositoryBinding=\"repository\"}}\n");Ember.TEMPLATES['app/templates/repositories/tools']=Ember.Handlebars.compile("<div class=\"tools\">\n  <a {{action toggle}}></a>\n  <div class=\"content\">\n    <p>\n      <label>{{t \"repositories.branch\"}}:</label>\n      <select {{action update on=\"change\"}}>\n        <option></option>\n        {{#each repository.branches}}\n          <option>{{commit.branch}}</option>\n        {{/each}}\n      </select>\n    </p>\n    <p>\n      <label>{{t \"repositories.image_url\"}}:</label>\n      <input type=\"text\" class=\"url\" {{bindAttr value=\"imageUrl\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.markdown\"}}:</label>\n      <input type=\"text\" class=\"markdown\" {{bindAttr value=\"markdown\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.textile\"}}:</label>\n      <input type=\"text\" class=\"textile\" {{bindAttr value=\"textile\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.rdoc\"}}:</label>\n      <input type=\"text\" class=\"rdoc\" {{bindAttr value=\"rdoc\"}}>\n    </p>\n  </div>\n</div>\n\n");Ember.TEMPLATES['app/templates/service_hooks/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" itemViewClass=\"Ember.View\" itemClass=\"repository\" contentBinding=\"service_hooks\"}}\n\n  <a {{bindAttr href=\"content.url\"}} rel=\"nofollow\">{{content.name}}</a>\n  <p class=\"description\">{{content.description}}</p>\n\n  <div class=\"controls\">\n    <a {{bindAttr href=\"content.urlGithubAdmin\"}} class=\"github-admin tool-tip\" title=\"Github service hooks admin page\"></a>\n    {{#view Ember.Button tagName=\"a\" class=\"switch\" classBinding=\"content.active\" contentBinding=\"content\" target=\"content\" action=\"toggle\"}}{{/view}}\n  </div>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/workers/list']=Ember.Handlebars.compile("<h4>{{t \"workers\"}}</h4>\n{{#collection tagName=\"ul\" itemClass=\"group\" contentBinding=\"groups\"}}\n  <h5>{{content.host}}</h5>\n  {{#collection tagName=\"ul\" itemClass=\"worker\" itemClassBinding=\"content.state\" contentBinding=\"content.workers\"}}\n    <div class=\"icon\"></div>\n    {{#if content.isTesting}}\n      <a {{bindAttr href=\"content.urlJob\"}} {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</a>\n    {{else}}\n      <span {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</span>\n    {{/if}}\n  {{/collection}}\n{{else}}\n  No workers\n{{/collection}}\n");(function() {
 
   this.Travis.app = Travis.AppController.create();

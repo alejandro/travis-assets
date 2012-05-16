@@ -1,4 +1,4 @@
-Travis.WorkersController = Ember.ArrayController.extend
+@Travis.WorkersController = Ember.ArrayController.extend
   init: ->
     @_super()
     @set 'workers', Travis.Worker.all(orderBy: 'host')

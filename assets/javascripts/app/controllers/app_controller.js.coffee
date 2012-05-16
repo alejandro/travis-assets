@@ -11,8 +11,8 @@
 
   run: ->
     @action()
-    # @initPusher()
-    # @initEvents()
+    @initEvents()
+    @initPusher()
 
   home: ->
     @layout = Travis.Views.Layouts.Default.create()
@@ -63,55 +63,20 @@
       @unsubscribe(channel) if channel.match(pattern)
 
   initPusher: ->
-    $.each(Travis.channels, (ix, channel) => @subscribe(channel)) if window.pusher
+    $.each(Travis.app.channels, (ix, channel) => @subscribe(channel)) if window.pusher
 
-  # initEvents: ->
-  #   //this is only going to work for rendered elements
+  initEvents: ->
+    # TODO make these actions where possible
+    $('#workers .group').live 'click', -> $(this).toggleClass('open')
 
-  #   $('.tool-tip').tipsy({ gravity: 'n', fade: true })
-  #   $('.fold').live('click', -> $(this).toggleClass('open') })
+    $('.tool-tip').tipsy(gravity: 'n', fade: true)
+    $('.fold').live 'click', -> $(this).toggleClass('open')
 
-  #   $('#top .profile').mouseover(-> $('#top .profile ul').show() })
-  #   $('#top .profile').mouseout(-> $('#top .profile ul').hide() })
+    $('#top .profile').mouseover -> $('#top .profile ul').show()
+    $('#top .profile').mouseout  -> $('#top .profile ul').hide()
 
-  #   $('#workers .group').live('click', -> $(this).toggleClass('open') })
-
-  #   $('li#tab_recent').click(->
-  #     Travis.left.recent()
-  #   })
-  #   $('li#tab_my_repositories').click(->
-  #     Travis.left.owned_by($(this).data('github-id'))
-  #   })
-  #   $('li#tab_search').click(->
-  #     Travis.left.search()
-  #   })
-
-  #   $('.repository').live('mouseover', ->
-  #     $(this).find('.description').show()
-  #   })
-
-  #   $('.repository').live('mouseout', ->
-  #     $(this).find('.description').hide()
-  #   })
-
-  #   $('.tools').live('click', ->
-  #     $(this).find('.content').toggle()
-  #   }).find('.content').live('click', function(event){
-  #     event.stopPropagation()
-  #   }).find('input[type=text]').live('focus', ->
-  #     @select()
-  #   }).live('mouseup', function(e) {
-  #     e.preventDefault()
-  #   })
-
-  #   $('html').click(function(e) {
-  #     if ($(e.target).closest('.tools .content').length == 0 && $('.tools .content').css('display') != 'none') {
-  #       $('.tools .content').fadeOut('fast')
-  #     }
-  #   })
-  #
-  #   $('h5').tipsy();
-  # },
+    $('.repository').live 'mouseover', -> $(this).find('.description').show()
+    $('.repository').live 'mouseout',  -> $(this).find('.description').hide()
 
   # startLoading: ->
   #   $("#main").addClass("loading")

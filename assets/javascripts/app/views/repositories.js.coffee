@@ -3,13 +3,15 @@
 @Travis.Views.Repositories =
   Show: Ember.View.extend
     templateName: 'app/templates/repositories/show'
-    repositoryBinding: 'Travis.app.main.repository'
-    buildBinding: 'Travis.app.main.build'
-    jobBinding: 'Travis.app.main.job'
+    controllerBinding: 'Travis.app.main'
+    repositoryBinding: 'controller.repository'
+    buildBinding: 'controller.build'
+    jobBinding: 'controller.job'
 
   List: Ember.View.extend
     templateName: 'app/templates/repositories/list'
-    repositoriesBinding: 'Travis.app.left'
+    controllerBinding: 'Travis.app.left'
+    repositoriesBinding: 'controller'
 
   Item: Ember.View.extend
     color: (->
