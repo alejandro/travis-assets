@@ -31,7 +31,7 @@
   initStore: ->
     @store = DS.Store.create
       revision: 4
-      adapter: Travis.DataStoreAdapter.create()
+      adapter: Travis.DataStoreAdapter.create(bulkCommit: false)
 
   profile: ->
     Travis.ServiceHooksController.create()

@@ -18,7 +18,7 @@
   log: (->
     @subscribe()
     log = @getPath('data.log')
-    @refresh()  if log is `undefined`
+    @refresh()  if log is undefined
     log || ''
   ).property('data.log')
 
@@ -26,21 +26,15 @@
     @durationFrom @get('started_at'), @get('finished_at')
   ).property('started_at', 'finished_at')
 
-  # update: (attrs) ->
-  #   build = @get('build')
-  #   if build
-  #     job = build.get('jobs').find (job) ->
-  #       job.get('id') is @get('id')
-  #     job.update(attrs) if job
-  #   @_super attrs
-
-  # appendLog: (log) ->
-  #   @set 'log', @get('log') + log
+  appendLog: (log) ->
+    @set 'log', @get('log') + log
 
   subscribe: ->
-    id = @get('id')
-    Travis.app.unsubscribeAll /^job-/  if id
-    Travis.app.subscribe 'job-' + id
+    Travis.app.subscribe 'job-' + @get('id')
+
+  onStateChange: (->
+    Travis.app.unsubscribe 'job-' + @get('id') if @get('state') == 'finished'
+  ).observes('state')
 
   tick: ->
     @notifyPropertyChange 'duration'

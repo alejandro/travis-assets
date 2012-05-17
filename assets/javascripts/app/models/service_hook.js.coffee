@@ -1,16 +1,20 @@
 @Travis.ServiceHook = Travis.Model.extend
-  primaryKey: 'uid'
+  primaryKey: 'slug'
   name:       DS.attr('string')
   owner_name: DS.attr('string')
   active:     DS.attr('boolean')
 
+  slug: (->
+    [@get('owner_name'), @get('name')].join('/')
+  ).property()
+
   toggle: ->
-    @writeAttribute('active', !@get('active'))
-    @commitRecord(owner_name: @get('owner_name'), name: @get('name'))
+    @set 'active', !@get('active')
+    Travis.app.store.commit()
 
   urlGithubAdmin: (->
-    return @get('url') + '/admin/hooks#travis_minibucket'
-  ).property('slug').cacheable(),
+    return 'https://github.com/%@/admin/hooks#travis_minibucket'.fmt @get('slug')
+  ).property()
 
 @Travis.ServiceHook.reopenClass
   url: 'profile/service_hooks'

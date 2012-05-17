@@ -42,16 +42,6 @@
     @getPath('jobs.length') > 1
   ).property('jobs.length')
 
-  update: (attrs) ->
-    attrs.jobs = @_joinJobsAttributes(attrs.jobs)  if 'jobs' of attrs
-    @_super attrs
-
-  _joinJobsAttributes: (attrs) ->
-    _this = this
-    $.each attrs, (ix, job) ->
-      _job = _this.get('jobs').objectAt(ix)
-      attrs[ix] = $.extend(_job.get('attributes') or {}, job)  if _job
-
   tick: ->
     @notifyPropertyChange 'duration'
     @notifyPropertyChange 'finished_at'

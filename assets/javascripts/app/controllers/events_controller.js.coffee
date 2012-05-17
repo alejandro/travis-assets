@@ -4,41 +4,45 @@
     @[action](data)
 
   jobCreated: (data) ->
-    Travis.Job.createOrUpdate($.extend(data, state: 'created'))
+    @load(data)
 
   jobStarted: (data) ->
-    job = Travis.Job.find(data.id)
-    job.update($.extend(data, state: 'started')) if(job)
+    @load(data)
 
   jobLog: (data) ->
-    job = Travis.Job.find(data.id)
-    job.appendLog(data._log) if(job)
+    job = Travis.Job.find(data.job.id)
+    job.appendLog(data.job._log) if(job)
 
   jobFinished: (data) ->
-    job = Travis.Job.find(data.id)
-    if(job)
-      job.update($.extend(data, state: 'finished'))
-      job.unsubscribe() # TODO make Job listen to it's state and unsubscribe on finished
+    @load(data)
 
   buildStarted: (data) ->
-    @updateFrom(data)
+    @load(data)
 
   buildFinished: (data) ->
-    @updateFrom(data)
+    @load(data)
 
   workerAdded: (data) ->
-    Travis.Worker.createOrUpdate(data)
+    @load(data)
 
   workerCreated: (data) ->
-    Travis.Worker.createOrUpdate(data)
+    @load(data)
 
   workerUpdated: (data) ->
-    Travis.Worker.createOrUpdate(data)
+    @load(data)
 
   workerRemoved: (data) ->
-    worker = Travis.Worker.find(data.id)
+    worker = Travis.Worker.find(data.worker.id)
     worker.destroy() if(worker)
 
-  updateFrom: (data) ->
-    Travis.Repository.createOrUpdate(data.repository) if(data.repository)
-    Travis.Build.createOrUpdate(data.build) if(data.build)
+  # private
+
+  load: (data) ->
+    for key of data
+      if key[key.length - 1] == 's'
+        @loadRecord(key.substr(0, key.length - 1), record) for record in data[key]
+      else
+        @loadRecord(key, data[key])
+
+  loadRecord: (type, data) ->
+    Travis[$.camelize(type)].load(data)

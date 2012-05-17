@@ -35295,7 +35295,7 @@ $.extend({
   this.Travis.DataStoreAdapter = DS.RESTAdapter.extend({
     init: function() {
       this._super();
-      return set('mappings', {
+      return this.set('mappings', {
         builds: Travis.Build,
         commits: Travis.Commit,
         jobs: Travis.Job,
@@ -35306,16 +35306,28 @@ $.extend({
       repository: 'repositories',
       branch: 'branches'
     },
-    rootForType: function(type) {
-      var name, parts;
-      parts = type.toString().split('.');
-      name = parts[parts.length - 1];
-      return name.replace(/([A-Z])/g, '_$1').toLowerCase().slice(1);
+    updateRecord: function(store, type, record) {
+      var data, id, plural, root, url;
+      id = get(record, record.get('primaryKey') || 'id');
+      root = this.rootForType(type);
+      plural = this.pluralize(root);
+      url = this.buildURL(type.url || plural, id);
+      data = {
+        root: record.toJSON()
+      };
+      return this.ajax(url, 'PUT', {
+        data: data,
+        success: function(json) {
+          this.sideload(store, type, json, root);
+          return store.didUpdateRecord(record, json && json[root]);
+        }
+      });
     },
     find: function(store, type, id) {
-      var root, url;
+      var plural, root, url;
       root = this.rootForType(type);
-      url = type.url || this.buildURL(root, id);
+      plural = this.pluralize(root);
+      url = this.buildURL(type.url || plural, id);
       return this.ajax(url, 'GET', {
         success: function(json) {
           this.sideload(store, type, json, root);
@@ -35326,8 +35338,8 @@ $.extend({
     findMany: function(store, type, ids) {
       var plural, root, url;
       root = this.rootForType(type);
-      url = type.url || this.buildURL(root);
       plural = this.pluralize(root);
+      url = this.buildURL(type.url || plural);
       return this.ajax(url, 'GET', {
         data: {
           ids: ids
@@ -35341,8 +35353,8 @@ $.extend({
     findAll: function(store, type) {
       var plural, root, url;
       root = this.rootForType(type);
-      url = type.url || this.buildURL(root);
       plural = this.pluralize(root);
+      url = this.buildURL(type.url || plural);
       return this.ajax(url, 'GET', {
         success: function(json) {
           this.sideload(store, type, json, plural);
@@ -35353,8 +35365,8 @@ $.extend({
     findQuery: function(store, type, query, recordArray) {
       var plural, root, url;
       root = this.rootForType(type);
-      url = type.url || this.buildURL(root);
       plural = this.pluralize(root);
+      url = this.buildURL(type.url || plural);
       return this.ajax(url, 'GET', {
         data: query,
         success: function(json) {
@@ -35362,6 +35374,27 @@ $.extend({
           return recordArray.load(json[plural]);
         }
       });
+    },
+    rootForType: function(type) {
+      var name, parts;
+      parts = type.toString().split('.');
+      name = parts[parts.length - 1];
+      return name.replace(/([A-Z])/g, '_$1').toLowerCase().slice(1);
+    },
+    buildURL: function(record, suffix) {
+      var url;
+      Ember.assert('Namespace URL (' + this.namespace + ') must not start with slash', !this.namespace || this.namespace.toString().charAt(0) !== '/');
+      Ember.assert('Record URL (' + record + ') must not start with slash', !record || record.toString().charAt(0) !== '/');
+      Ember.assert('URL suffix (' + suffix + ') must not start with slash', !suffix || suffix.toString().charAt(0) !== '/');
+      url = [''];
+      if (this.namespace !== void 0) {
+        url.push(this.namespace);
+      }
+      url.push(record);
+      if (suffix !== void 0) {
+        url.push(suffix);
+      }
+      return url.join('/');
     }
   });
 
@@ -35462,6 +35495,15 @@ $.extend({
       if (id) {
         return Travis.app.store.adapter.find(Travis.app.store, this.constructor, id);
       }
+    },
+    update: function(attrs) {
+      var _this = this;
+      $.each(attrs, function(key, value) {
+        if (key !== 'id') {
+          return _this.set(key, value);
+        }
+      });
+      return this;
     }
   });
 
@@ -35474,6 +35516,9 @@ $.extend({
     },
     all: function(query) {
       return Travis.app.store.find(this, query);
+    },
+    load: function(attrs) {
+      return Travis.app.store.load(this, attrs);
     }
   });
 
@@ -35572,7 +35617,9 @@ $.extend({
     initStore: function() {
       return this.store = DS.Store.create({
         revision: 4,
-        adapter: Travis.DataStoreAdapter.create()
+        adapter: Travis.DataStoreAdapter.create({
+          bulkCommit: false
+        })
       });
     },
     profile: function() {
@@ -35651,65 +35698,66 @@ $.extend({
       return this[action](data);
     },
     jobCreated: function(data) {
-      return Travis.Job.createOrUpdate($.extend(data, {
-        state: 'created'
-      }));
+      return this.load(data);
     },
     jobStarted: function(data) {
-      var job;
-      job = Travis.Job.find(data.id);
-      if (job) {
-        return job.update($.extend(data, {
-          state: 'started'
-        }));
-      }
+      return this.load(data);
     },
     jobLog: function(data) {
       var job;
-      job = Travis.Job.find(data.id);
+      job = Travis.Job.find(data.job.id);
       if (job) {
-        return job.appendLog(data._log);
+        return job.appendLog(data.job._log);
       }
     },
     jobFinished: function(data) {
-      var job;
-      job = Travis.Job.find(data.id);
-      if (job) {
-        job.update($.extend(data, {
-          state: 'finished'
-        }));
-        return job.unsubscribe();
-      }
+      return this.load(data);
     },
     buildStarted: function(data) {
-      return this.updateFrom(data);
+      return this.load(data);
     },
     buildFinished: function(data) {
-      return this.updateFrom(data);
+      return this.load(data);
     },
     workerAdded: function(data) {
-      return Travis.Worker.createOrUpdate(data);
+      return this.load(data);
     },
     workerCreated: function(data) {
-      return Travis.Worker.createOrUpdate(data);
+      return this.load(data);
     },
     workerUpdated: function(data) {
-      return Travis.Worker.createOrUpdate(data);
+      return this.load(data);
     },
     workerRemoved: function(data) {
       var worker;
-      worker = Travis.Worker.find(data.id);
+      worker = Travis.Worker.find(data.worker.id);
       if (worker) {
         return worker.destroy();
       }
     },
-    updateFrom: function(data) {
-      if (data.repository) {
-        Travis.Repository.createOrUpdate(data.repository);
+    load: function(data) {
+      var key, record, _results;
+      _results = [];
+      for (key in data) {
+        if (key[key.length - 1] === 's') {
+          _results.push((function() {
+            var _i, _len, _ref, _results1;
+            _ref = data[key];
+            _results1 = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              record = _ref[_i];
+              _results1.push(this.loadRecord(key.substr(0, key.length - 1), record));
+            }
+            return _results1;
+          }).call(this));
+        } else {
+          _results.push(this.loadRecord(key, data[key]));
+        }
       }
-      if (data.build) {
-        return Travis.Build.createOrUpdate(data.build);
-      }
+      return _results;
+    },
+    loadRecord: function(type, data) {
+      return Travis[$.camelize(type)].load(data);
     }
   });
 
@@ -35727,7 +35775,7 @@ $.extend({
       });
     },
     activate: function(tab, params) {
-      this.set('content', this.sorted(this[tab]()));
+      this.set('content', this.sorting(this[tab]()));
       return this.tabs.activate(tab);
     },
     recent: function() {
@@ -35745,7 +35793,35 @@ $.extend({
     searchObserver: (function() {
       return this.activate(this.query() ? 'search' : 'recent');
     }).observes('searchBox.value'),
-    sorted: function(content) {
+    sorting: function(content) {
+      var controller;
+      controller = this;
+      content.addObserver('@each.last_build_started_at', function() {
+        var ids, record, records, sorted;
+        records = [];
+        content.forEach(function(record) {
+          return records.push(record);
+        });
+        sorted = records.sort(function(a, b) {
+          if (a.get('last_build_started_at') > b.get('last_build_started_at')) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        ids = (function() {
+          var _i, _len, _results;
+          _results = [];
+          for (_i = 0, _len = sorted.length; _i < _len; _i++) {
+            record = sorted[_i];
+            _results.push(record.get('id'));
+          }
+          return _results;
+        })();
+        controller.propertyWillChange('content');
+        content.get('content').splice.apply([0, sorted.length].concat(ids));
+        return controller.propertyDidChange('content');
+      });
       return content;
     }
   });
@@ -36581,23 +36657,6 @@ $.extend({
     isMatrix: (function() {
       return this.getPath('jobs.length') > 1;
     }).property('jobs.length'),
-    update: function(attrs) {
-      if ('jobs' in attrs) {
-        attrs.jobs = this._joinJobsAttributes(attrs.jobs);
-      }
-      return this._super(attrs);
-    },
-    _joinJobsAttributes: function(attrs) {
-      var _this;
-      _this = this;
-      return $.each(attrs, function(ix, job) {
-        var _job;
-        _job = _this.get('jobs').objectAt(ix);
-        if (_job) {
-          return attrs[ix] = $.extend(_job.get('attributes') || {}, job);
-        }
-      });
-    },
     tick: function() {
       this.notifyPropertyChange('duration');
       return this.notifyPropertyChange('finished_at');
@@ -36668,7 +36727,7 @@ $.extend({
       var log;
       this.subscribe();
       log = this.getPath('data.log');
-      if (log === undefined) {
+      if (log === void 0) {
         this.refresh();
       }
       return log || '';
@@ -36676,14 +36735,17 @@ $.extend({
     duration: (function() {
       return this.durationFrom(this.get('started_at'), this.get('finished_at'));
     }).property('started_at', 'finished_at'),
-    subscribe: function() {
-      var id;
-      id = this.get('id');
-      if (id) {
-        Travis.app.unsubscribeAll(/^job-/);
-      }
-      return Travis.app.subscribe('job-' + id);
+    appendLog: function(log) {
+      return this.set('log', this.get('log') + log);
     },
+    subscribe: function() {
+      return Travis.app.subscribe('job-' + this.get('id'));
+    },
+    onStateChange: (function() {
+      if (this.get('state') === 'finished') {
+        return Travis.app.unsubscribe('job-' + this.get('id'));
+      }
+    }).observes('state'),
     tick: function() {
       this.notifyPropertyChange('duration');
       return this.notifyPropertyChange('finished_at');
@@ -36821,20 +36883,20 @@ $.extend({
 (function() {
 
   this.Travis.ServiceHook = Travis.Model.extend({
-    primaryKey: 'uid',
+    primaryKey: 'slug',
     name: DS.attr('string'),
     owner_name: DS.attr('string'),
     active: DS.attr('boolean'),
+    slug: (function() {
+      return [this.get('owner_name'), this.get('name')].join('/');
+    }).property(),
     toggle: function() {
-      this.writeAttribute('active', !this.get('active'));
-      return this.commitRecord({
-        owner_name: this.get('owner_name'),
-        name: this.get('name')
-      });
+      this.set('active', !this.get('active'));
+      return Travis.app.store.commit();
     },
     urlGithubAdmin: (function() {
-      return this.get('url') + '/admin/hooks#travis_minibucket';
-    }).property('slug').cacheable()
+      return 'https://github.com/%@/admin/hooks#travis_minibucket'.fmt(this.get('slug'));
+    }).property()
   });
 
   this.Travis.ServiceHook.reopenClass({
@@ -36885,7 +36947,7 @@ $.extend({
   });
 
 }).call(this);
-Ember.TEMPLATES['app/templates/branches/list']=Ember.Handlebars.compile("<table id=\"branch_summary\">\n  <thead>\n    <tr>\n      <th>{{t \"repositories.branch\"}}</th>\n      <th>{{t \"repositories.commit\"}}</th>\n      <th>{{t \"repositories.message\"}}</th>\n      <th>{{t \"repositories.started_at\"}}</th>\n      <th>{{t \"repositories.finished_at\"}}</th>\n    </tr>\n  </thead>\n  {{#collection tagName=\"tbody\" contentBinding=\"branches\" itemViewClass=\"Travis.Views.Branches.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.buildUrl\"}}>{{content.commit.branch}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.commitUrl\"}}>{{formatSha content.commit.sha}}</a></td>\n    <td class=\"message\">{{{formatMessage content.commit.message short=\"true\"}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatTime content.started_at}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n");Ember.TEMPLATES['app/templates/builds/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <thead>\n    <tr>\n      <th>{{t \"builds.name\"}}</th>\n      <th>{{t \"builds.commit\"}}</th>\n      <th>{{t \"builds.message\"}}</th>\n      <th>{{t \"builds.duration\"}}</th>\n      <th>{{t \"builds.finished_at\"}}</th>\n    </tr>\n  </thead>\n\n  {{#collection tagName=\"tbody\" contentBinding=\"builds\" itemViewClass=\"Travis.Views.Builds.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.urlGithubCommit\"}}>{{formatCommit content.commit}}</a></td>\n    <td class=\"message\">{{{content.formattedShortMessage}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n\n<p>\n  <button {{action \"showMore\" on=\"click\" target=\"builds\" isVisibleBinding=\"hasMore\"}}>\n    {{t \"builds.show_more\"}}\n  </button>\n</p>\n");Ember.TEMPLATES['app/templates/builds/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>{{t \"builds.name\"}}</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"build.url\"}}>{{build.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"builds.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"build.finished_at\"}}>{{formatTime build.finished_at}}</dd>\n      <dt>{{t \"builds.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"build.started_at\"}}>{{formatDuration build.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"builds.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"builds.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"commit.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"builds.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"commit.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"builds.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"builds.message\"}}</dt>\n    <dd class=\"commit-message\">{{{formatMessage commit.message}}}</dd>\n\n    {{#if build.isMatrix}}\n    {{else}}\n      <dt>{{t \"builds.config\"}}</dt>\n      <dd class=\"config\">{{formatConfig build.config}}</dd>\n    {{/if}}\n  </dl>\n\n  {{#if build.isMatrix}}\n    {{view Travis.Views.Jobs.List buildBinding=\"build\"}}\n  {{else}}\n    {{view Travis.Views.Jobs.Log jobBinding=\"build.jobs.firstObject\"}}\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/jobs/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <caption>{{t \"jobs.build_matrix\"}}</caption>\n  <thead>\n    <tr>\n      {{#each configKeys}}\n        <th>{{this}}</th>\n      {{/each}}\n    </tr>\n  </thead>\n\n  {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.requiredJobs\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n    {{#each configValues}}\n      <td>{{value}}</td>\n    {{/each}}\n  {{/collection}}\n</table>\n\n{{#if build.hasFailureMatrix}}\n  <table id=\"allow_failure_builds\">\n    <caption>{{t \"jobs.allowed_failures\"}}{{whats_this \"allow_failure_help\"}}</caption>\n    <thead>\n      <tr>\n        {{#each configKeys}}\n          <th>{{this}}</th>\n        {{/each}}\n      </tr>\n    </thead>\n\n    {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.allowedFailureJobs\" itemClassBinding=\"color\"}}\n      <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n      <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n      <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n      {{#each configValues}}\n        <td>{{value}}</td>\n      {{/each}}\n    {{/collection}}\n  </table>\n\n  <div id=\"allow_failure_help\" class=\"context_help\">\n  <div class=\"context_help_caption\">{{t \"jobs.allowed_failures\"}}</div>\n  <div class=\"context_help_body\">Allowed Failures are items in your build matrix that are allowed to fail without causing the entire build to be shown as failed. This lets you add in experimental and preparatory builds to test against versions or configurations that you are not ready to officially support.<br><br>You can define allowed failures in the build matrix as follows:\n  </br><pre>\n  matrix:\n    allow_failures:\n      - rvm: ruby-head\n  </pre></div>\n  </div>\n{{/if}}\n");Ember.TEMPLATES['app/templates/jobs/log']=Ember.Handlebars.compile("{{#if job.log}}\n  <pre class=\"log\">{{{formatLog job.log}}}</pre>\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n    {{t \"builds.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n{{/if}}\n\n");Ember.TEMPLATES['app/templates/jobs/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>Job</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"job.build.url\"}}>{{job.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"jobs.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"job.finished_at\"}}>{{formatTime job.finished_at}}</dd>\n      <dt>{{t \"jobs.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"job.started_at\"}}>{{formatDuration job.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"jobs.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"job.build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"jobs.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"job.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"jobs.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"job.build.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"jobs.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"job.build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"jobs.message\"}}</dt>\n    <dd class=\"commit-message\">{{formatMessage commit.message}}</dd>\n    <dt>{{t \"jobs.config\"}}</dt>\n    <dd class=\"config\">{{formatConfig job.config}}</dd>\n  </dl>\n\n  {{view Travis.Views.Jobs.Log jobBinding=\"job\"}}\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n      {{t \"jobs.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/layouts/_left']=Ember.Handlebars.compile("<div id=\"search_box\">\n  {{view Ember.TextField viewName=\"searchBox\"}}\n</div>\n\n<ul class=\"tabs\">\n  <li id=\"tab_recent\" class=\"active\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.recent\"}}</a></h5>\n  </li>\n  {{#if current_user}}\n    <li id=\"tab_my_repositories\" data-github-id=\"{{current_user.login}}\">\n      <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.my_repositories\"}}</a></h5>\n    </li>\n  {{/if}}\n  <li id=\"tab_search\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.search\"}}</a></h5>\n  </li>\n</ul>\n\n{{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n");Ember.TEMPLATES['app/templates/layouts/_main']=Ember.Handlebars.compile("<div id=\"repository\">\n  {{view Travis.Views.Repositories.Show}}\n  {{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n</div>\n\n");Ember.TEMPLATES['app/templates/layouts/_right']=Ember.Handlebars.compile("<div class=\"slider\" {{action toggle}}>\n  <div class=\"icon\"></div>&nbsp;\n</div>\n<div class=\"inner\">\n  <div class=\"wrapper\">\n    <h4>\n      {{t \"layouts.application.sponsers\"}}\n    </h4>\n    <div class=\"sponsors top\"></div>\n\n    <p class=\"hint\">\n      <a href=\"https://love.travis-ci.org/sponsors\">\n        {{t \"layouts.application.sponsors_link\"}}\n      </a>\n    </p>\n\n    {{view Ember.CollectionView id=\"workers\" viewName=\"workers\"}}\n    {{view Ember.CollectionView id=\"queues\" viewName=\"queues\"}}\n\n    <div class=\"box\">\n      <h4>\n        {{t \"layouts.application.sponsers\" }}\n      </h4>\n      <div class=\"sponsors bottom\"></div>\n    </div>\n\n    <div id=\"alpha_warning\" class=\"box\">\n      <h4>{{t \"layouts.about.alpha\"}}</h4>\n      <p>{{t \"layouts.about.messages.alpha\"}}</p>\n    </div>\n\n    <div id=\"about\" class=\"box\">\n      <h4>{{t \"layouts.about.join\"}}</h4>\n      <ul>\n        <li>{{t \"layouts.about.repository\"}}: <a href=\"http://github.com/travis-ci\">Github</a></li>\n        <li>{{t \"layouts.about.twitter\"}}: <a href=\"http://twitter.com/travisci\">@travisci</a></li>\n        <li>{{t \"layouts.about.mailing_list\"}}: <a href=\"http://groups.google.com/group/travis-ci\">travis-ci</a></li>\n        <li><a href=\"irc://irc.freenode.net#travis\">irc.freenode.net#travis</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n");Ember.TEMPLATES['app/templates/layouts/default']=Ember.Handlebars.compile("{{view Travis.Views.Layouts.Left id=\"left\" viewName=\"left\"}}\n{{view Travis.Views.Layouts.Main id=\"main\" viewName=\"main\"}}\n{{view Travis.Views.Layouts.Right id=\"right\" viewName=\"right\" class=\"maximized\"}}\n\n<div id=\"github\">\n  <a href=\"https://github.com/travis-ci\" title=\"Fork me on GitHub\">\n    {{t \"layouts.application.fork_me\"}}\n  </a>\n</div>\n\n<div id=\"flash-messages\"></div>\n");Ember.TEMPLATES['app/templates/queues/show']=Ember.Handlebars.compile("<h4>{{t \"queue\"}}: {{queue.display}}</h4>\n{{#collection tagName=\"ul\" classBinding=\"className\" itemClass=\"job\" contentBinding=\"jobs\"}}\n  {{content.repository.slug}}\n  {{#if content.number}}\n    #{{content.number}}\n  {{/if}}\n{{else}}\n  {{t \"no_job\"}}\n{{/collection}}\n\n");Ember.TEMPLATES['app/templates/repositories/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" id=\"repositories\" contentBinding=\"repositories\" itemViewClass=\"Travis.Views.Repositories.Item\" itemClassBinding=\"class\"}}\n  <div class=\"wrapper\">\n    <a {{bindAttr href=\"content.urlCurrent\"}} class=\"slug\">{{content.slug}}</a>\n    <a {{bindAttr href=\"content.urlLastBuild\"}} class=\"build\">#{{content.last_build_number}}</a>\n    <p class=\"summary\">\n      <span class=\"duration_label\">{{t \"repositories.duration\"}}:</span>\n      <abbr class=\"duration\" {{bindAttr title=\"content.last_build_started_at\"}}>{{formatDuration content.last_build_duration}}</abbr>,\n      <span class=\"finished_at_label\">{{t \"repositories.finished_at\"}}:</span>\n      <abbr class=\"finished_at timeago\" {{bindAttr title=\"content.last_build_finished_at\"}}>{{formatTime content.last_build_finished_at}}</abbr>\n    </p>\n    {{#if content.description}}\n      <p class=\"description\">{{content.description}}</p>\n    {{/if}}\n    <span class=\"indicator\"></span>\n  </div>\n{{/collection}}\n\n{{^collection contentBinding=\"repositories\" id=\"list\" class=\"loading\"}}\n  <p></p>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/repositories/show']=Ember.Handlebars.compile("<h3>\n  <a {{bindAttr href=\"repository.urlGithub\"}}>{{repository.slug}}</a>\n</h3>\n\n<p class=\"description\">{{repository.description}}</p>\n\n<ul class=\"github-stats\">\n  <li class=\"language\">{{repository.last_build_language}}</li>\n  <li><a class=\"watchers\" title=\"Watches\" {{bindAttr href=\"repository.urlGithubWatchers\"}}>{{repository.stats.watchers}}</a></li>\n  <li><a class=\"forks\" title=\"Forks\" {{bindAttr href=\"repository.urlGithubNetwork\"}}>{{repository.stats.forks}}</a></li>\n</ul>\n\n<ul class=\"tabs\">\n  <li id=\"tab_current\">\n    <h5><a {{bindAttr href=\"repository.urlCurrent\"}}>{{t \"repositories.tabs.current\"}}</a></h5>\n  </li>\n  <li id=\"tab_history\">\n    <h5><a {{bindAttr href=\"repository.urlBuilds\"}}>{{t \"repositories.tabs.build_history\"}}</a></h5>\n  </li>\n  <li id=\"tab_pull_requests\">\n    <h5><a {{bindAttr href=\"repository.urlPullRequests\"}}>{{t \"repositories.tabs.pull_requests\"}}</a></h5>\n  </li>\n  <li id=\"tab_branches\">\n    <h5><a {{bindAttr href=\"repository.urlBranches\"}}>{{t \"repositories.tabs.branches\"}}</a></h5>\n  </li>\n  <li id=\"tab_build\">\n    <h5><a {{bindAttr href=\"build.url\"}}>{{t \"repositories.tabs.build\"}} #{{build.number}}</a></h5>\n  </li>\n  <li id=\"tab_job\">\n    <h5><a {{bindAttr href=\"job.url\"}}>{{t \"repositories.tabs.job\"}} #{{job.number}}</a></h5>\n  </li>\n</ul>\n\n{{view Travis.Views.Repositories.Tools repositoryBinding=\"repository\"}}\n");Ember.TEMPLATES['app/templates/repositories/tools']=Ember.Handlebars.compile("<div class=\"tools\">\n  <a {{action toggle}}></a>\n  <div class=\"content\">\n    <p>\n      <label>{{t \"repositories.branch\"}}:</label>\n      <select {{action update on=\"change\"}}>\n        <option></option>\n        {{#each repository.branches}}\n          <option>{{commit.branch}}</option>\n        {{/each}}\n      </select>\n    </p>\n    <p>\n      <label>{{t \"repositories.image_url\"}}:</label>\n      <input type=\"text\" class=\"url\" {{bindAttr value=\"imageUrl\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.markdown\"}}:</label>\n      <input type=\"text\" class=\"markdown\" {{bindAttr value=\"markdown\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.textile\"}}:</label>\n      <input type=\"text\" class=\"textile\" {{bindAttr value=\"textile\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.rdoc\"}}:</label>\n      <input type=\"text\" class=\"rdoc\" {{bindAttr value=\"rdoc\"}}>\n    </p>\n  </div>\n</div>\n\n");Ember.TEMPLATES['app/templates/service_hooks/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" itemViewClass=\"Ember.View\" itemClass=\"repository\" contentBinding=\"serviceHooks\"}}\n  <a {{bindAttr href=\"content.url\"}} rel=\"nofollow\">{{content.name}}</a>\n  <p class=\"description\">{{content.description}}</p>\n  <div class=\"controls\">\n    <a {{bindAttr href=\"content.urlGithubAdmin\"}} class=\"github-admin tool-tip\" title=\"Github service hooks admin page\"></a>\n    <a {{bindAttr class=\":switch content.active:on\"}} {{action target=\"content\" action=\"toggle\"}}</a>\n  </div>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/workers/list']=Ember.Handlebars.compile("<h4>{{t \"workers\"}}</h4>\n{{#collection tagName=\"ul\" itemClass=\"group\" contentBinding=\"groups\"}}\n  <h5>{{content.host}}</h5>\n  {{#collection tagName=\"ul\" itemClass=\"worker\" itemClassBinding=\"content.state\" contentBinding=\"content.workers\"}}\n    <div class=\"icon\"></div>\n    {{#if content.isTesting}}\n      <a {{bindAttr href=\"content.urlJob\"}} {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</a>\n    {{else}}\n      <span {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</span>\n    {{/if}}\n  {{/collection}}\n{{else}}\n  No workers\n{{/collection}}\n");(function() {
+Ember.TEMPLATES['app/templates/branches/list']=Ember.Handlebars.compile("<table id=\"branch_summary\">\n  <thead>\n    <tr>\n      <th>{{t \"repositories.branch\"}}</th>\n      <th>{{t \"repositories.commit\"}}</th>\n      <th>{{t \"repositories.message\"}}</th>\n      <th>{{t \"repositories.started_at\"}}</th>\n      <th>{{t \"repositories.finished_at\"}}</th>\n    </tr>\n  </thead>\n  {{#collection tagName=\"tbody\" contentBinding=\"branches\" itemViewClass=\"Travis.Views.Branches.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.buildUrl\"}}>{{content.commit.branch}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.commitUrl\"}}>{{formatSha content.commit.sha}}</a></td>\n    <td class=\"message\">{{{formatMessage content.commit.message short=\"true\"}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatTime content.started_at}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n");Ember.TEMPLATES['app/templates/builds/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <thead>\n    <tr>\n      <th>{{t \"builds.name\"}}</th>\n      <th>{{t \"builds.commit\"}}</th>\n      <th>{{t \"builds.message\"}}</th>\n      <th>{{t \"builds.duration\"}}</th>\n      <th>{{t \"builds.finished_at\"}}</th>\n    </tr>\n  </thead>\n\n  {{#collection tagName=\"tbody\" contentBinding=\"builds\" itemViewClass=\"Travis.Views.Builds.Item\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"commit\"><a {{bindAttr href=\"content.urlGithubCommit\"}}>{{formatCommit content.commit}}</a></td>\n    <td class=\"message\">{{{content.formattedShortMessage}}}</td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n  {{/collection}}\n</table>\n\n<p>\n  <button {{action \"showMore\" on=\"click\" target=\"builds\" isVisibleBinding=\"hasMore\"}}>\n    {{t \"builds.show_more\"}}\n  </button>\n</p>\n");Ember.TEMPLATES['app/templates/builds/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>{{t \"builds.name\"}}</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"build.url\"}}>{{build.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"builds.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"build.finished_at\"}}>{{formatTime build.finished_at}}</dd>\n      <dt>{{t \"builds.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"build.started_at\"}}>{{formatDuration build.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"builds.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"builds.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"commit.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"builds.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"commit.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"builds.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"builds.message\"}}</dt>\n    <dd class=\"commit-message\">{{{formatMessage commit.message}}}</dd>\n\n    {{#if build.isMatrix}}\n    {{else}}\n      <dt>{{t \"builds.config\"}}</dt>\n      <dd class=\"config\">{{formatConfig build.config}}</dd>\n    {{/if}}\n  </dl>\n\n  {{#if build.isMatrix}}\n    {{view Travis.Views.Jobs.List buildBinding=\"build\"}}\n  {{else}}\n    {{view Travis.Views.Jobs.Log jobBinding=\"build.jobs.firstObject\"}}\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/jobs/list']=Ember.Handlebars.compile("<table id=\"builds\">\n  <caption>{{t \"jobs.build_matrix\"}}</caption>\n  <thead>\n    <tr>\n      {{#each configKeys}}\n        <th>{{this}}</th>\n      {{/each}}\n    </tr>\n  </thead>\n\n  {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.requiredJobs\" itemClassBinding=\"color\"}}\n    <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n    <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n    <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n    {{#each configValues}}\n      <td>{{value}}</td>\n    {{/each}}\n  {{/collection}}\n</table>\n\n{{#if build.hasFailureMatrix}}\n  <table id=\"allow_failure_builds\">\n    <caption>{{t \"jobs.allowed_failures\"}}{{whats_this \"allow_failure_help\"}}</caption>\n    <thead>\n      <tr>\n        {{#each configKeys}}\n          <th>{{this}}</th>\n        {{/each}}\n      </tr>\n    </thead>\n\n    {{#collection itemViewClass=\"Travis.Views.Jobs.Item\" contentBinding=\"build.allowedFailureJobs\" itemClassBinding=\"color\"}}\n      <td class=\"number\"><a {{bindAttr href=\"content.url\"}}>{{content.number}}</a></td>\n      <td class=\"duration\" {{bindAttr title=\"content.started_at\"}}>{{formatDuration content.duration}}</td>\n      <td class=\"finished_at timeago\" {{bindAttr title=\"content.finished_at\"}}>{{formatTime content.finished_at}}</td>\n      {{#each configValues}}\n        <td>{{value}}</td>\n      {{/each}}\n    {{/collection}}\n  </table>\n\n  <div id=\"allow_failure_help\" class=\"context_help\">\n  <div class=\"context_help_caption\">{{t \"jobs.allowed_failures\"}}</div>\n  <div class=\"context_help_body\">Allowed Failures are items in your build matrix that are allowed to fail without causing the entire build to be shown as failed. This lets you add in experimental and preparatory builds to test against versions or configurations that you are not ready to officially support.<br><br>You can define allowed failures in the build matrix as follows:\n  </br><pre>\n  matrix:\n    allow_failures:\n      - rvm: ruby-head\n  </pre></div>\n  </div>\n{{/if}}\n");Ember.TEMPLATES['app/templates/jobs/log']=Ember.Handlebars.compile("{{#if job.log}}\n  <pre class=\"log\">{{{formatLog job.log}}}</pre>\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n    {{t \"builds.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n{{/if}}\n\n");Ember.TEMPLATES['app/templates/jobs/show']=Ember.Handlebars.compile("<div {{bindAttr class=\"color\"}}>\n  <dl class=\"summary clearfix\">\n    <div class=\"left\">\n      <dt>Job</dt>\n      <dd class=\"number\"><a {{bindAttr href=\"job.build.url\"}}>{{job.number}}</a></dd>\n      <dt class=\"finished_at_label\">{{t \"jobs.finished_at\"}}</dt>\n      <dd class=\"finished_at timeago\" {{bindAttr title=\"job.finished_at\"}}>{{formatTime job.finished_at}}</dd>\n      <dt>{{t \"jobs.duration\"}}</dt>\n      <dd class=\"duration\" {{bindAttr title=\"job.started_at\"}}>{{formatDuration job.duration}}</dd>\n    </div>\n\n    <div class=\"right\">\n      <dt>{{t \"jobs.commit\"}}</dt>\n      <dd class=\"commit-hash\"><a {{bindAttr href=\"job.build.urlGithubCommit\"}}>{{formatCommit commit}}</a></dd>\n      {{#if commit.compare_url}}\n        <dt>{{t \"jobs.compare\"}}</dt>\n        <dd class=\"compare_view\"><a {{bindAttr href=\"job.compare_url\"}}>{{pathFrom commit.compare_url}}</a></dd>\n      {{/if}}\n      {{#if commit.author_name}}\n        <dt>{{t \"jobs.author\"}}</dt>\n        <dd class=\"author\"><a {{bindAttr href=\"job.build.urlAuthor\"}}>{{commit.author_name}}</a></dd>\n      {{/if}}\n      {{#if commit.committer_name}}\n        <dt>{{t \"jobs.committer\"}}</dt>\n        <dd class=\"committer\"><a {{bindAttr href=\"job.build.urlCommitter\"}}>{{commit.committer_name}}</a></dd>\n      {{/if}}\n    </div>\n\n    <dt>{{t \"jobs.message\"}}</dt>\n    <dd class=\"commit-message\">{{formatMessage commit.message}}</dd>\n    <dt>{{t \"jobs.config\"}}</dt>\n    <dd class=\"config\">{{formatConfig job.config}}</dd>\n  </dl>\n\n  {{view Travis.Views.Jobs.Log jobBinding=\"job\"}}\n\n  {{#if job.sponsor.name}}\n    <p class=\"sponsor\">\n      {{t \"jobs.messages.sponsored_by\"}}\n      <a {{bindAttr href=\"job.sponsor.url\"}}>{{job.sponsor.name}}</a>\n    </p>\n  {{/if}}\n</div>\n");Ember.TEMPLATES['app/templates/layouts/_left']=Ember.Handlebars.compile("<div id=\"search_box\">\n  {{view Ember.TextField viewName=\"searchBox\"}}\n</div>\n\n<ul class=\"tabs\">\n  <li id=\"tab_recent\" class=\"active\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.recent\"}}</a></h5>\n  </li>\n  {{#if current_user}}\n    <li id=\"tab_my_repositories\" data-github-id=\"{{current_user.login}}\">\n      <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.my_repositories\"}}</a></h5>\n    </li>\n  {{/if}}\n  <li id=\"tab_search\">\n    <h5><a href=\"#\" {{action \"click\"}}>{{t \"layouts.application.search\"}}</a></h5>\n  </li>\n</ul>\n\n{{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n");Ember.TEMPLATES['app/templates/layouts/_main']=Ember.Handlebars.compile("<div id=\"repository\">\n  {{view Travis.Views.Repositories.Show}}\n  {{view Ember.CollectionView classNames=\"tab\" viewName=\"tab\"}}\n</div>\n\n");Ember.TEMPLATES['app/templates/layouts/_right']=Ember.Handlebars.compile("<div class=\"slider\" {{action toggle}}>\n  <div class=\"icon\"></div>&nbsp;\n</div>\n<div class=\"inner\">\n  <div class=\"wrapper\">\n    <h4>\n      {{t \"layouts.application.sponsers\"}}\n    </h4>\n    <div class=\"sponsors top\"></div>\n\n    <p class=\"hint\">\n      <a href=\"https://love.travis-ci.org/sponsors\">\n        {{t \"layouts.application.sponsors_link\"}}\n      </a>\n    </p>\n\n    {{view Ember.CollectionView id=\"workers\" viewName=\"workers\"}}\n    {{view Ember.CollectionView id=\"queues\" viewName=\"queues\"}}\n\n    <div class=\"box\">\n      <h4>\n        {{t \"layouts.application.sponsers\" }}\n      </h4>\n      <div class=\"sponsors bottom\"></div>\n    </div>\n\n    <div id=\"alpha_warning\" class=\"box\">\n      <h4>{{t \"layouts.about.alpha\"}}</h4>\n      <p>{{t \"layouts.about.messages.alpha\"}}</p>\n    </div>\n\n    <div id=\"about\" class=\"box\">\n      <h4>{{t \"layouts.about.join\"}}</h4>\n      <ul>\n        <li>{{t \"layouts.about.repository\"}}: <a href=\"http://github.com/travis-ci\">Github</a></li>\n        <li>{{t \"layouts.about.twitter\"}}: <a href=\"http://twitter.com/travisci\">@travisci</a></li>\n        <li>{{t \"layouts.about.mailing_list\"}}: <a href=\"http://groups.google.com/group/travis-ci\">travis-ci</a></li>\n        <li><a href=\"irc://irc.freenode.net#travis\">irc.freenode.net#travis</a></li>\n      </ul>\n    </div>\n  </div>\n</div>\n");Ember.TEMPLATES['app/templates/layouts/default']=Ember.Handlebars.compile("{{view Travis.Views.Layouts.Left id=\"left\" viewName=\"left\"}}\n{{view Travis.Views.Layouts.Main id=\"main\" viewName=\"main\"}}\n{{view Travis.Views.Layouts.Right id=\"right\" viewName=\"right\" class=\"maximized\"}}\n\n<div id=\"github\">\n  <a href=\"https://github.com/travis-ci\" title=\"Fork me on GitHub\">\n    {{t \"layouts.application.fork_me\"}}\n  </a>\n</div>\n\n<div id=\"flash-messages\"></div>\n");Ember.TEMPLATES['app/templates/queues/show']=Ember.Handlebars.compile("<h4>{{t \"queue\"}}: {{queue.display}}</h4>\n{{#collection tagName=\"ul\" classBinding=\"className\" itemClass=\"job\" contentBinding=\"jobs\"}}\n  {{content.repository.slug}}\n  {{#if content.number}}\n    #{{content.number}}\n  {{/if}}\n{{else}}\n  {{t \"no_job\"}}\n{{/collection}}\n\n");Ember.TEMPLATES['app/templates/repositories/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" id=\"repositories\" contentBinding=\"repositories\" itemViewClass=\"Travis.Views.Repositories.Item\" itemClassBinding=\"class\"}}\n  <div class=\"wrapper\">\n    <a {{bindAttr href=\"content.urlCurrent\"}} class=\"slug\">{{content.slug}}</a>\n    <a {{bindAttr href=\"content.urlLastBuild\"}} class=\"build\">#{{content.last_build_number}}</a>\n    <p class=\"summary\">\n      <span class=\"duration_label\">{{t \"repositories.duration\"}}:</span>\n      <abbr class=\"duration\" {{bindAttr title=\"content.last_build_started_at\"}}>{{formatDuration content.last_build_duration}}</abbr>,\n      <span class=\"finished_at_label\">{{t \"repositories.finished_at\"}}:</span>\n      <abbr class=\"finished_at timeago\" {{bindAttr title=\"content.last_build_finished_at\"}}>{{formatTime content.last_build_finished_at}}</abbr>\n    </p>\n    {{#if content.description}}\n      <p class=\"description\">{{content.description}}</p>\n    {{/if}}\n    <span class=\"indicator\"></span>\n  </div>\n{{/collection}}\n\n{{^collection contentBinding=\"repositories\" id=\"list\" class=\"loading\"}}\n  <p></p>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/repositories/show']=Ember.Handlebars.compile("<h3>\n  <a {{bindAttr href=\"repository.urlGithub\"}}>{{repository.slug}}</a>\n</h3>\n\n<p class=\"description\">{{repository.description}}</p>\n\n<ul class=\"github-stats\">\n  <li class=\"language\">{{repository.last_build_language}}</li>\n  <li><a class=\"watchers\" title=\"Watches\" {{bindAttr href=\"repository.urlGithubWatchers\"}}>{{repository.stats.watchers}}</a></li>\n  <li><a class=\"forks\" title=\"Forks\" {{bindAttr href=\"repository.urlGithubNetwork\"}}>{{repository.stats.forks}}</a></li>\n</ul>\n\n<ul class=\"tabs\">\n  <li id=\"tab_current\">\n    <h5><a {{bindAttr href=\"repository.urlCurrent\"}}>{{t \"repositories.tabs.current\"}}</a></h5>\n  </li>\n  <li id=\"tab_history\">\n    <h5><a {{bindAttr href=\"repository.urlBuilds\"}}>{{t \"repositories.tabs.build_history\"}}</a></h5>\n  </li>\n  <li id=\"tab_pull_requests\">\n    <h5><a {{bindAttr href=\"repository.urlPullRequests\"}}>{{t \"repositories.tabs.pull_requests\"}}</a></h5>\n  </li>\n  <li id=\"tab_branches\">\n    <h5><a {{bindAttr href=\"repository.urlBranches\"}}>{{t \"repositories.tabs.branches\"}}</a></h5>\n  </li>\n  <li id=\"tab_build\">\n    <h5><a {{bindAttr href=\"build.url\"}}>{{t \"repositories.tabs.build\"}} #{{build.number}}</a></h5>\n  </li>\n  <li id=\"tab_job\">\n    <h5><a {{bindAttr href=\"job.url\"}}>{{t \"repositories.tabs.job\"}} #{{job.number}}</a></h5>\n  </li>\n</ul>\n\n{{view Travis.Views.Repositories.Tools repositoryBinding=\"repository\"}}\n");Ember.TEMPLATES['app/templates/repositories/tools']=Ember.Handlebars.compile("<div class=\"tools\">\n  <a {{action toggle}}></a>\n  <div class=\"content\">\n    <p>\n      <label>{{t \"repositories.branch\"}}:</label>\n      <select {{action update on=\"change\"}}>\n        <option></option>\n        {{#each repository.branches}}\n          <option>{{commit.branch}}</option>\n        {{/each}}\n      </select>\n    </p>\n    <p>\n      <label>{{t \"repositories.image_url\"}}:</label>\n      <input type=\"text\" class=\"url\" {{bindAttr value=\"imageUrl\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.markdown\"}}:</label>\n      <input type=\"text\" class=\"markdown\" {{bindAttr value=\"markdown\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.textile\"}}:</label>\n      <input type=\"text\" class=\"textile\" {{bindAttr value=\"textile\"}}>\n    </p>\n    <p>\n      <label>{{t \"repositories.rdoc\"}}:</label>\n      <input type=\"text\" class=\"rdoc\" {{bindAttr value=\"rdoc\"}}>\n    </p>\n  </div>\n</div>\n\n");Ember.TEMPLATES['app/templates/service_hooks/list']=Ember.Handlebars.compile("{{#collection tagName=\"ul\" itemViewClass=\"Ember.View\" itemClass=\"repository\" contentBinding=\"serviceHooks\"}}\n  <a {{bindAttr href=\"content.url\"}} rel=\"nofollow\">{{content.name}}</a>\n  <p class=\"description\">{{content.description}}</p>\n  <div class=\"controls\">\n    <a {{bindAttr href=\"content.urlGithubAdmin\"}} class=\"github-admin tool-tip\" title=\"Github service hooks admin page\"></a>\n    <a {{bindAttr class=\":switch content.active:active\"}} {{action \"toggle\" target=\"content\"}}</a>\n  </div>\n{{/collection}}\n");Ember.TEMPLATES['app/templates/workers/list']=Ember.Handlebars.compile("<h4>{{t \"workers\"}}</h4>\n{{#collection tagName=\"ul\" itemClass=\"group\" contentBinding=\"groups\"}}\n  <h5>{{content.host}}</h5>\n  {{#collection tagName=\"ul\" itemClass=\"worker\" itemClassBinding=\"content.state\" contentBinding=\"content.workers\"}}\n    <div class=\"icon\"></div>\n    {{#if content.isTesting}}\n      <a {{bindAttr href=\"content.urlJob\"}} {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</a>\n    {{else}}\n      <span {{bindAttr title=\"content.last_seen_at\"}}>{{content.display}}</span>\n    {{/if}}\n  {{/collection}}\n{{else}}\n  No workers\n{{/collection}}\n");(function() {
 
   this.Travis.app = Travis.AppController.create();
 
